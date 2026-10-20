@@ -3,7 +3,7 @@ name: mycelic
 on:
   push:
     branches: [main]
-    paths: ["mycelic/**", "tests/**", "deploy/mycelic/**", "NeuralGraph/**", "requirements*.txt", ".github/workflows/mycelic.yml"]
+    paths: ["mycelic/**", "tests/**", "demo/**", "deploy/mycelic/**", "requirements*.txt", ".github/workflows/mycelic.yml"]
   pull_request:
 
 jobs:
@@ -27,7 +27,6 @@ jobs:
           nats-server --version
       - name: validate nats.conf
         run: NATS_STORE_DIR=/tmp/js NATS_USER=ci NATS_PASSWORD=ci-password-with-letters nats-server -t -c deploy/mycelic/nats/nats.conf
-      - run: python -m pytest NeuralGraph/tests -q -p no:warnings
       - run: python -m pytest tests/mycelic -q -p no:warnings
       - name: production smoke test (process driver, 6 agents)
         run: python tests/smoke/mycelic_smoke.py --driver process --report smoke-process.json

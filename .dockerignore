@@ -1,0 +1,14 @@
+.git
+.venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.context/
+research/
+docs/
+demo/
+tests/
+deploy/mycelic/.env
+*.db
+*.db-wal
+*.db-shm

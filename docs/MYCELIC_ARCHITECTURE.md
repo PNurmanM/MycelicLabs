@@ -59,15 +59,16 @@ customer; they never talk to the broker.
 | `mycelic/auth.py` | API keys, principals, the visibility rule, token-bucket rate limiter |
 | `mycelic/service.py` | Ingest, apply, query, lineage, admin operations, publisher/consumer loops, recovery |
 | `mycelic/api.py` | aiohttp routes and middleware |
-| `mycelic/mcp.py` | MCP tools over the `chat_memory` protocol core; per-request identity; stdio proxy |
+| `mycelic/mcp.py` | MCP tools over the protocol core in `mcp_protocol.py`; per-request identity; stdio proxy |
 | `mycelic/metrics.py` | Prometheus metrics |
 | `mycelic/sdk/` | `MycelicClient` (urllib, no dependencies), `LocalMemory`, reference agent process |
 | `mycelic/harness.py` | Process and Compose drivers for the smoke test and the demo |
 
-Reused from the existing repository: `NeuralGraph.research.coordination` (`ClaimEnvelope`,
-`RuleBasedSynthesizer`, `LineageAnalyzer`), `NeuralGraph.chat_memory.mcp_server` (JSON-RPC/MCP core and
-Streamable HTTP transport, generalised to take another tool set), `NeuralGraph.chat_memory.textutil`
-(tokenizer), and the store/transaction pattern of `NeuralGraph.chat_memory.store`.
+Copied from [NeuralGraph](https://github.com/anovruzov/NeuralGraph) at `e7ef73ea` when Mycelic moved to its
+own repository, and owned here since: `mycelic/coordination/` (`ClaimEnvelope`, `RuleBasedSynthesizer`,
+`LineageAnalyzer`, from `NeuralGraph.research.coordination`), `mycelic/mcp_protocol.py` (JSON-RPC/MCP core and
+Streamable HTTP transport, from `NeuralGraph.chat_memory.mcp_server`, cut down to a pluggable tool set) and
+`mycelic/textutil.py` (tokenizer). The store/transaction pattern follows `NeuralGraph.chat_memory.store`.
 
 ## 3. The data path
 

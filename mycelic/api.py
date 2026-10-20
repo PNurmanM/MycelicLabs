@@ -192,7 +192,7 @@ def create_app(service: MycelicService) -> web.Application:
     # ---------------------------------------------------------------- public
     async def index(request: web.Request) -> web.Response:
         return _json({"service": "mycelic", "version": VERSION,
-                      "docs": "https://github.com/anovruzov/NeuralGraph/blob/main/DEPLOYMENT.md",
+                      "docs": "https://github.com/PNurmanM/MycelicLabs/blob/main/DEPLOYMENT.md",
                       "endpoints": ["/health", "/ready", "/metrics", "/whoami", "/memory", "/memories", "/events", "/query",
                                     "/lineage/{id}", "/admin/*", "/mcp"]})
 

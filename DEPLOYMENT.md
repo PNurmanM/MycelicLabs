@@ -16,8 +16,8 @@ rendered with `kubectl kustomize` but **not applied to a cluster**.
 Prerequisites: Docker 24+ with Compose v2 (`docker compose version`), `git`, `openssl`.
 
 ```bash
-git clone https://github.com/anovruzov/NeuralGraph.git
-cd NeuralGraph
+git clone https://github.com/PNurmanM/MycelicLabs.git
+cd MycelicLabs
 
 # 1. configure: every secret is required; compose refuses to start with one missing
 cp deploy/mycelic/.env.example deploy/mycelic/.env

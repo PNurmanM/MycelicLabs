@@ -1,7 +1,7 @@
 """Retrieval over organizational memory: BM25 keyword ranking scoped to what the caller may see.
 
 The index is built per organization from every active memory and rebuilt lazily when the store's revision
-changes (the same strategy as ``NeuralGraph.chat_memory.retrieval``, whose tokenizer is reused).  Ranking is
+changes (the same strategy as NeuralGraph's chat-memory retrieval, whose tokenizer :mod:`mycelic.textutil` copies).  Ranking is
 BM25 with a mild boost for higher organizational layers, so an enterprise conclusion outranks one of the raw
 observations it was built from when both match the query, while a precise raw observation still wins when the
 conclusion does not mention the query's terms.  Visibility is a predicate evaluated per row (see
@@ -18,7 +18,7 @@ from typing import Any, Callable
 import math
 from collections import Counter
 
-from NeuralGraph.chat_memory.textutil import tokenize
+from .textutil import tokenize
 
 from .hierarchy import LAYERS
 from .models import Memory

@@ -14,7 +14,6 @@ RUN --mount=type=secret,id=ca_bundle,required=false \
     sh -c 'if [ -s /run/secrets/ca_bundle ]; then export PIP_CERT=/run/secrets/ca_bundle; fi; \
            pip install --no-cache-dir -r /app/requirements-runtime.txt'
 
-COPY NeuralGraph /app/NeuralGraph
 COPY mycelic /app/mycelic
 
 # Run as a dedicated non-root user; /data is prepared so a fresh named volume is writable on first start.

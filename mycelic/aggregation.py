@@ -15,7 +15,7 @@ distinct agents and teams underneath.  When more evidence arrives the coalition 
 conclusion needs (for example ``transport_disruption``, ``supplier_buffer_low``, ``demand_commitment``).  The
 conclusion exists only once every slot is covered for the same entity by observations from at least
 ``min_agents`` agents in at least ``min_teams`` teams inside the rule's target unit.  Slot selection reuses
-``RuleBasedSynthesizer`` and the support metrics reuse ``LineageAnalyzer`` from the coordination package, with
+``RuleBasedSynthesizer`` and the support metrics reuse ``LineageAnalyzer`` from :mod:`mycelic.coordination`, with
 each raw observation as its own lineage root and its team as its failure domain.
 
 **Composition and strategic synthesis.**  A rule may name ``sources`` other than raw observations, so the
@@ -38,9 +38,8 @@ import re
 from dataclasses import dataclass, field
 from typing import Any, Callable
 
-from NeuralGraph.research.coordination.contracts import ClaimEnvelope, PolicyStatus
-from NeuralGraph.research.coordination.core import LineageAnalyzer, RuleBasedSynthesizer, to_jsonable
-
+from .coordination.contracts import ClaimEnvelope, PolicyStatus
+from .coordination.core import LineageAnalyzer, RuleBasedSynthesizer, to_jsonable
 from .hierarchy import LAYERS, ancestors, child_unit_of, layer_of_path, unit_at_layer
 from .models import LineageEdge, Memory, Rule, derived_memory_id, now_iso
 from .store import MycelicStore, Tx

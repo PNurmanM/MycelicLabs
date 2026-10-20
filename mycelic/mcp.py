@@ -1,7 +1,7 @@
 """MCP (Model Context Protocol) surface for Mycelic: Claude Code or any MCP client can use the organization's
 memory as a tool set.
 
-The JSON-RPC/MCP core is ``NeuralGraph.chat_memory.mcp_server.MCPProtocol`` (already serving the assistant); Mycelic
+The JSON-RPC/MCP core is :class:`mycelic.mcp_protocol.MCPProtocol`; Mycelic
 supplies its own tool definitions and implementations.  Identity is per request: the aiohttp middleware
 authenticates the ``Authorization: Bearer <agent key>`` header exactly as for the REST routes and the principal is
 handed to the tools through a context variable, so ``mycelic_remember`` writes as the calling agent and
@@ -21,9 +21,8 @@ from typing import Any
 
 from aiohttp import web
 
-from NeuralGraph.chat_memory.mcp_server import JSONRPC_INVALID_REQUEST, MCPProtocol, StreamableHTTPTransport, ToolError
-
 from .auth import Principal
+from .mcp_protocol import JSONRPC_INVALID_REQUEST, MCPProtocol, StreamableHTTPTransport, ToolError
 from .service import Forbidden, MycelicService, NotFound, ValidationError
 
 SERVER_INFO = {"name": "mycelic", "version": "0.1.0"}
@@ -166,14 +165,14 @@ class MycelicTools:
 
 
 def build_protocol(service: MycelicService) -> MCPProtocol:
-    return MCPProtocol(None, instructions=INSTRUCTIONS, tool_defs=TOOLS, tools=MycelicTools(service), server_info=SERVER_INFO)
+    return MCPProtocol(instructions=INSTRUCTIONS, tool_defs=TOOLS, tools=MycelicTools(service), server_info=SERVER_INFO)
 
 
 class MycelicMCPTransport(StreamableHTTPTransport):
     """Streamable HTTP transport whose identity comes from the request (set by the API middleware)."""
 
     def __init__(self, service: MycelicService, *, allowed_origins: list[str] | None = None) -> None:
-        super().__init__(None, token=None, allowed_origins=allowed_origins, protocol=build_protocol(service))
+        super().__init__(build_protocol(service), allowed_origins=allowed_origins)
         self.service = service
 
     async def handle(self, request):  # type: ignore[override]
@@ -229,7 +228,7 @@ async def serve_stdio_proxy(base_url: str, api_key: str, *, ca_file: str | None 
                 raise ToolError(f"{type(exc).__name__}: {exc}") from exc
             raise ToolError(f"unknown tool: {name}")
 
-    proto = MCPProtocol(None, instructions=INSTRUCTIONS, tool_defs=TOOLS, tools=ProxyTools(), server_info=SERVER_INFO)
+    proto = MCPProtocol(instructions=INSTRUCTIONS, tool_defs=TOOLS, tools=ProxyTools(), server_info=SERVER_INFO)
     reader = asyncio.StreamReader(limit=16 * 1024 * 1024)
     await asyncio.get_running_loop().connect_read_pipe(lambda: asyncio.StreamReaderProtocol(reader), sys.stdin.buffer)
     out = sys.stdout.buffer

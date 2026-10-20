@@ -1,7 +1,7 @@
 """Plain records for Mycelic. The store is the only writer; everything is JSON-serialisable via ``to_dict``.
 
 Timestamps are ISO-8601 UTC strings with second precision (``2026-09-24T10:00:00+00:00``) so SQLite string
-comparison orders them, the same convention ``NeuralGraph.chat_memory.models`` uses.
+comparison orders them, the same convention NeuralGraph's chat-memory models use.
 """
 from __future__ import annotations
 

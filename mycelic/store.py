@@ -1,7 +1,7 @@
 """SQLite persistence for Mycelic: agents, memories, lineage, the event log (which doubles as the transport
 outbox), rules and the audit log.
 
-Design (the same shape as ``NeuralGraph.chat_memory.store``, which has been running the assistant):
+Design (the same shape as NeuralGraph's chat-memory store):
 
 * One ``sqlite3`` connection in WAL mode, used only from the asyncio event-loop thread.  Every write goes
   through :meth:`transaction` (``BEGIN IMMEDIATE`` ... ``COMMIT``) under an ``asyncio.Lock``, so a multi-row
