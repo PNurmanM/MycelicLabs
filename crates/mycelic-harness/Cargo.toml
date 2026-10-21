@@ -1,5 +1,34 @@
 [package]
 name = "mycelic-harness"
+description = "Deployment drivers (local processes, docker compose), the production smoke test and the demos"
 version.workspace = true
 edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
 publish = false
+
+[[bin]]
+name = "mycelic-smoke"
+path = "src/bin/mycelic-smoke.rs"
+
+[[bin]]
+name = "mycelic-demo"
+path = "src/bin/mycelic-demo.rs"
+
+[[bin]]
+name = "mycelic-strategic-demo"
+path = "src/bin/mycelic-strategic-demo.rs"
+
+[dependencies]
+mycelic-sdk = { path = "../mycelic-sdk" }
+anyhow.workspace = true
+chrono.workspace = true
+clap.workspace = true
+hex.workspace = true
+rand.workspace = true
+serde_json.workspace = true
+tempfile.workspace = true
+ureq.workspace = true
+
+[dev-dependencies]
+serde_json.workspace = true

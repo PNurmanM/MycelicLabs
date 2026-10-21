@@ -1194,6 +1194,17 @@ dependencies = [
 [[package]]
 name = "mycelic-harness"
 version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "chrono",
+ "clap",
+ "hex",
+ "mycelic-sdk",
+ "rand 0.9.5",
+ "serde_json",
+ "tempfile",
+ "ureq",
+]
 
 [[package]]
 name = "mycelic-sdk"
