@@ -1,0 +1,49 @@
+[package]
+name = "mycelic"
+description = "Mycelic service: API, store, aggregation, lineage, retrieval, MCP, JetStream transport"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "mycelic"
+path = "src/main.rs"
+
+[dependencies]
+mycelic-sdk = { path = "../mycelic-sdk" }
+anyhow.workspace = true
+async-nats.workspace = true
+async-trait.workspace = true
+axum.workspace = true
+axum-server.workspace = true
+base64.workspace = true
+bytes.workspace = true
+chrono.workspace = true
+clap.workspace = true
+futures.workspace = true
+hex.workspace = true
+hmac.workspace = true
+http-body-util.workspace = true
+prometheus.workspace = true
+rand.workspace = true
+regex.workspace = true
+rusqlite.workspace = true
+ryu.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+tower.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+unicode-normalization.workspace = true
+uuid.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

@@ -1,0 +1,5 @@
+[package]
+name = "mycelic-harness"
+version.workspace = true
+edition.workspace = true
+publish = false
