@@ -9,8 +9,12 @@
 // with the original rather than clarify it.
 #![allow(clippy::type_complexity)]
 
+pub mod analysis;
+pub mod calibrator;
 pub mod corpus;
 pub mod evalm;
+pub mod experiments;
+pub mod loss_accounting;
 pub mod models;
 pub mod np;
 pub mod ops;

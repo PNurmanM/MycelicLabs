@@ -3,6 +3,7 @@
 pub mod fmt;
 pub mod json;
 pub mod pyset;
+pub mod value;
 
 pub use pyset::PySet;
 

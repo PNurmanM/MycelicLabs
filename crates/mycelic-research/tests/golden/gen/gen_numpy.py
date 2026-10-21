@@ -264,6 +264,21 @@ def fmt_cases():
     return {"float": out, "int": iout, "repr": reprs, "round": rounds}
 
 
+def boot_cases():
+    """analysis.boot_ci over seed-count-sized samples: the per-row means of an (n, k) index draw."""
+    sys.path.insert(0, os.path.join(OUT, "..", "..", "..", ".."))
+    from research.mycelic.analysis import boot_ci, sign_test
+    py = random.Random(11)
+    out = []
+    for k in list(range(1, 25)) + [30, 40, 64, 130]:
+        for _ in range(3):
+            x = [py.choice([py.random(), py.gauss(0, 0.05), float(py.randint(0, 9)) / 9, 0.0]) for _ in range(k)]
+            m, lo, hi = boot_ci(x)
+            out.append({"x": [bits(v) for v in x], "mean": bits(m), "lo": bits(lo), "hi": bits(hi),
+                        "sign": list(sign_test(x))})
+    return out
+
+
 def dump(name, obj):
     with open(os.path.join(OUT, name), "w") as fh:
         json.dump(obj, fh, separators=(",", ":"))
@@ -278,3 +293,4 @@ if __name__ == "__main__":
     dump("numpy_math.json", math_cases())
     dump("pyset.json", {"python": sys.version.split()[0], "cases": pyset_cases()})
     dump("pyfmt.json", fmt_cases())
+    dump("boot.json", boot_cases())

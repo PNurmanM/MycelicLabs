@@ -296,3 +296,19 @@ fn long_sampler_runs_match_numpy() {
     }
     assert!(draws > 400_000);
 }
+
+#[test]
+fn bootstrap_and_sign_test_match_python() {
+    let fx = load("boot.json");
+    for rec in fx.as_array().unwrap() {
+        let x: Vec<f64> = rec["x"].as_array().unwrap().iter().map(f).collect();
+        let (m, lo, hi) = mycelic_research::analysis::boot_ci(&x);
+        assert_eq!(m.to_bits(), f(&rec["mean"]).to_bits(), "mean n={}", x.len());
+        assert_eq!(lo.to_bits(), f(&rec["lo"]).to_bits(), "lo n={}", x.len());
+        assert_eq!(hi.to_bits(), f(&rec["hi"]).to_bits(), "hi n={}", x.len());
+        let (k, n, p) = mycelic_research::analysis::sign_test(&x);
+        assert_eq!(k as u64, rec["sign"][0].as_u64().unwrap());
+        assert_eq!(n as u64, rec["sign"][1].as_u64().unwrap());
+        assert_eq!(p, rec["sign"][2].as_f64().unwrap());
+    }
+}
