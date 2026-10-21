@@ -261,7 +261,7 @@ impl Inner {
             if !self.paused.load(Ordering::SeqCst) {
                 let fast = self.fast.load(Ordering::SeqCst);
                 // an error is a restart in progress; the next poll catches up
-                if self.poll_once(!fast || n % MemoryWatcher::FULL_EVERY == 0).is_ok() {
+                if self.poll_once(!fast || n.is_multiple_of(MemoryWatcher::FULL_EVERY)).is_ok() {
                     n += 1;
                     let stale = lock(&self.metric).at.is_none_or(|at| at.elapsed() > Duration::from_secs(1));
                     if !fast && stale {
