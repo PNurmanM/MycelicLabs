@@ -207,3 +207,26 @@ pub fn assert_json_eq(got: &Value, want: &Value, ctx: &str) {
 pub fn obj(v: &Value) -> Map<String, Value> {
     v.as_object().cloned().unwrap_or_default()
 }
+
+impl Harness {
+    /// `store.list_memories("northwind", layers=[layer])`: the active memories at a layer, newest first.
+    pub fn layer(&self, layer: &str) -> Vec<mycelic::models::Memory> {
+        let layers = [layer.to_string()];
+        self.service
+            .store
+            .list_memories("northwind", &mycelic::store::MemoryFilter { layers: Some(&layers), ..Default::default() })
+            .unwrap()
+    }
+
+    pub fn memory(&self, id: &str) -> mycelic::models::Memory {
+        self.service.store.get_memory(id).unwrap().unwrap_or_else(|| panic!("no memory {id}"))
+    }
+
+    /// Every memory of an organization, any status (`list_memories(org, status=None, limit=1000)`).
+    pub fn all(&self, org: &str) -> Vec<mycelic::models::Memory> {
+        self.service
+            .store
+            .list_memories(org, &mycelic::store::MemoryFilter { status: None, limit: 1000, ..Default::default() })
+            .unwrap()
+    }
+}
