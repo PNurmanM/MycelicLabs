@@ -6,6 +6,7 @@
 //! mycelic register-agent --enterprise northwind --team logistics --agent-id agent-7
 //! mycelic agents | rules | status | replay | query "delivery risk"
 //! mycelic healthcheck                 # the container probe: exit 0 when /health answers 200
+//! mycelic backup /data/backup.db      # consistent online copy of the database (safe while the service runs)
 //! ```
 //!
 //! Admin commands are HTTP clients of a running server: MYCELIC_URL (default http://127.0.0.1:8080) and
@@ -122,6 +123,13 @@ enum Cmd {
         k: i64,
         #[arg(long)]
         lineage: bool,
+    },
+    /// write a consistent copy of the database while the service runs (SQLite VACUUM INTO)
+    Backup {
+        /// the copy to write; must not exist yet
+        target: String,
+        #[arg(long, env = "MYCELIC_DB_PATH", default_value = "/data/mycelic.db")]
+        db: String,
     },
     /// probe GET /health on this host (the container healthcheck): exit 0 on 200
     Healthcheck {
@@ -286,6 +294,20 @@ fn cmd_query(
     Ok(0)
 }
 
+/// An online backup without stopping the service: `VACUUM INTO` reads one consistent snapshot through WAL, so the
+/// copy holds every committed transaction up to its start and nothing half-written.
+fn backup(db: &str, target: &str) -> CmdResult {
+    if std::path::Path::new(target).exists() {
+        return Err(Fail::Exit(1, format!("{target} exists; choose a new file")));
+    }
+    let conn = rusqlite::Connection::open_with_flags(db, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)
+        .map_err(|e| Fail::Exit(1, format!("{db}: {e}")))?;
+    conn.busy_timeout(std::time::Duration::from_secs(30)).map_err(|e| Fail::Exit(1, e.to_string()))?;
+    conn.execute("VACUUM INTO ?", [target]).map_err(|e| Fail::Exit(1, format!("backup to {target} failed: {e}")))?;
+    println!("backed up {db} to {target}");
+    Ok(0)
+}
+
 fn healthcheck(port: u16) -> CmdResult {
     // the container image has no curl/wget: the binary probes itself.  With MYCELIC_TLS_CERT_FILE set the service
     // speaks HTTPS with a certificate issued for its public name, so the probe only checks that TLS answers.
@@ -314,6 +336,7 @@ async fn dispatch(cli: Cli) -> CmdResult {
         Cmd::Serve { host, port, db, nats_url, rules_file } => cmd_serve(host, port, db, nats_url, rules_file).await,
         Cmd::Mcp { common, api_key } => cmd_mcp(common, api_key).await,
         Cmd::Healthcheck { port } => healthcheck(port),
+        Cmd::Backup { target, db } => backup(&db, &target),
         other => {
             tokio::task::spawn_blocking(move || blocking_cmd(other)).await.map_err(|e| Fail::Exit(1, e.to_string()))?
         }
