@@ -1,0 +1,2356 @@
+{
+ "_generated_by": "crates/mycelic/tests/golden/generate_from_python.py against the Python implementation at ace3efb",
+ "fixed_now": "2026-10-01T12:00:00+00:00",
+ "admin_token": "test-admin-token-0123456789abcdef0123456789",
+ "steps": [
+  {
+   "op": "rule",
+   "body": {
+    "rule_id": "component_supply_risk",
+    "target_layer": "enterprise",
+    "required_slots": [
+     "transport_disruption",
+     "supplier_buffer_low",
+     "demand_commitment"
+    ],
+    "conclusion": "Supply risk for {entity}: inbound transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+    "topic_prefix": "supply:",
+    "min_agents": 3,
+    "min_teams": 2,
+    "kind": "risk"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "ops",
+    "team": "logistics",
+    "agent_id": "log-1"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "ops",
+    "team": "logistics",
+    "agent_id": "log-2"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "ops",
+    "team": "procurement",
+    "agent_id": "proc-1"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "commercial",
+    "team": "field-sales",
+    "agent_id": "sales-1"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "commercial",
+    "team": "field-sales",
+    "agent_id": "sales-2"
+   }
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": [
+    {
+     "type": "supplier.call",
+     "payload": {
+      "supplier": "Kessler"
+     },
+     "idempotency_key": "call-1",
+     "memory": {
+      "text": "Kessler has two weeks of SD-9 stock.",
+      "topic": "supply:sd-9/supplier",
+      "slot": "supplier_buffer_low",
+      "entity": "sd-9"
+     }
+    },
+    {
+     "type": "heartbeat"
+    }
+   ]
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": [
+    {
+     "type": "supplier.call",
+     "idempotency_key": "call-1"
+    }
+   ]
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": [
+    {
+     "type": "supplier.call",
+     "payload": {
+      "supplier": "Kessler"
+     },
+     "idempotency_key": "call-1",
+     "memory": {
+      "text": "Kessler has two weeks of SD-9 stock.",
+      "topic": "supply:sd-9/supplier",
+      "slot": "supplier_buffer_low",
+      "entity": "sd-9"
+     }
+    }
+   ]
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": [
+    {
+     "type": "supplier.call",
+     "payload": {
+      "supplier": "Kessler"
+     },
+     "idempotency_key": "call-1",
+     "memory": {
+      "text": "Kessler has two weeks of SD-9 stock.",
+      "topic": "supply:sd-9/supplier",
+      "slot": "supplier_buffer_low",
+      "entity": "sd-9"
+     }
+    }
+   ]
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": []
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": "nope"
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": [
+    {
+     "type": "bad type!"
+    }
+   ]
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": [
+    {
+     "type": "t",
+     "memory": "x"
+    }
+   ]
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": [
+    {
+     "type": "t",
+     "payload": {
+      "x": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+     }
+    }
+   ]
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": [
+    {
+     "type": "t",
+     "occurred_at": "yesterday"
+    }
+   ]
+  },
+  {
+   "op": "events",
+   "agent": "proc-1",
+   "items": [
+    {
+     "type": "t",
+     "occurred_at": "2026-09-01T08:00:00+02:00",
+     "idempotency_key": "k2",
+     "memory": {
+      "text": "with own key",
+      "idempotency_key": "own"
+     }
+    }
+   ]
+  },
+  {
+   "op": "events",
+   "agent": "admin",
+   "items": [
+    {
+     "type": "t"
+    }
+   ]
+  },
+  {
+   "op": "settle"
+  },
+  {
+   "op": "snapshot"
+  },
+  {
+   "op": "lineage",
+   "viewer": "proc-1",
+   "memory": {
+    "select": {
+     "layer": "agent",
+     "producer_id": "proc-1"
+    }
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "source_event_ids": [
+     "evt_00000000000000000007"
+    ]
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "   "
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": 5
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "kind": "nope"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "visibility": "public"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "confidence": 1.5
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "confidence": "0.5"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "confidence": true
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "confidence": 1,
+    "idempotency_key": "int-conf"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "slot": "bad slot!"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "topic": "ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "metadata": {
+     "blob": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+    }
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "metadata": "nope"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "source_event_ids": "nope"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "source_event_ids": [
+     "bad id!"
+    ]
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "observed_at": "2026-09-01T08:30:15.5+02:00",
+    "idempotency_key": "ts",
+    "topic": " padded ",
+    "entity": "  ",
+    "local_ref": "note-42",
+    "metadata": {
+     "promoted_from": "x",
+     "agg_key": "k",
+     "note": "kept",
+     "n": 1.5
+    }
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": {
+    "text": "x",
+    "observed_at": "garbage"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "proc-1",
+   "body": "not a dict"
+  },
+  {
+   "op": "settle"
+  },
+  {
+   "op": "snapshot"
+  }
+ ],
+ "outputs": [
+  {
+   "rule_id": "component_supply_risk",
+   "target_layer": "enterprise",
+   "required_slots": [
+    "transport_disruption",
+    "supplier_buffer_low",
+    "demand_commitment"
+   ],
+   "conclusion": "Supply risk for {entity}: inbound transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+   "topic_prefix": "supply:",
+   "min_agents": 3,
+   "min_teams": 2,
+   "kind": "risk",
+   "org_id": null,
+   "enabled": true,
+   "metadata": {},
+   "sources": [
+    "agent_observation"
+   ],
+   "emits_slot": null,
+   "emits_topic": null,
+   "min_units": {},
+   "corroborate": false
+  },
+  {
+   "agent_id": "log-1",
+   "org_id": "northwind",
+   "display_name": "log-1",
+   "path": "northwind/emea/nw-gmbh/ops/logistics/log-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "log-2",
+   "org_id": "northwind",
+   "display_name": "log-2",
+   "path": "northwind/emea/nw-gmbh/ops/logistics/log-2",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "proc-1",
+   "org_id": "northwind",
+   "display_name": "proc-1",
+   "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "sales-1",
+   "org_id": "northwind",
+   "display_name": "sales-1",
+   "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "sales-2",
+   "org_id": "northwind",
+   "display_name": "sales-2",
+   "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-2",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  [
+   {
+    "event_id": "evt_99712ca5c3f3556fb1691b",
+    "created": true,
+    "memory_id": "mem_a0ced18abb51809dae0ed7",
+    "memory_event_id": "evt_00000000000000000009"
+   },
+   {
+    "event_id": "evt_00000000000000000008",
+    "created": true
+   }
+  ],
+  [
+   {
+    "event_id": "evt_99712ca5c3f3556fb1691b",
+    "created": false
+   }
+  ],
+  [
+   {
+    "event_id": "evt_99712ca5c3f3556fb1691b",
+    "created": false,
+    "memory_id": "mem_a0ced18abb51809dae0ed7",
+    "memory_created": false
+   }
+  ],
+  [
+   {
+    "event_id": "evt_99712ca5c3f3556fb1691b",
+    "created": false,
+    "memory_id": "mem_a0ced18abb51809dae0ed7",
+    "memory_created": false
+   }
+  ],
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'events' must be a non-empty list"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'events' must be a non-empty list"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'type' contains characters outside ^[A-Za-z0-9_.:-]{1,200}$"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "events[0].memory must be an object"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'payload' is larger than 16384 bytes"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'occurred_at' must be an ISO-8601 timestamp"
+   }
+  },
+  [
+   {
+    "event_id": "evt_6bab6753a82db04845bcdb",
+    "created": true,
+    "memory_id": "mem_801bb3e9a8c206feddac02",
+    "memory_event_id": "evt_00000000000000000015"
+   }
+  ],
+  {
+   "error": {
+    "type": "Forbidden",
+    "message": "only agents can publish events"
+   }
+  },
+  null,
+  {
+   "memories": [
+    {
+     "memory_id": "mem_a0ced18abb51809dae0ed7",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+     "text": "Kessler has two weeks of SD-9 stock.",
+     "topic": "supply:sd-9/supplier",
+     "slot": "supplier_buffer_low",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "proc-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000009",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [
+      "evt_99712ca5c3f3556fb1691b"
+     ],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_801bb3e9a8c206feddac02",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+     "text": "with own key",
+     "topic": null,
+     "slot": null,
+     "entity": null,
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "proc-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000015",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [
+      "evt_6bab6753a82db04845bcdb"
+     ],
+     "local_ref": null,
+     "metadata": {}
+    }
+   ],
+   "agg_keys": [
+    null,
+    null
+   ],
+   "edges": [],
+   "events": [
+    {
+     "event_id": "evt_00000000000000000001",
+     "kind": "rule.upserted",
+     "org_id": "_",
+     "agent_id": null,
+     "subject": "mycelic._.rule-upserted",
+     "payload": {
+      "conclusion": "Supply risk for {entity}: inbound transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+      "corroborate": false,
+      "emits_slot": null,
+      "emits_topic": null,
+      "enabled": true,
+      "kind": "risk",
+      "metadata": {},
+      "min_agents": 3,
+      "min_teams": 2,
+      "min_units": {},
+      "org_id": null,
+      "required_slots": [
+       "transport_disruption",
+       "supplier_buffer_low",
+       "demand_commitment"
+      ],
+      "rule_id": "component_supply_risk",
+      "sources": [
+       "agent_observation"
+      ],
+      "target_layer": "enterprise",
+      "topic_prefix": "supply:"
+     },
+     "status": "applied",
+     "js_seq": 1,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000002",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "log-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "log-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/log-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 2,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000003",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "log-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "log-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/log-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 3,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000004",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "proc-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "proc-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 4,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000005",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "sales-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "sales-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 5,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000006",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "sales-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "sales-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 6,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_99712ca5c3f3556fb1691b",
+     "kind": "agent.event",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.agent-event",
+     "payload": {
+      "agent_id": "proc-1",
+      "occurred_at": "2026-10-01T12:00:00+00:00",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "payload": {
+       "supplier": "Kessler"
+      },
+      "type": "supplier.call"
+     },
+     "status": "applied",
+     "js_seq": 7,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000009",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_00000000000000000009",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_a0ced18abb51809dae0ed7",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "proc-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "slot": "supplier_buffer_low",
+      "source_event_ids": [
+       "evt_99712ca5c3f3556fb1691b"
+      ],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "Kessler has two weeks of SD-9 stock.",
+      "topic": "supply:sd-9/supplier",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 8,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000008",
+     "kind": "agent.event",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.agent-event",
+     "payload": {
+      "agent_id": "proc-1",
+      "occurred_at": "2026-10-01T12:00:00+00:00",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "payload": {},
+      "type": "heartbeat"
+     },
+     "status": "applied",
+     "js_seq": 9,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_6bab6753a82db04845bcdb",
+     "kind": "agent.event",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.agent-event",
+     "payload": {
+      "agent_id": "proc-1",
+      "occurred_at": "2026-09-01T08:00:00+02:00",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "payload": {},
+      "type": "t"
+     },
+     "status": "applied",
+     "js_seq": 10,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000015",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": null,
+      "event_id": "evt_00000000000000000015",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_801bb3e9a8c206feddac02",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "proc-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "slot": null,
+      "source_event_ids": [
+       "evt_6bab6753a82db04845bcdb"
+      ],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "with own key",
+      "topic": null,
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 11,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "audit": [
+    {
+     "id": 1,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "rule.upsert",
+     "target": "component_supply_risk",
+     "detail": {
+      "slots": [
+       "transport_disruption",
+       "supplier_buffer_low",
+       "demand_commitment"
+      ],
+      "target_layer": "enterprise"
+     },
+     "remote": null
+    },
+    {
+     "id": 2,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "log-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/log-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 3,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "log-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/log-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 4,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "proc-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 5,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "sales-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 6,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "sales-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 7,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "events.ingest",
+     "target": null,
+     "detail": {
+      "count": 2,
+      "org_id": "northwind"
+     },
+     "remote": null
+    },
+    {
+     "id": 8,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "events.ingest",
+     "target": null,
+     "detail": {
+      "count": 1,
+      "org_id": "northwind"
+     },
+     "remote": null
+    },
+    {
+     "id": 9,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "events.ingest",
+     "target": null,
+     "detail": {
+      "count": 1,
+      "org_id": "northwind"
+     },
+     "remote": null
+    },
+    {
+     "id": 10,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "events.ingest",
+     "target": null,
+     "detail": {
+      "count": 1,
+      "org_id": "northwind"
+     },
+     "remote": null
+    },
+    {
+     "id": 11,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "events.ingest",
+     "target": null,
+     "detail": {
+      "count": 1,
+      "org_id": "northwind"
+     },
+     "remote": null
+    }
+   ],
+   "rules": [
+    {
+     "rule_id": "component_supply_risk",
+     "target_layer": "enterprise",
+     "required_slots": [
+      "transport_disruption",
+      "supplier_buffer_low",
+      "demand_commitment"
+     ],
+     "conclusion": "Supply risk for {entity}: inbound transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+     "topic_prefix": "supply:",
+     "min_agents": 3,
+     "min_teams": 2,
+     "kind": "risk",
+     "org_id": null,
+     "enabled": true,
+     "metadata": {},
+     "sources": [
+      "agent_observation"
+     ],
+     "emits_slot": null,
+     "emits_topic": null,
+     "min_units": {},
+     "corroborate": false,
+     "updated_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "agents": [
+    {
+     "agent_id": "sales-1",
+     "org_id": "northwind",
+     "display_name": "sales-1",
+     "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "sales-2",
+     "org_id": "northwind",
+     "display_name": "sales-2",
+     "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "log-1",
+     "org_id": "northwind",
+     "display_name": "log-1",
+     "path": "northwind/emea/nw-gmbh/ops/logistics/log-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "log-2",
+     "org_id": "northwind",
+     "display_name": "log-2",
+     "path": "northwind/emea/nw-gmbh/ops/logistics/log-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "proc-1",
+     "org_id": "northwind",
+     "display_name": "proc-1",
+     "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    }
+   ],
+   "orgs": [
+    {
+     "org_id": "northwind",
+     "name": "northwind",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "meta": {
+    "last_applied_seq": "11",
+    "schema_version": "2"
+   }
+  },
+  {
+   "memory_id": "mem_a0ced18abb51809dae0ed7",
+   "memory": {
+    "memory_id": "mem_a0ced18abb51809dae0ed7",
+    "layer": "agent",
+    "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+    "text": "Kessler has two weeks of SD-9 stock.",
+    "topic": "supply:sd-9/supplier",
+    "slot": "supplier_buffer_low",
+    "entity": "sd-9",
+    "kind": "observation",
+    "confidence": 0.8,
+    "support": 1,
+    "independent_teams": 1,
+    "producer_id": "proc-1",
+    "operator": "agent_observation",
+    "rule_id": null,
+    "status": "active",
+    "superseded_by": null,
+    "created_at": "2026-10-01T12:00:00+00:00",
+    "applied_at": "2026-10-01T12:00:00+00:00",
+    "event_id": "evt_00000000000000000009",
+    "source_event_ids": [
+     "evt_99712ca5c3f3556fb1691b"
+    ],
+    "local_ref": null,
+    "fragility": null,
+    "redacted": false
+   },
+   "nodes": {
+    "mem_a0ced18abb51809dae0ed7": {
+     "memory_id": "mem_a0ced18abb51809dae0ed7",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+     "text": "Kessler has two weeks of SD-9 stock.",
+     "topic": "supply:sd-9/supplier",
+     "slot": "supplier_buffer_low",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "proc-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "event_id": "evt_00000000000000000009",
+     "source_event_ids": [
+      "evt_99712ca5c3f3556fb1691b"
+     ],
+     "local_ref": null,
+     "fragility": null,
+     "redacted": false
+    }
+   },
+   "edges": [],
+   "roots": [
+    "mem_a0ced18abb51809dae0ed7"
+   ],
+   "contributing_agents": [
+    "proc-1"
+   ],
+   "contributing_teams": [
+    "northwind/emea/nw-gmbh/ops/procurement"
+   ],
+   "redacted_contributions": 0,
+   "layers": [
+    "agent"
+   ],
+   "transformations": [],
+   "timeline": {
+    "first_observed_at": "2026-10-01T12:00:00+00:00",
+    "last_observed_at": "2026-10-01T12:00:00+00:00",
+    "produced_at": "2026-10-01T12:00:00+00:00"
+   },
+   "support": {
+    "agents": 1,
+    "teams": 1,
+    "confidence": 0.8,
+    "roots": 1,
+    "fragility": null
+   },
+   "evidence": {
+    "source_event_ids": [
+     "evt_00000000000000000009",
+     "evt_99712ca5c3f3556fb1691b"
+    ],
+    "events_present": 2,
+    "events_missing": [],
+    "events_missing_total": 0,
+    "missing_parents": [],
+    "retracted_roots": [],
+    "reconstructable": true
+   },
+   "previous_versions": [],
+   "superseded_by": null,
+   "complete": true
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'source_event_ids' must reference events recorded by your organization"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'text' is longer than 4000 characters"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'text' is required"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'text' must be a string"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'kind' must be one of ('fact', 'observation', 'event', 'risk', 'decision', 'plan', 'preference', 'other')"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'visibility' must be one of ('team', 'org')"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'confidence' must be between 0 and 1"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'confidence' must be a number"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'confidence' must be a number"
+   }
+  },
+  {
+   "memory_id": "mem_0c1ed31666487df1cf1a4a",
+   "event_id": "evt_00000000000000000019",
+   "created": true
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'slot' contains characters outside ^[A-Za-z0-9_.:-]{1,100}$"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'topic' is longer than 200 characters"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'metadata' is larger than 4096 bytes"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'metadata' must be an object"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'source_event_ids' must be a list of at most 50 ids"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'source_event_ids' must be a list of at most 50 ids"
+   }
+  },
+  {
+   "memory_id": "mem_a1d13f95b8792eca071da0",
+   "event_id": "evt_00000000000000000022",
+   "created": true
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "'observed_at' must be an ISO-8601 timestamp"
+   }
+  },
+  {
+   "error": {
+    "type": "ValidationError",
+    "message": "body must be a JSON object"
+   }
+  },
+  null,
+  {
+   "memories": [
+    {
+     "memory_id": "mem_a0ced18abb51809dae0ed7",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+     "text": "Kessler has two weeks of SD-9 stock.",
+     "topic": "supply:sd-9/supplier",
+     "slot": "supplier_buffer_low",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "proc-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000009",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [
+      "evt_99712ca5c3f3556fb1691b"
+     ],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_801bb3e9a8c206feddac02",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+     "text": "with own key",
+     "topic": null,
+     "slot": null,
+     "entity": null,
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "proc-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000015",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [
+      "evt_6bab6753a82db04845bcdb"
+     ],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_0c1ed31666487df1cf1a4a",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+     "text": "x",
+     "topic": null,
+     "slot": null,
+     "entity": null,
+     "kind": "observation",
+     "confidence": 1.0,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "proc-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000019",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_a1d13f95b8792eca071da0",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+     "text": "x",
+     "topic": "padded",
+     "slot": null,
+     "entity": null,
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "proc-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000022",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-09-01T08:30:15+02:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": "note-42",
+     "metadata": {
+      "n": 1.5,
+      "note": "kept"
+     }
+    }
+   ],
+   "agg_keys": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "edges": [],
+   "events": [
+    {
+     "event_id": "evt_00000000000000000001",
+     "kind": "rule.upserted",
+     "org_id": "_",
+     "agent_id": null,
+     "subject": "mycelic._.rule-upserted",
+     "payload": {
+      "conclusion": "Supply risk for {entity}: inbound transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+      "corroborate": false,
+      "emits_slot": null,
+      "emits_topic": null,
+      "enabled": true,
+      "kind": "risk",
+      "metadata": {},
+      "min_agents": 3,
+      "min_teams": 2,
+      "min_units": {},
+      "org_id": null,
+      "required_slots": [
+       "transport_disruption",
+       "supplier_buffer_low",
+       "demand_commitment"
+      ],
+      "rule_id": "component_supply_risk",
+      "sources": [
+       "agent_observation"
+      ],
+      "target_layer": "enterprise",
+      "topic_prefix": "supply:"
+     },
+     "status": "applied",
+     "js_seq": 1,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000002",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "log-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "log-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/log-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 2,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000003",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "log-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "log-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/log-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 3,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000004",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "proc-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "proc-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 4,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000005",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "sales-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "sales-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 5,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000006",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "sales-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "sales-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 6,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_99712ca5c3f3556fb1691b",
+     "kind": "agent.event",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.agent-event",
+     "payload": {
+      "agent_id": "proc-1",
+      "occurred_at": "2026-10-01T12:00:00+00:00",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "payload": {
+       "supplier": "Kessler"
+      },
+      "type": "supplier.call"
+     },
+     "status": "applied",
+     "js_seq": 7,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000009",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_00000000000000000009",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_a0ced18abb51809dae0ed7",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "proc-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "slot": "supplier_buffer_low",
+      "source_event_ids": [
+       "evt_99712ca5c3f3556fb1691b"
+      ],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "Kessler has two weeks of SD-9 stock.",
+      "topic": "supply:sd-9/supplier",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 8,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000008",
+     "kind": "agent.event",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.agent-event",
+     "payload": {
+      "agent_id": "proc-1",
+      "occurred_at": "2026-10-01T12:00:00+00:00",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "payload": {},
+      "type": "heartbeat"
+     },
+     "status": "applied",
+     "js_seq": 9,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_6bab6753a82db04845bcdb",
+     "kind": "agent.event",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.agent-event",
+     "payload": {
+      "agent_id": "proc-1",
+      "occurred_at": "2026-09-01T08:00:00+02:00",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "payload": {},
+      "type": "t"
+     },
+     "status": "applied",
+     "js_seq": 10,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000015",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": null,
+      "event_id": "evt_00000000000000000015",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_801bb3e9a8c206feddac02",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "proc-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "slot": null,
+      "source_event_ids": [
+       "evt_6bab6753a82db04845bcdb"
+      ],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "with own key",
+      "topic": null,
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 11,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000019",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 1.0,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": null,
+      "event_id": "evt_00000000000000000019",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_0c1ed31666487df1cf1a4a",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "proc-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "slot": null,
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "x",
+      "topic": null,
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 12,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000022",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "proc-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-09-01T08:30:15+02:00",
+      "entity": null,
+      "event_id": "evt_00000000000000000022",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": "note-42",
+      "memory_id": "mem_a1d13f95b8792eca071da0",
+      "metadata": {
+       "n": 1.5,
+       "note": "kept"
+      },
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "proc-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "slot": null,
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "x",
+      "topic": "padded",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 13,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "audit": [
+    {
+     "id": 1,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "rule.upsert",
+     "target": "component_supply_risk",
+     "detail": {
+      "slots": [
+       "transport_disruption",
+       "supplier_buffer_low",
+       "demand_commitment"
+      ],
+      "target_layer": "enterprise"
+     },
+     "remote": null
+    },
+    {
+     "id": 2,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "log-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/log-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 3,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "log-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/log-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 4,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "proc-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 5,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "sales-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 6,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "sales-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 7,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "events.ingest",
+     "target": null,
+     "detail": {
+      "count": 2,
+      "org_id": "northwind"
+     },
+     "remote": null
+    },
+    {
+     "id": 8,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "events.ingest",
+     "target": null,
+     "detail": {
+      "count": 1,
+      "org_id": "northwind"
+     },
+     "remote": null
+    },
+    {
+     "id": 9,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "events.ingest",
+     "target": null,
+     "detail": {
+      "count": 1,
+      "org_id": "northwind"
+     },
+     "remote": null
+    },
+    {
+     "id": 10,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "events.ingest",
+     "target": null,
+     "detail": {
+      "count": 1,
+      "org_id": "northwind"
+     },
+     "remote": null
+    },
+    {
+     "id": 11,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "events.ingest",
+     "target": null,
+     "detail": {
+      "count": 1,
+      "org_id": "northwind"
+     },
+     "remote": null
+    },
+    {
+     "id": 12,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "memory.ingest",
+     "target": "mem_0c1ed31666487df1cf1a4a",
+     "detail": {
+      "event_id": "evt_00000000000000000019",
+      "org_id": "northwind",
+      "slot": null,
+      "topic": null
+     },
+     "remote": null
+    },
+    {
+     "id": 13,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "proc-1",
+     "action": "memory.ingest",
+     "target": "mem_a1d13f95b8792eca071da0",
+     "detail": {
+      "event_id": "evt_00000000000000000022",
+      "org_id": "northwind",
+      "slot": null,
+      "topic": "padded"
+     },
+     "remote": null
+    }
+   ],
+   "rules": [
+    {
+     "rule_id": "component_supply_risk",
+     "target_layer": "enterprise",
+     "required_slots": [
+      "transport_disruption",
+      "supplier_buffer_low",
+      "demand_commitment"
+     ],
+     "conclusion": "Supply risk for {entity}: inbound transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+     "topic_prefix": "supply:",
+     "min_agents": 3,
+     "min_teams": 2,
+     "kind": "risk",
+     "org_id": null,
+     "enabled": true,
+     "metadata": {},
+     "sources": [
+      "agent_observation"
+     ],
+     "emits_slot": null,
+     "emits_topic": null,
+     "min_units": {},
+     "corroborate": false,
+     "updated_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "agents": [
+    {
+     "agent_id": "sales-1",
+     "org_id": "northwind",
+     "display_name": "sales-1",
+     "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "sales-2",
+     "org_id": "northwind",
+     "display_name": "sales-2",
+     "path": "northwind/emea/nw-gmbh/commercial/field-sales/sales-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "log-1",
+     "org_id": "northwind",
+     "display_name": "log-1",
+     "path": "northwind/emea/nw-gmbh/ops/logistics/log-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "log-2",
+     "org_id": "northwind",
+     "display_name": "log-2",
+     "path": "northwind/emea/nw-gmbh/ops/logistics/log-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "proc-1",
+     "org_id": "northwind",
+     "display_name": "proc-1",
+     "path": "northwind/emea/nw-gmbh/ops/procurement/proc-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    }
+   ],
+   "orgs": [
+    {
+     "org_id": "northwind",
+     "name": "northwind",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "meta": {
+    "last_applied_seq": "13",
+    "schema_version": "2"
+   }
+  }
+ ]
+}

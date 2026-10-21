@@ -1,0 +1,1460 @@
+{
+ "_generated_by": "crates/mycelic/tests/golden/generate_from_python.py against the Python implementation at ace3efb",
+ "derived_memory_id": [
+  {
+   "operator": "slot_composition",
+   "scope": "漢漢l|oéjo|l",
+   "key": "e8ns",
+   "parent_ids": [],
+   "id": "mem_d4643abfff0b7576c28a0e6"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "漢:arj",
+   "key": "q2",
+   "parent_ids": [
+    "iqwo59_1éx1/u|",
+    "w:/q",
+    "29.i2漢28lsml7wqx3q:rzi_",
+    "9p_pm xie1|/3ya1",
+    "oj"
+   ],
+   "id": "mem_d095271d2200802961ab348"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": " 2/qk0qwm/x7éi:p5n.c- -cw-",
+   "key": "vlsmk漢9hoke1|:98 c",
+   "parent_ids": [
+    "|f7aith0tr_",
+    " e47xcauvj59874oénsc",
+    "6kjq1漢nq1-pwp"
+   ],
+   "id": "mem_d37274d77c899f09955662a"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "n|w1cuz3fec:a|",
+   "key": "m249yvds7",
+   "parent_ids": [
+    "jdhxk",
+    "tt:yscw",
+    "gx52-"
+   ],
+   "id": "mem_d3973138ebbd4c8005da111"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "w8",
+   "key": "iduk8iap漢",
+   "parent_ids": [
+    "4xe"
+   ],
+   "id": "mem_da7905c1adb50475ac532e6"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "ndpép72m_",
+   "key": ".d9dh.i8x8zt",
+   "parent_ids": [
+    "tqfxdbkag7rfv/1k.漢"
+   ],
+   "id": "mem_de9a837113c9873019ac4bc"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "chgtzy4yrjj2ta7b8qrvopx0k40qj3",
+   "key": "83my4mb_c46liga-it",
+   "parent_ids": [],
+   "id": "mem_dcbc472fc3d57af1c08e234"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "7dn| 1b8b漢jt.j|d61q",
+   "key": "5b:gpu7",
+   "parent_ids": [
+    "_",
+    "v|o:d7 1p6agxj3",
+    "i漢woés-fqiil",
+    "gd8|j.6b3wy__5_60e27"
+   ],
+   "id": "mem_d07c286cc377820af9f50f3"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "y漢hn漢uy-e40",
+   "key": "b2y04_dfq",
+   "parent_ids": [
+    "j"
+   ],
+   "id": "mem_d9b67b4ee7dbc8c24881d62"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "7n19san/fh",
+   "key": "ie9y/nukbk lddo1_lé0",
+   "parent_ids": [
+    "56j",
+    "dw.d",
+    "7lf1t0tpqs-90srng",
+    "fkdhqjo.tgg52:gc_80i4",
+    "4vxha5f "
+   ],
+   "id": "mem_d1dca98b49a46381bd2c75b"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "r2a0ia/7ipwj11bwxvwmgjk_k",
+   "key": "1d:1h509nj.ybzzv1zsf",
+   "parent_ids": [
+    "zk:9d32g",
+    "62j9c9mbp1c5r1cwm3",
+    ".k2n1_zdzzoém",
+    "1ncc b27漢.zz6i3f55-"
+   ],
+   "id": "mem_dc3ff0b5456cbb2d2bd78fb"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "86 ",
+   "key": "ad5/lphb0 9n34c0",
+   "parent_ids": [
+    "mr",
+    "57jjjbl_esk 4mé5a:pe3he:",
+    "y7 ",
+    "m_dby.",
+    "2漢vj2/:",
+    "lip-7 _ e616kz.0pts2a"
+   ],
+   "id": "mem_d34ce566ad813bc7355bae6"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "23pélqb3n9r:8:aé-i1vp2b z",
+   "key": "gicv2bee",
+   "parent_ids": [],
+   "id": "mem_d6a3f4af2ba241bbe792596"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": ".él",
+   "key": "5_3_a36b.v9wf00f:n",
+   "parent_ids": [
+    "h_jey",
+    "s漢5sé0m5mg_8ytcet2m"
+   ],
+   "id": "mem_d6ac28d7d5dd52f05c88209"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "漢",
+   "key": "1",
+   "parent_ids": [
+    "4.t",
+    "|h:. 漢u",
+    "t",
+    "b|k7vcs1a1i漢1dxj"
+   ],
+   "id": "mem_d1dc150c816830dec4a4dbe"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "x漢ypt64nbgukdposw:z7/saam",
+   "key": "e9pig0z2",
+   "parent_ids": [
+    "u9qe 1s|o1",
+    "4pge",
+    "hvnk漢f|",
+    "zpm-6uhf漢u03",
+    "0yzex_06lqs y48e8jew|.a",
+    "vw0-07ykg|nz/6g:nhé/z"
+   ],
+   "id": "mem_d3e3e8d002b21a41bf602ac"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "漢7nz_er2 2axms5r",
+   "key": "x漢svq",
+   "parent_ids": [
+    "cufjo|",
+    "s-xb4fl_y",
+    "1w0gbqlpeabg0pl",
+    "3lvg817",
+    "h1-",
+    "zd2se/_tqnh4:e3cs/2k"
+   ],
+   "id": "mem_de5fc7272b12dc2c1a50d11"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "m:q370uryju/9cf5",
+   "key": "18sw1.",
+   "parent_ids": [
+    "_|d406_avrte."
+   ],
+   "id": "mem_d0bf907b62b8d34aeef1b4d"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "9dt",
+   "key": "é漢ne92b",
+   "parent_ids": [
+    "5naaglc6istc-漢2"
+   ],
+   "id": "mem_d06201bdbf3383767f3fe8c"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "syoc",
+   "key": "",
+   "parent_ids": [
+    "/47ljlgbé",
+    "87bcrkru//.",
+    "wons9ouueylci"
+   ],
+   "id": "mem_d5c1ed9fa44521b7b3af839"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "é.34漢qcfd.漢 e漢r4g4|.wq4-b-iu7s",
+   "key": "syqw0",
+   "parent_ids": [
+    "zknek3p71j/.jcuj|v",
+    "g 9-62v6_xana-706tyjq6cd-0",
+    "oukhdh.4 l漢i0k1_qn 76|a"
+   ],
+   "id": "mem_dcdb633292e3ee8a35b1f56"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "o漢3p2ré7sné5d0",
+   "key": "r6héwéu|22puiv o|qmu",
+   "parent_ids": [
+    "v8v3|c",
+    "zxz_h:5chg79 5g",
+    "cf/3f318"
+   ],
+   "id": "mem_d0921789af908bfe540c8bc"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "b9nv",
+   "key": "/c8t vh:rl-i89z",
+   "parent_ids": [
+    "l_ lq"
+   ],
+   "id": "mem_d64c6aa90c5a6e5a1d9275e"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "uq2.hwg",
+   "key": "dpvpb漢-hvnb",
+   "parent_ids": [
+    "8|asdhplc2jv漢e8 f|yv_n9v0k",
+    "dtw o5a-di2g|feqnx",
+    "44tjv|6ié|w8g2漢g3/hx8d",
+    "-5r_ébpqd443tor"
+   ],
+   "id": "mem_de0e27b91aab28fd884043c"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "3ju.w-obx6",
+   "key": "i漢n 6h",
+   "parent_ids": [],
+   "id": "mem_dedb6e30ab8f7a8f60867b3"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "8nf85r-tj0y:ytihveqa",
+   "key": "94:8h",
+   "parent_ids": [
+    "6nyjxpk",
+    "h4ayx5rp8pdq6lc漢ojy_漢v4377",
+    "2q9jjts_"
+   ],
+   "id": "mem_d063241aa3b816ba0d701ed"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "el6j.rs:q|t746yjd.xf39w0is-uyu",
+   "key": "6y漢g3s|/:2漢_2pa:",
+   "parent_ids": [
+    "al:er kjik漢fdndz_2év",
+    "ybmzz.k|yw|h",
+    "/kfx漢21:z7-ion1vfhtco6-",
+    "cen.qb:l-y8ék6y4xv2c",
+    ":2g-漢he漢ct--ygd|vz1-gs3",
+    "6620-x7dsp-"
+   ],
+   "id": "mem_d7e4a0cb0f55d9902a3a65d"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "漢6l50b-v:no",
+   "key": "w4b3",
+   "parent_ids": [
+    " uz6i7 nr"
+   ],
+   "id": "mem_d6166f708fb324a1644f3fe"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "-26.7:dyéir:5_44rfsdez",
+   "key": "|oé27|x29gno_g3q",
+   "parent_ids": [
+    "pxj6aéxs|9hw1 1znm6漢lho",
+    "f|wa9nr:xbk3漢9ki4t",
+    ":ki.9iorzob-w0xrb05mnx",
+    "f-jkéé3wxijprurr / p/d",
+    "8",
+    "ive6k9j/btggnj ah"
+   ],
+   "id": "mem_d1cb944b6f1ae6198b9e3df"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "sszérc4xb漢|z4éx-q1",
+   "key": "bd9x1",
+   "parent_ids": [
+    "sz漢i0fatd2 ",
+    "hvausu"
+   ],
+   "id": "mem_d684db7db3e6736bc1b0b4d"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "/4漢9moad2-da042g",
+   "key": "p|i eljvl8wvoz0j",
+   "parent_ids": [],
+   "id": "mem_dd0321c8f81e97d775abf7c"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "s0k2i9/céw629vk6漢6f",
+   "key": "psstth-z8-p",
+   "parent_ids": [
+    "0_2fr_80yi6x5nhn-5|jem"
+   ],
+   "id": "mem_d09b9ae3938c43e9b8d5141"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "jg| .run4y9: san1tgqa ",
+   "key": "n-é漢tj.td0éw",
+   "parent_ids": [
+    "y1",
+    "thwsh6kmaj1od漢nociopjézs92",
+    "9w8éldd2|osv0k802q"
+   ],
+   "id": "mem_d06f37a1daebc12448b775a"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "/gl4x7.",
+   "key": "el",
+   "parent_ids": [
+    "16wg",
+    "pse:pxk5iewgxbn漢we0hn32"
+   ],
+   "id": "mem_d02a09690848eb39b1a3769"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "uqk410w u",
+   "key": " kkj3f",
+   "parent_ids": [
+    "0véxucp漢ym.漢5-1av2",
+    "i漢g8r7vw_iu sl",
+    "d689m/yk6hv/2ks/t",
+    "jz7dj/k a0_zfuqs漢lvj 1ff"
+   ],
+   "id": "mem_d5b0b4f1aa8c501b650f36d"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "fvvévkz.:u7jm1mhg6u-漢ro",
+   "key": "t459qb8p/",
+   "parent_ids": [
+    ":j5 noi38",
+    "d",
+    ":47:c/w1éz/8l8-.02漢",
+    "2ét/9/-_z8 af2_n",
+    "éj-é4_ljtog7aoe",
+    "5/0zgi9"
+   ],
+   "id": "mem_de10cfa167fe193f315a64b"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "wz.3zvg/4nm漢a/",
+   "key": "rd39wca4z|53ti 54",
+   "parent_ids": [
+    "7lc1-|ssvjj9cvu.5i_ /sw"
+   ],
+   "id": "mem_db49b8af7d0fce15a607fd8"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "bkr漢 acéu5kp2avoo9h8",
+   "key": "/92ob.y.ff:gn",
+   "parent_ids": [
+    "|l_4:uq",
+    "6zé.h3v6x|ne",
+    "iikisvr7y9im1r5i9漢ng:d",
+    "qww"
+   ],
+   "id": "mem_d7b8e5bc328af87e39efa78"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "99n3ci41pjch-b s5",
+   "key": "t3mof1séru 648 pxm5u",
+   "parent_ids": [
+    "dp",
+    "_d",
+    "y296ix0.|a9r9",
+    "26d",
+    "f4r11pkspl 漢37lunz",
+    "vo9d|ge-0czni73ht5i"
+   ],
+   "id": "mem_d895f3519d7dca51702f386"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "6p",
+   "key": "xna|8w3-v-é02k",
+   "parent_ids": [
+    "zp26/2:_up7d",
+    "0x35_",
+    "quyn"
+   ],
+   "id": "mem_d307f047f53a71b11a99f17"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "/8",
+   "key": "8x漢漢//bu4n",
+   "parent_ids": [
+    "q3dsu | é7kv4hl8r60",
+    "bhot386x__écc",
+    "a",
+    "bagy8oh|k_n004ytoh2-",
+    "dyhb6/xnp l漢",
+    "o8djfe:j9j/k/6o"
+   ],
+   "id": "mem_dbeb9984962766f5b84f67b"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "nbpn.rh/-d",
+   "key": "5iokapg_:v",
+   "parent_ids": [],
+   "id": "mem_d8a45be51d75c03b5652cbe"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": ".stiu.r7ékbhlyw",
+   "key": ":yg0o",
+   "parent_ids": [
+    "/aek"
+   ],
+   "id": "mem_d9e87680b1ed287e061100a"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "f.|-h7 0b.jhcsr4uysulhe",
+   "key": "im s4éz",
+   "parent_ids": [
+    "eéte2c",
+    "r:9gmnhijys/.: nq7csl8l",
+    "z306.gyenp_gbwfj"
+   ],
+   "id": "mem_d99632ac4a325192e384e46"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "mz5n漢ydd.x6142-5s:df7|4",
+   "key": "nq753rat.o 0lb405g/",
+   "parent_ids": [
+    "sw|q9vé.pda81kw0_r6fjrxék",
+    "mu5jm/9h95xfzsh/2",
+    "tkqb8u2di7jmd1:",
+    "é9- 7q",
+    "frtpké4és-|f|r:",
+    "x漢:4é"
+   ],
+   "id": "mem_d79c33cb98e845ac14926f7"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "ué/漢iicnotéqomnsqp_9b2auz:o",
+   "key": "|eaxt3d3ju",
+   "parent_ids": [],
+   "id": "mem_d827dda6e93b73b079b32c6"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": ".m|.892t3g0f0dj:ovh-q6y|:",
+   "key": "9h5w 76fwjyt6é",
+   "parent_ids": [
+    "_g"
+   ],
+   "id": "mem_df725159cc2f12f1774aef0"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "zdb0|r72épvm漢if67é",
+   "key": "sp_xbud:|g:bnw1d_.0e",
+   "parent_ids": [
+    "b9tuz55u_p",
+    "n /0jfq18 mhb.:yyc1yba2v2d",
+    "b15irwp 5iv0e1ob:u12e漢pv"
+   ],
+   "id": "mem_ded9ed172bf9a7885e648c6"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "il7ggx6581_b4x5q1z",
+   "key": "u",
+   "parent_ids": [
+    "ziin60wp7|k68a",
+    "cuv漢i漢",
+    "o2e16",
+    ".ig33tautxjb6y92a:e|thés:",
+    "c.漢7v3v|06lw9j_oékc|fu3|"
+   ],
+   "id": "mem_d90e025de91bfcac524dbec"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "x:éobs漢1xg:/bu1kplzk3.bivdh",
+   "key": "y8.",
+   "parent_ids": [
+    "dc45 i50|iy8alcmb2mv65vvzg",
+    "b4p.cj4r.y漢o004f1",
+    "ce0_hvqfkj23nea31u-wczl",
+    "o46s9_y",
+    "é09bzwb|xaejw_wééa1x"
+   ],
+   "id": "mem_dae4658aecee4d18c2aae0f"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": " q -r漢6",
+   "key": "",
+   "parent_ids": [],
+   "id": "mem_dd80adddacf98243dd89ba4"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "xa",
+   "key": "céwb5xfm4m6leq",
+   "parent_ids": [
+    "j_/_n",
+    "fctz34ly.jw0f:",
+    "漢/94:ajwpé",
+    "étcll66t1m64",
+    ":n2umv7a6z6/2e"
+   ],
+   "id": "mem_db161dca95dd9ca68444d06"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "5",
+   "key": "usng4m",
+   "parent_ids": [
+    "nvz漢hbjuz7div3y "
+   ],
+   "id": "mem_dd5543fc255404e99edf21a"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "-35m3yv",
+   "key": "t",
+   "parent_ids": [
+    "2k tw6c/dzep9_ddé43yfy5-é"
+   ],
+   "id": "mem_dd971a71cc6cb7e0e29b0b8"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "_4",
+   "key": "gékipe",
+   "parent_ids": [
+    "p0c97enfq7"
+   ],
+   "id": "mem_d49faf05183e46f57166116"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "3zavq",
+   "key": "k漢aw07.j_t7rdgsfw",
+   "parent_ids": [
+    "9t/iet2mkw1",
+    "g",
+    "wq4xmdq9|xub24q4xm 漢",
+    "mj8"
+   ],
+   "id": "mem_d0edf5ff5fbbcef6175c293"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "3:漢4",
+   "key": "4/9.kjo4hcjlw35d",
+   "parent_ids": [],
+   "id": "mem_dfa6149d6f2f295ae3fb67d"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": ":kxé",
+   "key": "z30o漢",
+   "parent_ids": [
+    "s7cobk2igjd81d8q3|3漢|7lj",
+    "iet_c3bcc3jxst r.yéavh7.p"
+   ],
+   "id": "mem_db71f7264404717c88be5f7"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "rokqcba2i6y-92t",
+   "key": "|d6漢/ct|n2171",
+   "parent_ids": [
+    "86léxks3b||5.os.on_mt::",
+    "5-",
+    ".ém/méxd:s6ym4één:q漢t.64vx",
+    "zc"
+   ],
+   "id": "mem_d36f2b70bb4552f5cb1e4cc"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "4f78uwmii_7428|uéu_",
+   "key": "8 p.67pfw6spdd",
+   "parent_ids": [
+    "ctlui5lo.mghf_98xu_",
+    "ulygg/zvr"
+   ],
+   "id": "mem_d893277bc0052ab73d4c39e"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "pbitsgk4g",
+   "key": "ibq8o6btfwl-",
+   "parent_ids": [],
+   "id": "mem_d89aee4dfa2d931f4181764"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "8vbxe|//:exdlc_1hkm",
+   "key": "cvpw15dn",
+   "parent_ids": [
+    "osj漢j:jom7gh3énzprw-",
+    "3|j3-u8"
+   ],
+   "id": "mem_d0635ce2aede2e63c464b17"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "l02xéw8:x5hd798b9漢ilvqq:y _48",
+   "key": "f77ajnhqdcé",
+   "parent_ids": [
+    "7o5rjm06.漢 漢ip85fy8"
+   ],
+   "id": "mem_df0cf7dcff26c5be6fcdbe0"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": ":ddzb-",
+   "key": "8-jévm2|2",
+   "parent_ids": [
+    "u upzs漢3m9漢 w9pmlh",
+    "g|yj2z9r",
+    "jm",
+    "éd kj1lgp.u0719/8m_5yp",
+    "x9:19_fne 7ne.8hd8 motja"
+   ],
+   "id": "mem_da030132e9afc35893741da"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "0|",
+   "key": "0o-g3sy0o6400lqnko",
+   "parent_ids": [
+    "ivpb0i.xqwb9._mm7q",
+    "i|gknx0mx5-:itienpé/r",
+    ".48漢70ipz9",
+    "uyit/p",
+    "_ye",
+    "oka3"
+   ],
+   "id": "mem_d32352163ee1f4381f62054"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "sxvb4e7d0--n3 xj",
+   "key": "vhrh7ndp3o1yfu",
+   "parent_ids": [
+    "r8/5.9o313//hdolcy- g9",
+    " ",
+    "fuu2_9éannvr6b",
+    "b4漢ql"
+   ],
+   "id": "mem_d9e9390d93fdcbcaa5da13a"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "p:9g9ks-1",
+   "key": "i",
+   "parent_ids": [
+    "漢ptv漢1gh-j",
+    "5",
+    "76p8ht2|2 840",
+    "ftb28aezm"
+   ],
+   "id": "mem_d129db0c7d3409036af1f9e"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "d7ed_",
+   "key": ":",
+   "parent_ids": [
+    "yohqakv漢 n4-",
+    "4/",
+    "8漢r2él7 uck24",
+    "漢l|.t"
+   ],
+   "id": "mem_d1b0be578aa9e37c0ed9e40"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "1343jjv63vll7b/r3/666wg",
+   "key": "",
+   "parent_ids": [],
+   "id": "mem_de346ac116b2b8d402384c5"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "mmqbfd漢yd",
+   "key": "v8am-x-_it9é8qp",
+   "parent_ids": [],
+   "id": "mem_d8e48268310f5889cab5348"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "ond漢pgexvtzne7m4fj2 xn_9ohh4",
+   "key": "_8-|0l epp0漢0",
+   "parent_ids": [
+    "j66lgbkt0ho1dzu9zof",
+    "ilf",
+    "pejeéqg",
+    "b3o2o3dqj|tv3|8né|x",
+    "gl2soxdbg"
+   ],
+   "id": "mem_d18f8e23b471d9be1cf0e0b"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "xgybpqb漢lf_anlita.92.l",
+   "key": ":/esc4r",
+   "parent_ids": [
+    "o 2tz4ramvogn2ghv_ 4eo",
+    "b7satz81qwy87z9c7mf-99"
+   ],
+   "id": "mem_d86513262ed8aa2ccdb0b18"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "o08:e-5漢f",
+   "key": "rwrnd_inru1wzsn",
+   "parent_ids": [],
+   "id": "mem_d9e38325f1fc791ef3e3aed"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "td2b:méé_w6:b",
+   "key": "8漢0g_qog7o16d",
+   "parent_ids": [
+    "0_c:gxqeo漢"
+   ],
+   "id": "mem_ddfd89bcee0b70c4b13e375"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "bekk7",
+   "key": "x3g2za漢/l.|95sw8x.3",
+   "parent_ids": [
+    "_k漢xj01_4漢:a1k"
+   ],
+   "id": "mem_d2e3a24b2417abaccd3058f"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "qé0c2_kscs/hévzko/6h|n",
+   "key": "8df_.",
+   "parent_ids": [
+    "fc漢gzu/h33z:53aupr",
+    "kegof9afh",
+    "r3bcxz/",
+    ".|rznbv35rq",
+    "漢j/88:lbf"
+   ],
+   "id": "mem_d59fb88651f7740f9c46bc6"
+  },
+  {
+   "operator": "slot_composition",
+   "scope": "-4t550zsn1",
+   "key": " ",
+   "parent_ids": [
+    "u",
+    "qdx0eyd0dhqgd.md_255|fgy4_",
+    "gv3",
+    "2.bdmukbjivp8c6wnspuv2h3v",
+    ".2aasa/-9qh.1wpéuft",
+    "n|83vn5un_d-qfyg5h"
+   ],
+   "id": "mem_d8ce5d05d7c08949845d86f"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "ti7",
+   "key": "sq2w",
+   "parent_ids": [
+    "1zf9hxk9ébi9f299qg1lwb|u2d",
+    "ko8mww8 -y0éjan31/cfz6"
+   ],
+   "id": "mem_dc3b2a31ea93e8778be5d0c"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "9漢2wa8",
+   "key": "w",
+   "parent_ids": [
+    "yz7ywxfob/ebhjb97: ",
+    "o2smlx_évv9dpoé6l",
+    ".cmurcl7laerbw.q漢otty|-é"
+   ],
+   "id": "mem_d9c1be0fc1286f4dd8b11dd"
+  },
+  {
+   "operator": "topic_consolidation",
+   "scope": "pf",
+   "key": "-ggejspw6/3u:o0yirb0",
+   "parent_ids": [],
+   "id": "mem_d2aa5a8360740f21448c236"
+  }
+ ],
+ "content_hash": [
+  {
+   "parts": [
+    "ww2 ymc494xwe0wxzq",
+    "c-漢sfu8.v254é4ap929v:",
+    ":y .cyv",
+    "8zo"
+   ],
+   "hash": "708373bab1d9c38d1778e126b68615e9"
+  },
+  {
+   "parts": [
+    "m_h55ejukajé.9o"
+   ],
+   "hash": "c58c65a0dd6a2a515a3542ad9df121ca"
+  },
+  {
+   "parts": [
+    ".eizypx漢émexmrd_.é|"
+   ],
+   "hash": "22f47cf4f7899525c7575014c8c04bfe"
+  },
+  {
+   "parts": [
+    "",
+    "/2.54cg4b",
+    "zqhn8"
+   ],
+   "hash": "09dd66219859c09a34036bbc04acba73"
+  },
+  {
+   "parts": [
+    "ma|:9",
+    "9/mun80-漢  qj漢t.",
+    "cscgsxj:k.q57vb0elé"
+   ],
+   "hash": "028c2d1137da1c900a9b8dc9c209fb98"
+  },
+  {
+   "parts": [
+    "us0xiqg.jxs-5nn./zq-on32",
+    "cft4g8wsbuey/as-nyi8hqp"
+   ],
+   "hash": "a87d603265fa2aeff9e0f9fcf7484fcf"
+  },
+  {
+   "parts": [
+    "zuwo0p8:pkm_",
+    "q5漢ljwwc6j7rjcp 5fi txu"
+   ],
+   "hash": "31eb14fcf42919122c819add62708aec"
+  },
+  {
+   "parts": [
+    "_1",
+    "y:s72",
+    "qe/sidj_o13|l",
+    " y7zj-7zbqbwv|ol3ex2t2jx"
+   ],
+   "hash": "f5eecbbbcca6d1a19ec664e44258e5ef"
+  },
+  {
+   "parts": [
+    "_9-fwer2fsg"
+   ],
+   "hash": "ff163bb2c0eab5d286390aedfac71c55"
+  },
+  {
+   "parts": [
+    ":|w5s-x7",
+    "g86m漢10 étfuzk.g",
+    "rxd|",
+    "om5._116o4-ymkin/:c2"
+   ],
+   "hash": "b4b9f19a2d178107d940adda5fc3c9bb"
+  },
+  {
+   "parts": [
+    "l6gu6h",
+    "z8ovqdé2s81wr",
+    "s"
+   ],
+   "hash": "35ef2dace92a7b4718b3b40748436770"
+  },
+  {
+   "parts": [
+    "6see0f85 im4ptt-wr- j:é",
+    "kcm0sa-badrhojp"
+   ],
+   "hash": "c6b0ea75a951d0612c7552bec5c2cbaa"
+  },
+  {
+   "parts": [
+    "sr73zi",
+    "r228wi"
+   ],
+   "hash": "537d6035611aa6c85fafe93bb86eec99"
+  },
+  {
+   "parts": [
+    "k漢a8hvwjyx_va4q.t wma"
+   ],
+   "hash": "4e21e5600601a2be0f629687709980c0"
+  },
+  {
+   "parts": [
+    ".lepq_né2b1y",
+    "wérp426:ec",
+    "w:z42n30"
+   ],
+   "hash": "e84c700be9e7da1821a35747da8fb8d1"
+  },
+  {
+   "parts": [
+    "uuh"
+   ],
+   "hash": "48ac9eed4e2ae194588acb48e3a1a858"
+  },
+  {
+   "parts": [
+    "9b",
+    "m4lpg/h7é"
+   ],
+   "hash": "dc562dae6c5dd2da76cc62b99fc09867"
+  },
+  {
+   "parts": [
+    "o_b_dw7|c4:n.3l",
+    "/r:vt"
+   ],
+   "hash": "e2994035e3c0de9689eaa71884da096d"
+  },
+  {
+   "parts": [
+    "éc2n.qo q ltx_wééu81zvdut",
+    "s漢5hy|a",
+    "._4e_p/kjrké"
+   ],
+   "hash": "f2a34dafea63459d8de741cab2e1e523"
+  },
+  {
+   "parts": [
+    ".k70g7漢|w:b0a",
+    "2|5d7s4kmcéb"
+   ],
+   "hash": "e866e693afff3c0fe4ce4ecd676a8fab"
+  },
+  {
+   "parts": [
+    "t273漢uomhyh8if_utz d"
+   ],
+   "hash": "ebc24968d2db5f4e35519178d02f6c85"
+  },
+  {
+   "parts": [
+    "z0/:qkb漢"
+   ],
+   "hash": "448e8b1225388f639fc2145d63fecd91"
+  },
+  {
+   "parts": [
+    "ns",
+    "flbstebo0cxée"
+   ],
+   "hash": "3cce0664ad9d64ecab8d1005b17ca8ff"
+  },
+  {
+   "parts": [
+    "漢0p0jq",
+    "x5lc4:7a xf_osh9o漢",
+    "dnrmr9rtéexi3pi//g|:tdc",
+    "v:"
+   ],
+   "hash": "b7bade08cf6b936fbb0529c48a4dc75c"
+  },
+  {
+   "parts": [
+    "b|h5exd3 budé_vgmy"
+   ],
+   "hash": "2d7210118b4527427899b81ad3bf52c7"
+  },
+  {
+   "parts": [
+    "_vrn5k_czxj26xnniav",
+    ":zi",
+    "lfr29:5漢q漢fd1-pziéo4d6"
+   ],
+   "hash": "d4e5047e7d37024cc584c30c31afba43"
+  },
+  {
+   "parts": [
+    "6ag:ab5q31y7q8éc|",
+    " d",
+    "k7bbm_pccb-"
+   ],
+   "hash": "34f4616f6893a3112cbbe237cedb50ba"
+  },
+  {
+   "parts": [
+    "漢ykmzewcns",
+    "qg5/aes_fnf9mlqsa14zj_n",
+    "cmc-tf漢ybysa",
+    "76:"
+   ],
+   "hash": "cfbcf073820472ec84ffb524b6e3b3dd"
+  },
+  {
+   "parts": [
+    "22éoo1j",
+    "dedpja é_mpy1mru5i7",
+    "43ikt/v _moo8c16.9u",
+    "bcp8xbak00h. "
+   ],
+   "hash": "c6608d9843372ad306e88504bd3d85c6"
+  },
+  {
+   "parts": [
+    "nhéa8/fkjpxitf5jeh:s",
+    "wpyztwf1",
+    "cgz/:pse",
+    "jp"
+   ],
+   "hash": "29b0037836aa5078151d38d333411acf"
+  },
+  {
+   "parts": [
+    "p:mj",
+    "sgy-zénée3/5/z9wqybd",
+    "_/mmfy5rc",
+    "htdmé96h1z_zqx_sn5wokwu"
+   ],
+   "hash": "2e7566a81fe2e856d1e122ec89ee982e"
+  },
+  {
+   "parts": [
+    "61n c:s2emu. 9w8io",
+    "do_3e6 x5szd8ilzé:"
+   ],
+   "hash": "45ef546811902c16cb88c4e983c71e5c"
+  },
+  {
+   "parts": [
+    "漢t7p"
+   ],
+   "hash": "bffe642a6358a48a76397e0e246650c6"
+  },
+  {
+   "parts": [
+    "no",
+    "xipa:4é28e2qbvzzhj",
+    "fa-9di3:_- l4d4n",
+    "|:漢d.hxat:1oirl1ak410mj2g"
+   ],
+   "hash": "a6b2c4bc470fb6e130780d234b45ccd1"
+  },
+  {
+   "parts": [
+    "gz-漢- mf157",
+    "b6_/ 0d漢i"
+   ],
+   "hash": "5af8500e4423a5d8bbdfd51e69745dea"
+  },
+  {
+   "parts": [
+    "5tpt:lkd漢giy.hzu",
+    "e_35otd_hn",
+    ""
+   ],
+   "hash": "27f30fb133181d0d0f62186354f54cea"
+  },
+  {
+   "parts": [
+    "2dlqe:gnqs:4",
+    "4wkpnntyrh|réjes9nomu",
+    "écu.4s zlbza_fdir0/.aqcod"
+   ],
+   "hash": "cd106ee0eda6a21547f91dfc2e030e0d"
+  },
+  {
+   "parts": [
+    "-0:k9.:ch",
+    "suqw.168b3éwko"
+   ],
+   "hash": "cf618a09b4552c0402ed0f074e614978"
+  },
+  {
+   "parts": [
+    "t9ér89z"
+   ],
+   "hash": "b9c02bb217941507b497228bd79a87d4"
+  },
+  {
+   "parts": [
+    ".jm-.e"
+   ],
+   "hash": "4d6d1508e1fe9975582c844015e87493"
+  },
+  {
+   "parts": [
+    "wki"
+   ],
+   "hash": "5e16cda9b4de40aa35d1f8c47578363d"
+  },
+  {
+   "parts": [
+    "-|1-znoéufl.zo|g9pep",
+    "ru.1|.d7_:_-d0zék",
+    "sxm/rgz:s 06pit1dbw32"
+   ],
+   "hash": "6cb78ca90d399528f4f6657c1a88cc4a"
+  },
+  {
+   "parts": [
+    "6"
+   ],
+   "hash": "e7f6c011776e8db7cd330b54174fd76f"
+  },
+  {
+   "parts": [
+    "u9|qyzxjjz",
+    "3xdj4p:-k.f6u0arvkc4:y928"
+   ],
+   "hash": "9881ea249bd55d6763702bff4446dfc6"
+  },
+  {
+   "parts": [
+    "xké-c/.h",
+    "j2ad59jj2 é1k4gk/emrq"
+   ],
+   "hash": "d42be1e65356d3e828811199090a4eef"
+  },
+  {
+   "parts": [
+    "ei141cndd4|",
+    "5s6evzwo",
+    "pp2b.inc7i4vfa"
+   ],
+   "hash": "4f0c9c814816d8abd1cf72becac83ba3"
+  },
+  {
+   "parts": [
+    "he7"
+   ],
+   "hash": "ce1791ce9a162e90418600efb352dadf"
+  },
+  {
+   "parts": [
+    "2o/é.m t7fdrém3h8"
+   ],
+   "hash": "df0365369324f1a7a4e72c340087c641"
+  },
+  {
+   "parts": [
+    "aze2zbrk",
+    "z1sgazu|f",
+    "3x9f/1vw:a"
+   ],
+   "hash": "f88e7cf4d26269352c495ead19c8f08f"
+  },
+  {
+   "parts": [
+    "618jba va9_"
+   ],
+   "hash": "b2f934f6ed8703d18f4677d779e45486"
+  },
+  {
+   "parts": [
+    "ih2r0|2x7xt_6..5ln7ibwc3",
+    "t9s/yqy07"
+   ],
+   "hash": "cdef9554221f1d9d37338dbdf6d6c12e"
+  },
+  {
+   "parts": [
+    "v2slaj"
+   ],
+   "hash": "825fa8e47934c47dd82d4bf8e396d285"
+  },
+  {
+   "parts": [
+    "",
+    "u ",
+    "5m漢bf1m8c/g5m0漢cl5z3",
+    "btnqh_9 mlésan_uzrqp漢"
+   ],
+   "hash": "2a8feb6408ebb74c0a6c8232b5b85724"
+  },
+  {
+   "parts": [
+    "é5st|g8gc.2tnyanvnv",
+    "q.w0yfjt3p/jz4",
+    "xf7p 6asoa8ootn4",
+    "hél_i:71q8-74fsmkj"
+   ],
+   "hash": "123339d9cdb61b65c2807d695275e54f"
+  },
+  {
+   "parts": [
+    "1rédxj|sq漢tt0a",
+    "ktpp67é漢|lr6j5",
+    ":bifo|b 4macjb7x",
+    "hs839:09ncmtw"
+   ],
+   "hash": "089a1bc89264899c5efc8e86a0145a74"
+  },
+  {
+   "parts": [
+    "wlpfwrté:é:_l.ibjf4|a",
+    "dppbéydéuh",
+    "",
+    "2y/-xismsaxuwoe|u"
+   ],
+   "hash": "b39eb0a8d01ed4b28507391a07cd4af1"
+  },
+  {
+   "parts": [
+    "7a4|q9jéz7.1y|z"
+   ],
+   "hash": "0e4388a32212fdbe139ec80a153e4657"
+  },
+  {
+   "parts": [
+    "1u",
+    "hr7y0wrpsq",
+    "a8fs4ztza|58048 nm5a43r9r",
+    "h5c0térrp_j_"
+   ],
+   "hash": "c85cc8e26dd18d4d9dd59ca69262a864"
+  },
+  {
+   "parts": [
+    "hdn7.d",
+    "hc5d8"
+   ],
+   "hash": "a389f119a3636db707f69d708b2f12ef"
+  },
+  {
+   "parts": [
+    "r6漢e27v71ukn79mq67c",
+    "hgn.qe33v",
+    ""
+   ],
+   "hash": "e72909d5456f7d5c69708cc003e9a3fe"
+  }
+ ],
+ "api_keys": [
+  {
+   "agent_id": "log-1",
+   "key": "mk_log-1.KqoqCjNW2wU-ye3XQyedYNEY8hj0CJoLplQpoE_TD3I",
+   "hash": "7fb1ed62d013e4fb873dd4d01f0e3c3732142c06dac702b7194f92ac1b6fd498",
+   "prefix": "mk_log-1.Kqoq",
+   "parsed": "log-1",
+   "prefix_len": 13,
+   "key_len": 52
+  },
+  {
+   "agent_id": "a",
+   "key": "mk_a.vAvymY5KauByliJt8lF9nBYGXtj41fmue_E_tUoJuaM",
+   "hash": "3c927148a2e892850d82d755954f2697da0e43cf4cb0f50057be5befbeede42f",
+   "prefix": "mk_a.vAvy",
+   "parsed": "a",
+   "prefix_len": 9,
+   "key_len": 48
+  },
+  {
+   "agent_id": "agent-7",
+   "key": "mk_agent-7.c0Ubd1__4W6cU_1AGN-nHqGfuMuLt3VA-_i6CvL-NSo",
+   "hash": "f610382d1957771b96e23ea99852d85e674cd00c55475ec0051a80daea824f62",
+   "prefix": "mk_agent-7.c0Ub",
+   "parsed": "agent-7",
+   "prefix_len": 15,
+   "key_len": 54
+  },
+  {
+   "agent_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   "key": "mk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.zRPMlPmDpzih_ctxInmjFkOoXGDVLbzvAGOSnu0IJCo",
+   "hash": "bd067721d1d054ccdbd0346795b4233ab0a610f25d9964c8f2de9ceae6c3a9e8",
+   "prefix": "mk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.zRPM",
+   "parsed": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   "prefix_len": 72,
+   "key_len": 111
+  }
+ ],
+ "parse_agent_id": {
+  "nope": null,
+  "mk_": null,
+  "mk_.x": null,
+  "mk_a.b": "a",
+  "mk_abc": null,
+  "mk_abc.": "abc",
+  "mk_a.b.c": "a",
+  "Mk_a.b": null,
+  "mk_é.x": "é",
+  "": null
+ },
+ "hash_key": {
+  "mk_a.b": "3c330ece445dfb68a379e13bcd17d1dc71e118a21d25a552065fdb55b47e86cf",
+  "é": "4a99557e4033c3539de2eb65472017cad5f9557f7a0625a09f1c3f6e2ba69c4c",
+  "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "mk_log-1.secret": "ad7e482e7d645c994680defb713da0e97b6146112e2d54a01b828adeb5906b50"
+ },
+ "idempotency": [
+  {
+   "agent": "log-1",
+   "key": "note-1",
+   "memory_id": "mem_5897f08660d1068a815200",
+   "event_id": "evt_7edaeb27a96c474b488354",
+   "event_memory_id": "mem_64c525812fa4e9e28b7c24"
+  },
+  {
+   "agent": "proc-1",
+   "key": "call-1",
+   "memory_id": "mem_84f93dd130bbe17159da43",
+   "event_id": "evt_99712ca5c3f3556fb1691b",
+   "event_memory_id": "mem_a0ced18abb51809dae0ed7"
+  },
+  {
+   "agent": "a",
+   "key": "é漢",
+   "memory_id": "mem_5d325925a2283c22f7c8df",
+   "event_id": "evt_0df2c347f7c83b938228ef",
+   "event_memory_id": "mem_d77ec17a7879c700781662"
+  },
+  {
+   "agent": "sales-2",
+   "key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   "memory_id": "mem_33b8ab05ec8b4aa209a32a",
+   "event_id": "evt_c7eebe1bc76bae85c8b0d2",
+   "event_memory_id": "mem_9aa64912c31ceebafd6fe5"
+  }
+ ],
+ "derived_event_id": {
+  "mem_dabc": "evt_d71bf96142a4bd5419cacbc",
+  "mem_d0000000000000000000000": "evt_df976058aa7acff70782a92",
+  "x": "evt_d2d711642b726b04401627c"
+ },
+ "textutil_content_hash": [
+  {
+   "parts": [
+    "ww2 ymc494xwe0wxzq",
+    "c-漢sfu8.v254é4ap929v:",
+    ":y .cyv",
+    "8zo"
+   ],
+   "hash": "106966cea03a31b2d617"
+  },
+  {
+   "parts": [
+    "m_h55ejukajé.9o"
+   ],
+   "hash": "930d041e2a0e45029e55"
+  },
+  {
+   "parts": [
+    ".eizypx漢émexmrd_.é|"
+   ],
+   "hash": "b9564856e6a3db91f9ed"
+  },
+  {
+   "parts": [
+    "",
+    "/2.54cg4b",
+    "zqhn8"
+   ],
+   "hash": "5bafc91f75deeffbd1c0"
+  },
+  {
+   "parts": [
+    "ma|:9",
+    "9/mun80-漢  qj漢t.",
+    "cscgsxj:k.q57vb0elé"
+   ],
+   "hash": "7294a9b2f4d6e557f0f2"
+  },
+  {
+   "parts": [
+    "us0xiqg.jxs-5nn./zq-on32",
+    "cft4g8wsbuey/as-nyi8hqp"
+   ],
+   "hash": "b808b055335724ead948"
+  },
+  {
+   "parts": [
+    "zuwo0p8:pkm_",
+    "q5漢ljwwc6j7rjcp 5fi txu"
+   ],
+   "hash": "2c0377c8a6497d5ad442"
+  },
+  {
+   "parts": [
+    "_1",
+    "y:s72",
+    "qe/sidj_o13|l",
+    " y7zj-7zbqbwv|ol3ex2t2jx"
+   ],
+   "hash": "800e7e38ba6cf8324ea7"
+  },
+  {
+   "parts": [
+    "_9-fwer2fsg"
+   ],
+   "hash": "22786704c05babad72ce"
+  },
+  {
+   "parts": [
+    ":|w5s-x7",
+    "g86m漢10 étfuzk.g",
+    "rxd|",
+    "om5._116o4-ymkin/:c2"
+   ],
+   "hash": "46a71e090c13800d8afb"
+  }
+ ]
+}

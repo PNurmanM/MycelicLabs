@@ -1,0 +1,1276 @@
+{
+ "_generated_by": "crates/mycelic/tests/golden/generate_from_python.py against the Python implementation at ace3efb",
+ "paths": [
+  {
+   "path": "acme",
+   "split": {
+    "ok": [
+     "acme"
+    ]
+   },
+   "layer_of_path": {
+    "ok": "enterprise"
+   },
+   "parent_path": {
+    "ok": null
+   },
+   "ancestors": {
+    "ok": [
+     "acme"
+    ]
+   },
+   "ancestors_strict": {
+    "ok": []
+   },
+   "org_of": {
+    "ok": "acme"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "ok": null
+    },
+    "team": {
+     "ok": null
+    },
+    "department": {
+     "ok": null
+    },
+    "subsidiary": {
+     "ok": null
+    },
+    "region": {
+     "ok": null
+    },
+    "enterprise": {
+     "ok": "acme"
+    }
+   },
+   "agent_path": {
+    "error": "an agent path needs 6 segments, got 1: 'acme'"
+   }
+  },
+  {
+   "path": "acme/eu",
+   "split": {
+    "ok": [
+     "acme",
+     "eu"
+    ]
+   },
+   "layer_of_path": {
+    "ok": "region"
+   },
+   "parent_path": {
+    "ok": "acme"
+   },
+   "ancestors": {
+    "ok": [
+     "acme",
+     "acme/eu"
+    ]
+   },
+   "ancestors_strict": {
+    "ok": [
+     "acme"
+    ]
+   },
+   "org_of": {
+    "ok": "acme"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "ok": null
+    },
+    "team": {
+     "ok": null
+    },
+    "department": {
+     "ok": null
+    },
+    "subsidiary": {
+     "ok": null
+    },
+    "region": {
+     "ok": "acme/eu"
+    },
+    "enterprise": {
+     "ok": "acme"
+    }
+   },
+   "agent_path": {
+    "error": "an agent path needs 6 segments, got 2: 'acme/eu'"
+   }
+  },
+  {
+   "path": "acme/eu/de",
+   "split": {
+    "ok": [
+     "acme",
+     "eu",
+     "de"
+    ]
+   },
+   "layer_of_path": {
+    "ok": "subsidiary"
+   },
+   "parent_path": {
+    "ok": "acme/eu"
+   },
+   "ancestors": {
+    "ok": [
+     "acme",
+     "acme/eu",
+     "acme/eu/de"
+    ]
+   },
+   "ancestors_strict": {
+    "ok": [
+     "acme",
+     "acme/eu"
+    ]
+   },
+   "org_of": {
+    "ok": "acme"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "ok": null
+    },
+    "team": {
+     "ok": null
+    },
+    "department": {
+     "ok": null
+    },
+    "subsidiary": {
+     "ok": "acme/eu/de"
+    },
+    "region": {
+     "ok": "acme/eu"
+    },
+    "enterprise": {
+     "ok": "acme"
+    }
+   },
+   "agent_path": {
+    "error": "an agent path needs 6 segments, got 3: 'acme/eu/de'"
+   }
+  },
+  {
+   "path": "acme/eu/de/ops",
+   "split": {
+    "ok": [
+     "acme",
+     "eu",
+     "de",
+     "ops"
+    ]
+   },
+   "layer_of_path": {
+    "ok": "department"
+   },
+   "parent_path": {
+    "ok": "acme/eu/de"
+   },
+   "ancestors": {
+    "ok": [
+     "acme",
+     "acme/eu",
+     "acme/eu/de",
+     "acme/eu/de/ops"
+    ]
+   },
+   "ancestors_strict": {
+    "ok": [
+     "acme",
+     "acme/eu",
+     "acme/eu/de"
+    ]
+   },
+   "org_of": {
+    "ok": "acme"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "ok": null
+    },
+    "team": {
+     "ok": null
+    },
+    "department": {
+     "ok": "acme/eu/de/ops"
+    },
+    "subsidiary": {
+     "ok": "acme/eu/de"
+    },
+    "region": {
+     "ok": "acme/eu"
+    },
+    "enterprise": {
+     "ok": "acme"
+    }
+   },
+   "agent_path": {
+    "error": "an agent path needs 6 segments, got 4: 'acme/eu/de/ops'"
+   }
+  },
+  {
+   "path": "acme/eu/de/ops/log",
+   "split": {
+    "ok": [
+     "acme",
+     "eu",
+     "de",
+     "ops",
+     "log"
+    ]
+   },
+   "layer_of_path": {
+    "ok": "team"
+   },
+   "parent_path": {
+    "ok": "acme/eu/de/ops"
+   },
+   "ancestors": {
+    "ok": [
+     "acme",
+     "acme/eu",
+     "acme/eu/de",
+     "acme/eu/de/ops",
+     "acme/eu/de/ops/log"
+    ]
+   },
+   "ancestors_strict": {
+    "ok": [
+     "acme",
+     "acme/eu",
+     "acme/eu/de",
+     "acme/eu/de/ops"
+    ]
+   },
+   "org_of": {
+    "ok": "acme"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "ok": null
+    },
+    "team": {
+     "ok": "acme/eu/de/ops/log"
+    },
+    "department": {
+     "ok": "acme/eu/de/ops"
+    },
+    "subsidiary": {
+     "ok": "acme/eu/de"
+    },
+    "region": {
+     "ok": "acme/eu"
+    },
+    "enterprise": {
+     "ok": "acme"
+    }
+   },
+   "agent_path": {
+    "error": "an agent path needs 6 segments, got 5: 'acme/eu/de/ops/log'"
+   }
+  },
+  {
+   "path": "acme/eu/de/ops/log/a1",
+   "split": {
+    "ok": [
+     "acme",
+     "eu",
+     "de",
+     "ops",
+     "log",
+     "a1"
+    ]
+   },
+   "layer_of_path": {
+    "ok": "agent"
+   },
+   "parent_path": {
+    "ok": "acme/eu/de/ops/log"
+   },
+   "ancestors": {
+    "ok": [
+     "acme",
+     "acme/eu",
+     "acme/eu/de",
+     "acme/eu/de/ops",
+     "acme/eu/de/ops/log",
+     "acme/eu/de/ops/log/a1"
+    ]
+   },
+   "ancestors_strict": {
+    "ok": [
+     "acme",
+     "acme/eu",
+     "acme/eu/de",
+     "acme/eu/de/ops",
+     "acme/eu/de/ops/log"
+    ]
+   },
+   "org_of": {
+    "ok": "acme"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "ok": "acme/eu/de/ops/log/a1"
+    },
+    "team": {
+     "ok": "acme/eu/de/ops/log"
+    },
+    "department": {
+     "ok": "acme/eu/de/ops"
+    },
+    "subsidiary": {
+     "ok": "acme/eu/de"
+    },
+    "region": {
+     "ok": "acme/eu"
+    },
+    "enterprise": {
+     "ok": "acme"
+    }
+   },
+   "agent_path": {
+    "ok": {
+     "enterprise": "acme",
+     "region": "eu",
+     "subsidiary": "de",
+     "department": "ops",
+     "team": "log",
+     "agent_id": "a1",
+     "path": "acme/eu/de/ops/log/a1"
+    }
+   }
+  },
+  {
+   "path": "acme/eu/de/ops/log/a1/x",
+   "split": {
+    "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+   },
+   "layer_of_path": {
+    "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+   },
+   "parent_path": {
+    "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+   },
+   "ancestors": {
+    "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+   },
+   "ancestors_strict": {
+    "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+   },
+   "org_of": {
+    "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+    },
+    "team": {
+     "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+    },
+    "department": {
+     "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+    },
+    "subsidiary": {
+     "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+    },
+    "region": {
+     "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+    },
+    "enterprise": {
+     "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+    }
+   },
+   "agent_path": {
+    "error": "path has 7 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x'"
+   }
+  },
+  {
+   "path": "",
+   "split": {
+    "error": "path must be a non-empty string"
+   },
+   "layer_of_path": {
+    "error": "path must be a non-empty string"
+   },
+   "parent_path": {
+    "error": "path must be a non-empty string"
+   },
+   "ancestors": {
+    "error": "path must be a non-empty string"
+   },
+   "ancestors_strict": {
+    "error": "path must be a non-empty string"
+   },
+   "org_of": {
+    "error": "path must be a non-empty string"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path must be a non-empty string"
+    },
+    "team": {
+     "error": "path must be a non-empty string"
+    },
+    "department": {
+     "error": "path must be a non-empty string"
+    },
+    "subsidiary": {
+     "error": "path must be a non-empty string"
+    },
+    "region": {
+     "error": "path must be a non-empty string"
+    },
+    "enterprise": {
+     "error": "path must be a non-empty string"
+    }
+   },
+   "agent_path": {
+    "error": "path must be a non-empty string"
+   }
+  },
+  {
+   "path": "Acme",
+   "split": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+   },
+   "layer_of_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+   },
+   "parent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+   },
+   "ancestors": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+   },
+   "ancestors_strict": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+   },
+   "org_of": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+    },
+    "team": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+    },
+    "department": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+    },
+    "subsidiary": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+    },
+    "region": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+    },
+    "enterprise": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+    }
+   },
+   "agent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme'"
+   }
+  },
+  {
+   "path": "acme//eu",
+   "split": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "layer_of_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "parent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "ancestors": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "ancestors_strict": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "org_of": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "team": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "department": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "subsidiary": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "region": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "enterprise": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    }
+   },
+   "agent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   }
+  },
+  {
+   "path": "acme/eu/",
+   "split": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "layer_of_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "parent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "ancestors": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "ancestors_strict": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "org_of": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "team": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "department": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "subsidiary": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "region": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "enterprise": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    }
+   },
+   "agent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   }
+  },
+  {
+   "path": "/acme",
+   "split": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "layer_of_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "parent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "ancestors": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "ancestors_strict": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "org_of": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "team": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "department": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "subsidiary": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "region": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    },
+    "enterprise": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+    }
+   },
+   "agent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   }
+  },
+  {
+   "path": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "split": {
+    "ok": [
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   },
+   "layer_of_path": {
+    "ok": "enterprise"
+   },
+   "parent_path": {
+    "ok": null
+   },
+   "ancestors": {
+    "ok": [
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+   },
+   "ancestors_strict": {
+    "ok": []
+   },
+   "org_of": {
+    "ok": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "ok": null
+    },
+    "team": {
+     "ok": null
+    },
+    "department": {
+     "ok": null
+    },
+    "subsidiary": {
+     "ok": null
+    },
+    "region": {
+     "ok": null
+    },
+    "enterprise": {
+     "ok": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+   },
+   "agent_path": {
+    "error": "an agent path needs 6 segments, got 1: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+   }
+  },
+  {
+   "path": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "split": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+   },
+   "layer_of_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+   },
+   "parent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+   },
+   "ancestors": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+   },
+   "ancestors_strict": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+   },
+   "org_of": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+    },
+    "team": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+    },
+    "department": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+    },
+    "subsidiary": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+    },
+    "region": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+    },
+    "enterprise": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+    }
+   },
+   "agent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
+   }
+  },
+  {
+   "path": "a_b-c/d",
+   "split": {
+    "ok": [
+     "a_b-c",
+     "d"
+    ]
+   },
+   "layer_of_path": {
+    "ok": "region"
+   },
+   "parent_path": {
+    "ok": "a_b-c"
+   },
+   "ancestors": {
+    "ok": [
+     "a_b-c",
+     "a_b-c/d"
+    ]
+   },
+   "ancestors_strict": {
+    "ok": [
+     "a_b-c"
+    ]
+   },
+   "org_of": {
+    "ok": "a_b-c"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "ok": null
+    },
+    "team": {
+     "ok": null
+    },
+    "department": {
+     "ok": null
+    },
+    "subsidiary": {
+     "ok": null
+    },
+    "region": {
+     "ok": "a_b-c/d"
+    },
+    "enterprise": {
+     "ok": "a_b-c"
+    }
+   },
+   "agent_path": {
+    "error": "an agent path needs 6 segments, got 2: 'a_b-c/d'"
+   }
+  },
+  {
+   "path": "-a",
+   "split": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+   },
+   "layer_of_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+   },
+   "parent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+   },
+   "ancestors": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+   },
+   "ancestors_strict": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+   },
+   "org_of": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+    },
+    "team": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+    },
+    "department": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+    },
+    "subsidiary": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+    },
+    "region": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+    },
+    "enterprise": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+    }
+   },
+   "agent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '-a'"
+   }
+  },
+  {
+   "path": "_a",
+   "split": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+   },
+   "layer_of_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+   },
+   "parent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+   },
+   "ancestors": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+   },
+   "ancestors_strict": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+   },
+   "org_of": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+    },
+    "team": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+    },
+    "department": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+    },
+    "subsidiary": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+    },
+    "region": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+    },
+    "enterprise": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+    }
+   },
+   "agent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): '_a'"
+   }
+  },
+  {
+   "path": "acme/EU",
+   "split": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+   },
+   "layer_of_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+   },
+   "parent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+   },
+   "ancestors": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+   },
+   "ancestors_strict": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+   },
+   "org_of": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+    },
+    "team": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+    },
+    "department": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+    },
+    "subsidiary": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+    },
+    "region": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+    },
+    "enterprise": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+    }
+   },
+   "agent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'EU'"
+   }
+  },
+  {
+   "path": "acme/e u",
+   "split": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+   },
+   "layer_of_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+   },
+   "parent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+   },
+   "ancestors": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+   },
+   "ancestors_strict": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+   },
+   "org_of": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+    },
+    "team": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+    },
+    "department": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+    },
+    "subsidiary": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+    },
+    "region": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+    },
+    "enterprise": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+    }
+   },
+   "agent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'e u'"
+   }
+  },
+  {
+   "path": "acme/é",
+   "split": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+   },
+   "layer_of_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+   },
+   "parent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+   },
+   "ancestors": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+   },
+   "ancestors_strict": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+   },
+   "org_of": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+    },
+    "team": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+    },
+    "department": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+    },
+    "subsidiary": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+    },
+    "region": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+    },
+    "enterprise": {
+     "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+    }
+   },
+   "agent_path": {
+    "error": "path segment must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'é'"
+   }
+  },
+  {
+   "path": "0/1/2/3/4/5",
+   "split": {
+    "ok": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "layer_of_path": {
+    "ok": "agent"
+   },
+   "parent_path": {
+    "ok": "0/1/2/3/4"
+   },
+   "ancestors": {
+    "ok": [
+     "0",
+     "0/1",
+     "0/1/2",
+     "0/1/2/3",
+     "0/1/2/3/4",
+     "0/1/2/3/4/5"
+    ]
+   },
+   "ancestors_strict": {
+    "ok": [
+     "0",
+     "0/1",
+     "0/1/2",
+     "0/1/2/3",
+     "0/1/2/3/4"
+    ]
+   },
+   "org_of": {
+    "ok": "0"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "ok": "0/1/2/3/4/5"
+    },
+    "team": {
+     "ok": "0/1/2/3/4"
+    },
+    "department": {
+     "ok": "0/1/2/3"
+    },
+    "subsidiary": {
+     "ok": "0/1/2"
+    },
+    "region": {
+     "ok": "0/1"
+    },
+    "enterprise": {
+     "ok": "0"
+    }
+   },
+   "agent_path": {
+    "ok": {
+     "enterprise": "0",
+     "region": "1",
+     "subsidiary": "2",
+     "department": "3",
+     "team": "4",
+     "agent_id": "5",
+     "path": "0/1/2/3/4/5"
+    }
+   }
+  },
+  {
+   "path": "acme/eu/de/ops/log/a1/x/y",
+   "split": {
+    "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+   },
+   "layer_of_path": {
+    "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+   },
+   "parent_path": {
+    "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+   },
+   "ancestors": {
+    "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+   },
+   "ancestors_strict": {
+    "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+   },
+   "org_of": {
+    "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+   },
+   "unit_at_layer": {
+    "agent": {
+     "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+    },
+    "team": {
+     "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+    },
+    "department": {
+     "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+    },
+    "subsidiary": {
+     "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+    },
+    "region": {
+     "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+    },
+    "enterprise": {
+     "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+    }
+   },
+   "agent_path": {
+    "error": "path has 8 segments; at most 6 are allowed: 'acme/eu/de/ops/log/a1/x/y'"
+   }
+  }
+ ],
+ "child_unit_of": [
+  {
+   "descendant": "acme/eu/de/ops/log/a1",
+   "unit": "acme/eu",
+   "result": {
+    "ok": "acme/eu/de"
+   },
+   "is_ancestor_or_self": true
+  },
+  {
+   "descendant": "acme/eu/de",
+   "unit": "acme/eu",
+   "result": {
+    "ok": "acme/eu/de"
+   },
+   "is_ancestor_or_self": true
+  },
+  {
+   "descendant": "acme/eu",
+   "unit": "acme/eu",
+   "result": {
+    "error": "'acme/eu' is not below 'acme/eu'"
+   },
+   "is_ancestor_or_self": true
+  },
+  {
+   "descendant": "acme/us/x",
+   "unit": "acme/eu",
+   "result": {
+    "error": "'acme/us/x' is not below 'acme/eu'"
+   },
+   "is_ancestor_or_self": false
+  },
+  {
+   "descendant": "acme/eux/x",
+   "unit": "acme/eu",
+   "result": {
+    "error": "'acme/eux/x' is not below 'acme/eu'"
+   },
+   "is_ancestor_or_self": false
+  },
+  {
+   "descendant": "acme/eu/de/ops/log/a1",
+   "unit": "acme",
+   "result": {
+    "ok": "acme/eu"
+   },
+   "is_ancestor_or_self": true
+  }
+ ],
+ "from_parts": [
+  {
+   "parts": {
+    "enterprise": "acme",
+    "agent_id": "a1"
+   },
+   "result": {
+    "ok": {
+     "enterprise": "acme",
+     "region": "acme",
+     "subsidiary": "acme",
+     "department": "acme",
+     "team": "acme",
+     "agent_id": "a1",
+     "path": "acme/acme/acme/acme/acme/a1"
+    }
+   }
+  },
+  {
+   "parts": {
+    "enterprise": "acme",
+    "region": "eu",
+    "team": "log",
+    "agent_id": "a1"
+   },
+   "result": {
+    "ok": {
+     "enterprise": "acme",
+     "region": "eu",
+     "subsidiary": "acme",
+     "department": "acme",
+     "team": "log",
+     "agent_id": "a1",
+     "path": "acme/eu/acme/acme/log/a1"
+    }
+   }
+  },
+  {
+   "parts": {
+    "enterprise": "Acme Inc",
+    "agent_id": "a1"
+   },
+   "result": {
+    "error": "enterprise must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'Acme Inc'"
+   }
+  },
+  {
+   "parts": {
+    "enterprise": "acme",
+    "agent_id": "A1"
+   },
+   "result": {
+    "error": "agent_id must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'A1'"
+   }
+  },
+  {
+   "parts": {
+    "enterprise": "acme",
+    "region": "",
+    "agent_id": "a1"
+   },
+   "result": {
+    "ok": {
+     "enterprise": "acme",
+     "region": "acme",
+     "subsidiary": "acme",
+     "department": "acme",
+     "team": "acme",
+     "agent_id": "a1",
+     "path": "acme/acme/acme/acme/acme/a1"
+    }
+   }
+  },
+  {
+   "parts": {
+    "enterprise": "acme",
+    "agent_id": ""
+   },
+   "result": {
+    "error": "agent_id must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   }
+  },
+  {
+   "parts": {
+    "enterprise": "",
+    "agent_id": "a"
+   },
+   "result": {
+    "error": "enterprise must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): ''"
+   }
+  },
+  {
+   "parts": {
+    "enterprise": "acme",
+    "department": "x/y",
+    "agent_id": "a"
+   },
+   "result": {
+    "error": "department must match '^[a-z0-9][a-z0-9_-]{0,63}$' (lowercase, no '/'): 'x/y'"
+   }
+  }
+ ],
+ "layer_index": {
+  "agent": {
+   "ok": 0
+  },
+  "team": {
+   "ok": 1
+  },
+  "department": {
+   "ok": 2
+  },
+  "subsidiary": {
+   "ok": 3
+  },
+  "region": {
+   "ok": 4
+  },
+  "enterprise": {
+   "ok": 5
+  },
+  "Team": {
+   "error": "unknown layer 'Team'; expected one of ('agent', 'team', 'department', 'subsidiary', 'region', 'enterprise')"
+  },
+  "org": {
+   "error": "unknown layer 'org'; expected one of ('agent', 'team', 'department', 'subsidiary', 'region', 'enterprise')"
+  },
+  "": {
+   "error": "unknown layer ''; expected one of ('agent', 'team', 'department', 'subsidiary', 'region', 'enterprise')"
+  }
+ }
+}
