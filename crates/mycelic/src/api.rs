@@ -31,6 +31,10 @@
 //! order: host allow-list (421), CORS preflight, per-address rate limit (429), content type (415), authentication
 //! (401/403), per-principal rate limit (429).
 
+// Handlers return `Result<_, Response>`: the error *is* the HTTP answer, built where the refusal is decided.  It
+// is large, but boxing it would only add indirection on the error path.
+#![allow(clippy::result_large_err)]
+
 use crate::auth::{AuthError, Principal, constant_time_eq};
 use crate::mcp::McpHttp;
 use crate::pyjson::{self, Style};

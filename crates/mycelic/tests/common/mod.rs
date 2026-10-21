@@ -115,6 +115,7 @@ impl Harness {
         .unwrap()
     }
 
+    #[allow(clippy::too_many_arguments)] // the registration fields, positional as the Python helper took them
     pub async fn register(
         &mut self,
         agent_id: &str,

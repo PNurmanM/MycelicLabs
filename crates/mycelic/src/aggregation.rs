@@ -41,6 +41,9 @@ use serde_json::{Map, Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 use std::sync::LazyLock;
 
+/// The units behind one slot of a rule, per layer named in its `min_units`: (slot, [(layer, unit paths)]).
+type SlotUnits = (String, Vec<(String, Vec<String>)>);
+
 pub const MYCELIC_PRODUCER: &str = "mycelic";
 pub const CONSOLIDATABLE: [&str; 3] = ["agent_observation", "topic_consolidation", "slot_composition"];
 pub const MAX_CASCADE: usize = 8;
@@ -592,7 +595,7 @@ impl Aggregator {
         }
         let teams: Vec<String> = teams_set.into_iter().collect();
         // corroboration is per slot: "supply_risk reported by two regions" counts the units behind that slot only
-        let mut units: Vec<(String, Vec<(String, Vec<String>)>)> = Vec::new();
+        let mut units: Vec<SlotUnits> = Vec::new();
         for (slot, per) in &rule.min_units {
             let mut per_layer = Vec::new();
             for (layer, _) in per {

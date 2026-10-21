@@ -266,9 +266,9 @@ impl<T: ToolSet> McpProtocol<T> {
 // ---------------------------------------------------------------------------------------------------- tool binding
 /// Bind JSON arguments to a tool signature the way Python bound `**kwargs`: an unknown keyword or a missing
 /// required argument is a `TypeError` with Python's wording.
-fn bind<'a>(
+fn bind(
     tool: &str,
-    args: &'a Map<String, Value>,
+    args: &Map<String, Value>,
     params: &[&str],
     required: &[&str],
 ) -> Result<Map<String, Value>, ToolFailure> {

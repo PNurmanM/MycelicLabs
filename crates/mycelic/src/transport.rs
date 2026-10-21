@@ -106,9 +106,12 @@ pub fn info_i64(info: &Map<String, Value>, key: &str) -> Option<i64> {
 }
 
 // ---------------------------------------------------------------------------------------------------- in-process
+/// One published message as the broker would store it: subject, payload, message id, headers.
+type LoggedMessage = (String, Bytes, String, Vec<(String, String)>);
+
 #[derive(Default)]
 struct MemLog {
-    log: Vec<(String, Bytes, String, Vec<(String, String)>)>,
+    log: Vec<LoggedMessage>,
     seen_ids: HashMap<String, i64>,
     cursor: usize,
     inflight: HashMap<i64, i64>,

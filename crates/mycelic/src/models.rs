@@ -495,7 +495,7 @@ pub fn parse_iso(s: &str) -> Option<IsoDateTime> {
         return None;
     }
     let date = parse_date(&cs[..sep])?;
-    let tstr: &[char] = if sep + 1 <= cs.len() { &cs[sep + 1..] } else { &[] };
+    let tstr: &[char] = if sep < cs.len() { &cs[sep + 1..] } else { &[] };
     if tstr.is_empty() {
         return Some(IsoDateTime { date, hour: 0, minute: 0, second: 0, offset_seconds: 0 });
     }

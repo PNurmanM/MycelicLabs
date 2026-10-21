@@ -233,6 +233,7 @@ impl RateLimiter {
         self.allow_at(key, now, cost)
     }
 
+    #[allow(clippy::neg_cmp_op_on_partial_ord)] // deliberate: NaN must take the "disabled" branch
     pub fn allow_at(&mut self, key: &str, now: f64, cost: i64) -> bool {
         // `not rps > 0` rather than `rps <= 0`: a NaN rate (possible from the environment) disables limiting too
         if !(self.rps > 0.0) || cost <= 0 {

@@ -28,6 +28,7 @@ pub struct ClaimEnvelope {
 impl ClaimEnvelope {
     /// The validation the Python dataclass ran in `__post_init__` (ids non-empty, confidence in [0, 1], an
     /// ISO-8601 creation time); a claim that fails it makes the whole apply step fail, as before.
+    #[allow(clippy::too_many_arguments)] // one argument per dataclass field, in the dataclass's order
     pub fn validated(
         claim_id: &str,
         query_id: &str,
@@ -64,20 +65,8 @@ impl ClaimEnvelope {
         })
     }
 
-    fn sort_key(&self) -> (OrdF64, &str, &str) {
-        (OrdF64(-self.confidence), self.producer_node_id.as_str(), self.claim_id.as_str())
-    }
-}
-
-/// Total order on f64 for sort keys (the values are finite confidences).
-#[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
-pub struct OrdF64(pub f64);
-
-impl Eq for OrdF64 {}
-
-impl Ord for OrdF64 {
-    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        self.0.total_cmp(&other.0)
+    fn sort_key(&self) -> (f64, &str, &str) {
+        (-self.confidence, self.producer_node_id.as_str(), self.claim_id.as_str())
     }
 }
 
@@ -85,7 +74,7 @@ impl Ord for OrdF64 {
 pub fn claim_order(a: &ClaimEnvelope, b: &ClaimEnvelope) -> std::cmp::Ordering {
     let (ca, pa, ia) = a.sort_key();
     let (cb, pb, ib) = b.sort_key();
-    ca.0.partial_cmp(&cb.0).unwrap_or(std::cmp::Ordering::Equal).then_with(|| pa.cmp(pb)).then_with(|| ia.cmp(ib))
+    ca.partial_cmp(&cb).unwrap_or(std::cmp::Ordering::Equal).then_with(|| pa.cmp(pb)).then_with(|| ia.cmp(ib))
 }
 
 #[derive(Clone, Debug, PartialEq)]

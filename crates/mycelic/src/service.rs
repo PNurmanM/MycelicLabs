@@ -183,13 +183,16 @@ fn id_ok(v: &str) -> bool {
     char_class_ok(v, 200)
 }
 
+/// A field's format check: its description for the error message, and the predicate.
+pub type FieldPattern<'a> = (&'a str, fn(&str) -> bool);
+
 /// `_s`: an optional (or required) string field, stripped, length-checked and optionally pattern-checked.
 pub fn field_str(
     body: &Map<String, Value>,
     key: &str,
     required: bool,
     max_len: usize,
-    pattern: Option<(&str, fn(&str) -> bool)>,
+    pattern: Option<FieldPattern>,
 ) -> SResult<Option<String>> {
     let v = body.get(key);
     let s = match v {

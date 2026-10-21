@@ -232,7 +232,7 @@ async fn test_coalition_that_shrinks_back_reactivates_the_earlier_version() {
     h.service.retract(&h.principal("log-3"), &third, "false alarm", None).unwrap();
     h.settle().await;
     let active: Vec<String> = h.layer("team").into_iter().map(|m| m.memory_id).collect();
-    assert_eq!(active, [first.memory_id.clone()], "the earlier coalition is current again");
+    assert_eq!(active, std::slice::from_ref(&first.memory_id), "the earlier coalition is current again");
     assert_eq!(h.memory(&second.memory_id).status, "retracted");
     let g = h.service.lineage(&h.principal("log-1"), &first.memory_id).unwrap();
     assert_eq!(
@@ -271,7 +271,7 @@ async fn test_reactivated_version_keeps_its_history() {
     h.service.retract(&h.principal("log-4"), &third, "mistaken", None).unwrap();
     h.settle().await;
     let active: Vec<String> = h.layer("team").into_iter().map(|m| m.memory_id).collect();
-    assert_eq!(active, [t2.memory_id.clone()]);
+    assert_eq!(active, std::slice::from_ref(&t2.memory_id));
     assert_eq!(h.service.lineage(&h.admin(), &t2.memory_id).unwrap()["previous_versions"], json!([t1.memory_id]));
     h.close().await;
 }

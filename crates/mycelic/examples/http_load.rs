@@ -24,6 +24,9 @@ use std::time::{Duration, Instant};
 const W: &str = "port strike rotterdam terminal carrier eta supplier stock servo drive order customer november shipment \
                  delay forecast region emea apac warehouse inventory quality defect recall audit invoice contract price";
 
+/// One request of a phase: (client index, request number, the client's agent) -> HTTP status.
+type Work = dyn Fn(usize, u64, &ureq::Agent) -> u16 + Send + Sync;
+
 fn arg(name: &str, default: &str) -> String {
     let args: Vec<String> = std::env::args().collect();
     args.iter().position(|a| a == name).and_then(|i| args.get(i + 1)).cloned().unwrap_or_else(|| default.to_string())
@@ -96,12 +99,7 @@ fn percentile(sorted: &[f64], p: f64) -> f64 {
 }
 
 /// Run `threads` workers for `seconds`; each calls `work(thread, n)` and reports its status.
-fn phase(
-    threads: usize,
-    seconds: f64,
-    ok_status: u16,
-    work: Arc<dyn Fn(usize, u64, &ureq::Agent) -> u16 + Send + Sync>,
-) -> Value {
+fn phase(threads: usize, seconds: f64, ok_status: u16, work: Arc<Work>) -> Value {
     let stop = Arc::new(AtomicBool::new(false));
     let done = Arc::new(AtomicU64::new(0));
     let failed = Arc::new(AtomicU64::new(0));

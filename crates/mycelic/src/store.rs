@@ -1304,7 +1304,9 @@ impl Store {
     /// Close every connection (tests that reopen the file, the CLI on shutdown).  The writer checkpoints the WAL.
     pub fn close(self) {
         drop(self.readers);
-        let _ = self.writer.into_inner().map(|c| c.close());
+        if let Ok(conn) = self.writer.into_inner() {
+            let _ = conn.close();
+        }
     }
 }
 

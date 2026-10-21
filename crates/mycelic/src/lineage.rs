@@ -105,7 +105,7 @@ pub fn reconstruct(
                     Some(&i) => Some(memories[i].1.clone()),
                     None => db.get_memory(&e.parent_id)?,
                 };
-                let parent_visible = parent.as_ref().is_some_and(|p| visible(p));
+                let parent_visible = parent.as_ref().is_some_and(visible);
                 edges.push(json!({"child": child_id, "parent": e.parent_id, "parent_layer": e.parent_layer,
                                    "contributed_by": if parent_visible { json!(e.contributed_by) } else { Value::Null },
                                    "redacted": !parent_visible}));
