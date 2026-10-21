@@ -5,5 +5,16 @@
 //! The port is held to the Python implementation (last Python commit `f7e954b`) bit for bit: `np` reproduces
 //! numpy's random stream and reductions, `py` the Python behaviours the results depend on.
 
+// The Python's records are tuples and nested dicts; spelling each as a type alias would hide the correspondence
+// with the original rather than clarify it.
+#![allow(clippy::type_complexity)]
+
+pub mod corpus;
+pub mod evalm;
+pub mod models;
 pub mod np;
+pub mod ops;
+pub mod org;
 pub mod py;
+pub mod runner;
+pub mod systems;
