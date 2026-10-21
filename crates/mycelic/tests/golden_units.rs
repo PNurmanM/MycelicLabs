@@ -1,6 +1,7 @@
 //! The deterministic building blocks against the golden fixtures recorded from the Python implementation
-//! (`tests/golden/*.json`, written by `tests/golden/generate_from_python.py` at ace3efb).  Every comparison is exact:
-//! floats to the last bit, error messages character for character.
+//! (`tests/golden/*.json`, written by `tests/golden/generate_from_python.py` against the Python code at ace3efb; the
+//! generator was removed with that code and lives on in commit ef2c52b).  Every comparison is exact: floats to the
+//! last bit, error messages character for character.
 
 use mycelic::auth::{Principal, hash_key, memory_visible, parse_agent_id};
 use mycelic::config::Settings;
