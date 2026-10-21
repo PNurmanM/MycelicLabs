@@ -7,7 +7,7 @@ type Entry = fn(&[String]) -> Result<()>;
 
 /// (subcommand, what it does, entry point)
 fn modules() -> Vec<(&'static str, &'static str, Entry)> {
-    vec![]
+    vec![("experiments", "E1-E12, each appending rows to its own JSONL", mycelic_research::experiments::main)]
 }
 
 fn main() -> Result<()> {
