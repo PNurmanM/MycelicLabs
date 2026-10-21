@@ -19,6 +19,7 @@
 //! (`tests/layout.rs` enforces it).  The service and agent processes are the `mycelic` and `mycelic-agent`
 //! binaries, found next to the running executable, in `MYCELIC_BIN_DIR`, or on `PATH`.
 
+pub mod live;
 pub mod scenario;
 pub mod smoke;
 pub mod strategic;

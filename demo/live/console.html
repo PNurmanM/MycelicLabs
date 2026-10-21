@@ -1723,7 +1723,7 @@ button { font: inherit; color: inherit; }
     const art = $("artefact");
     art.textContent = "";
     if (S.error) {
-      const hint = S.errorHint || "python demo/live/mycelic_live.py --replay --port 8766";
+      const hint = S.errorHint || "mycelic-live --replay --port 8766";
       art.append(h("div", { class: "errorbox" }, h("b", { text: "The live run stopped. Switch to the recorded run:" }), h("br"),
         h("span", { class: "mono", style: "font-size:12.5px;overflow-wrap:anywhere", text: hint }), h("br"),
         h("span", { class: "muted small", text: S.error })));
