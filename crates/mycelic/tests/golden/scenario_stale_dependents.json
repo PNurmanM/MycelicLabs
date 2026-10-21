@@ -1,0 +1,5096 @@
+{
+ "_generated_by": "crates/mycelic/tests/golden/generate_from_python.py against the Python implementation at ace3efb",
+ "fixed_now": "2026-10-01T12:00:00+00:00",
+ "admin_token": "test-admin-token-0123456789abcdef0123456789",
+ "steps": [
+  {
+   "op": "rule",
+   "body": {
+    "rule_id": "regional_supply_risk",
+    "target_layer": "region",
+    "topic_prefix": "supply:",
+    "required_slots": [
+     "transport_disruption",
+     "supplier_buffer_low",
+     "demand_commitment"
+    ],
+    "min_agents": 3,
+    "min_teams": 2,
+    "kind": "risk",
+    "emits_slot": "supply_risk",
+    "emits_topic": "strategy:supply-risk",
+    "conclusion": "Regional supply risk for {entity}: transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+    "metadata": {
+     "owner": "regional operations",
+     "feeds": "strategic_second_source"
+    }
+   }
+  },
+  {
+   "op": "rule",
+   "body": {
+    "rule_id": "strategic_second_source",
+    "target_layer": "enterprise",
+    "required_slots": [
+     "supply_risk",
+     "demand_growth",
+     "supplier_concentration"
+    ],
+    "sources": [
+     "slot_composition",
+     "topic_consolidation",
+     "agent_observation"
+    ],
+    "min_units": {
+     "supply_risk": {
+      "region": 2
+     }
+    },
+    "min_agents": 4,
+    "min_teams": 3,
+    "corroborate": true,
+    "kind": "decision",
+    "emits_slot": "sourcing_decision",
+    "emits_topic": "strategy:sourcing",
+    "conclusion": "Strategic recommendation for {entity}: qualify a second source. The supply risk is corroborated in more than one region ({slot:supply_risk}); demand is growing ({slot:demand_growth}); the supply base is concentrated ({slot:supplier_concentration}).",
+    "metadata": {
+     "owner": "strategy office",
+     "decision_forum": "quarterly sourcing review"
+    }
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "ops",
+    "team": "logistics",
+    "agent_id": "emea-logistics-1"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "ops",
+    "team": "logistics",
+    "agent_id": "emea-logistics-2"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "ops",
+    "team": "procurement",
+    "agent_id": "emea-procurement-1"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "ops",
+    "team": "procurement",
+    "agent_id": "emea-procurement-2"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "commercial",
+    "team": "field-sales",
+    "agent_id": "emea-field-sales-1"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "emea",
+    "subsidiary": "nw-gmbh",
+    "department": "commercial",
+    "team": "field-sales",
+    "agent_id": "emea-field-sales-2"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "apac",
+    "subsidiary": "nw-kk",
+    "department": "ops",
+    "team": "logistics",
+    "agent_id": "apac-logistics-1"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "apac",
+    "subsidiary": "nw-kk",
+    "department": "ops",
+    "team": "logistics",
+    "agent_id": "apac-logistics-2"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "apac",
+    "subsidiary": "nw-kk",
+    "department": "ops",
+    "team": "procurement",
+    "agent_id": "apac-procurement-1"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "apac",
+    "subsidiary": "nw-kk",
+    "department": "ops",
+    "team": "procurement",
+    "agent_id": "apac-procurement-2"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "apac",
+    "subsidiary": "nw-kk",
+    "department": "commercial",
+    "team": "field-sales",
+    "agent_id": "apac-field-sales-1"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "apac",
+    "subsidiary": "nw-kk",
+    "department": "commercial",
+    "team": "field-sales",
+    "agent_id": "apac-field-sales-2"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "hq",
+    "subsidiary": "northwind-hq",
+    "department": "strategy",
+    "team": "sourcing",
+    "agent_id": "hq-sourcing-1"
+   }
+  },
+  {
+   "op": "register",
+   "body": {
+    "enterprise": "northwind",
+    "region": "hq",
+    "subsidiary": "northwind-hq",
+    "department": "strategy",
+    "team": "analytics",
+    "agent_id": "hq-analytics-1"
+   }
+  },
+  {
+   "op": "rule",
+   "body": {
+    "rule_id": "r",
+    "target_layer": "department",
+    "required_slots": [
+     "transport_disruption",
+     "supplier_buffer_low"
+    ],
+    "sources": [
+     "topic_consolidation"
+    ],
+    "min_agents": 2,
+    "min_teams": 2,
+    "conclusion": "R for {entity}"
+   }
+  },
+  {
+   "op": "observe",
+   "agent": "emea-logistics-1",
+   "as": "emea-logistics-1:n",
+   "body": {
+    "text": "note by emea-logistics-1",
+    "idempotency_key": "n",
+    "topic": "supply:sd-9/transport",
+    "slot": "transport_disruption",
+    "entity": "sd-9",
+    "confidence": 0.8
+   }
+  },
+  {
+   "op": "settle"
+  },
+  {
+   "op": "observe",
+   "agent": "emea-logistics-2",
+   "as": "emea-logistics-2:n",
+   "body": {
+    "text": "note by emea-logistics-2",
+    "idempotency_key": "n",
+    "topic": "supply:sd-9/transport",
+    "slot": "transport_disruption",
+    "entity": "sd-9",
+    "confidence": 0.8
+   }
+  },
+  {
+   "op": "settle"
+  },
+  {
+   "op": "observe",
+   "agent": "emea-procurement-1",
+   "as": "emea-procurement-1:n",
+   "body": {
+    "text": "note by emea-procurement-1",
+    "idempotency_key": "n",
+    "topic": "supply:sd-9/supplier",
+    "slot": "supplier_buffer_low",
+    "entity": "sd-9",
+    "confidence": 0.8
+   }
+  },
+  {
+   "op": "settle"
+  },
+  {
+   "op": "observe",
+   "agent": "emea-procurement-2",
+   "as": "emea-procurement-2:n",
+   "body": {
+    "text": "note by emea-procurement-2",
+    "idempotency_key": "n",
+    "topic": "supply:sd-9/supplier",
+    "slot": "supplier_buffer_low",
+    "entity": "sd-9",
+    "confidence": 0.8
+   }
+  },
+  {
+   "op": "settle"
+  },
+  {
+   "op": "snapshot"
+  },
+  {
+   "op": "observe",
+   "agent": "emea-logistics-1",
+   "as": "emea-logistics-1:rx2",
+   "body": {
+    "text": "Rail slot for RX-2 frames also affected by the strike.",
+    "idempotency_key": "rx2",
+    "topic": "supply:sd-9/transport",
+    "slot": "transport_disruption",
+    "entity": "rx-2",
+    "confidence": 0.6
+   }
+  },
+  {
+   "op": "settle"
+  },
+  {
+   "op": "snapshot"
+  }
+ ],
+ "outputs": [
+  {
+   "rule_id": "regional_supply_risk",
+   "target_layer": "region",
+   "required_slots": [
+    "transport_disruption",
+    "supplier_buffer_low",
+    "demand_commitment"
+   ],
+   "conclusion": "Regional supply risk for {entity}: transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+   "topic_prefix": "supply:",
+   "min_agents": 3,
+   "min_teams": 2,
+   "kind": "risk",
+   "org_id": null,
+   "enabled": true,
+   "metadata": {
+    "owner": "regional operations",
+    "feeds": "strategic_second_source"
+   },
+   "sources": [
+    "agent_observation"
+   ],
+   "emits_slot": "supply_risk",
+   "emits_topic": "strategy:supply-risk",
+   "min_units": {},
+   "corroborate": false
+  },
+  {
+   "rule_id": "strategic_second_source",
+   "target_layer": "enterprise",
+   "required_slots": [
+    "supply_risk",
+    "demand_growth",
+    "supplier_concentration"
+   ],
+   "conclusion": "Strategic recommendation for {entity}: qualify a second source. The supply risk is corroborated in more than one region ({slot:supply_risk}); demand is growing ({slot:demand_growth}); the supply base is concentrated ({slot:supplier_concentration}).",
+   "topic_prefix": null,
+   "min_agents": 4,
+   "min_teams": 3,
+   "kind": "decision",
+   "org_id": null,
+   "enabled": true,
+   "metadata": {
+    "owner": "strategy office",
+    "decision_forum": "quarterly sourcing review"
+   },
+   "sources": [
+    "slot_composition",
+    "topic_consolidation",
+    "agent_observation"
+   ],
+   "emits_slot": "sourcing_decision",
+   "emits_topic": "strategy:sourcing",
+   "min_units": {
+    "supply_risk": {
+     "region": 2
+    }
+   },
+   "corroborate": true
+  },
+  {
+   "agent_id": "emea-logistics-1",
+   "org_id": "northwind",
+   "display_name": "emea-logistics-1",
+   "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "emea-logistics-2",
+   "org_id": "northwind",
+   "display_name": "emea-logistics-2",
+   "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "emea-procurement-1",
+   "org_id": "northwind",
+   "display_name": "emea-procurement-1",
+   "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "emea-procurement-2",
+   "org_id": "northwind",
+   "display_name": "emea-procurement-2",
+   "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "emea-field-sales-1",
+   "org_id": "northwind",
+   "display_name": "emea-field-sales-1",
+   "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "emea-field-sales-2",
+   "org_id": "northwind",
+   "display_name": "emea-field-sales-2",
+   "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-2",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "apac-logistics-1",
+   "org_id": "northwind",
+   "display_name": "apac-logistics-1",
+   "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "apac-logistics-2",
+   "org_id": "northwind",
+   "display_name": "apac-logistics-2",
+   "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-2",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "apac-procurement-1",
+   "org_id": "northwind",
+   "display_name": "apac-procurement-1",
+   "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "apac-procurement-2",
+   "org_id": "northwind",
+   "display_name": "apac-procurement-2",
+   "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-2",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "apac-field-sales-1",
+   "org_id": "northwind",
+   "display_name": "apac-field-sales-1",
+   "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "apac-field-sales-2",
+   "org_id": "northwind",
+   "display_name": "apac-field-sales-2",
+   "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-2",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "hq-sourcing-1",
+   "org_id": "northwind",
+   "display_name": "hq-sourcing-1",
+   "path": "northwind/hq/northwind-hq/strategy/sourcing/hq-sourcing-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "agent_id": "hq-analytics-1",
+   "org_id": "northwind",
+   "display_name": "hq-analytics-1",
+   "path": "northwind/hq/northwind-hq/strategy/analytics/hq-analytics-1",
+   "scopes": [
+    "memory:read",
+    "memory:write",
+    "events:write",
+    "lineage:read"
+   ],
+   "status": "active",
+   "created_at": "2026-10-01T12:00:00+00:00",
+   "last_seen_at": null,
+   "metadata": {}
+  },
+  {
+   "rule_id": "r",
+   "target_layer": "department",
+   "required_slots": [
+    "transport_disruption",
+    "supplier_buffer_low"
+   ],
+   "conclusion": "R for {entity}",
+   "topic_prefix": null,
+   "min_agents": 2,
+   "min_teams": 2,
+   "kind": "risk",
+   "org_id": null,
+   "enabled": true,
+   "metadata": {},
+   "sources": [
+    "topic_consolidation"
+   ],
+   "emits_slot": null,
+   "emits_topic": null,
+   "min_units": {},
+   "corroborate": false
+  },
+  {
+   "memory_id": "mem_d06bd1a17b5bcc7cd1662a",
+   "event_id": "evt_00000000000000000018",
+   "created": true
+  },
+  null,
+  {
+   "memory_id": "mem_60ca01cf96c263e0d12e00",
+   "event_id": "evt_00000000000000000019",
+   "created": true
+  },
+  null,
+  {
+   "memory_id": "mem_ecfdee6021b5ab67bfb562",
+   "event_id": "evt_00000000000000000020",
+   "created": true
+  },
+  null,
+  {
+   "memory_id": "mem_42bddac020e858048c4609",
+   "event_id": "evt_00000000000000000021",
+   "created": true
+  },
+  null,
+  {
+   "memories": [
+    {
+     "memory_id": "mem_d06bd1a17b5bcc7cd1662a",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+     "text": "note by emea-logistics-1",
+     "topic": "supply:sd-9/transport",
+     "slot": "transport_disruption",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "emea-logistics-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000018",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_60ca01cf96c263e0d12e00",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+     "text": "note by emea-logistics-2",
+     "topic": "supply:sd-9/transport",
+     "slot": "transport_disruption",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "emea-logistics-2",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000019",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_d0ecca38837d9096c669cf4",
+     "org_id": "northwind",
+     "layer": "team",
+     "scope": "northwind/emea/nw-gmbh/ops/logistics",
+     "text": "supply:sd-9/transport — consolidated at team 'logistics' from 2 agent sources (2 agents): [emea-logistics-1] note by emea-logistics-1 [emea-logistics-2] note by emea-logistics-2",
+     "topic": "supply:sd-9/transport",
+     "slot": "transport_disruption",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.96,
+     "support": 2,
+     "independent_teams": 1,
+     "producer_id": "mycelic",
+     "operator": "topic_consolidation",
+     "rule_id": null,
+     "event_id": "evt_d5cf23661b9d5bfb7ed8595",
+     "visibility": "org",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {
+      "agg_key": "supply:sd-9/transport",
+      "child_layer": "agent",
+      "children": [
+       "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+       "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2"
+      ],
+      "contributing_agents": [
+       "emea-logistics-1",
+       "emea-logistics-2"
+      ],
+      "contributing_teams": [
+       "northwind/emea/nw-gmbh/ops/logistics"
+      ],
+      "effective_min_support": 2,
+      "parent_count": 2,
+      "promoted_from": null,
+      "registered_child_units": 2,
+      "roots": [
+       "mem_60ca01cf96c263e0d12e00",
+       "mem_d06bd1a17b5bcc7cd1662a"
+      ],
+      "rule_chain": [],
+      "version_of": null
+     }
+    },
+    {
+     "memory_id": "mem_ecfdee6021b5ab67bfb562",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+     "text": "note by emea-procurement-1",
+     "topic": "supply:sd-9/supplier",
+     "slot": "supplier_buffer_low",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "emea-procurement-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000020",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_42bddac020e858048c4609",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+     "text": "note by emea-procurement-2",
+     "topic": "supply:sd-9/supplier",
+     "slot": "supplier_buffer_low",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "emea-procurement-2",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000021",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_db348babaa411b385bf5c7b",
+     "org_id": "northwind",
+     "layer": "team",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement",
+     "text": "supply:sd-9/supplier — consolidated at team 'procurement' from 2 agent sources (2 agents): [emea-procurement-1] note by emea-procurement-1 [emea-procurement-2] note by emea-procurement-2",
+     "topic": "supply:sd-9/supplier",
+     "slot": "supplier_buffer_low",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.96,
+     "support": 2,
+     "independent_teams": 1,
+     "producer_id": "mycelic",
+     "operator": "topic_consolidation",
+     "rule_id": null,
+     "event_id": "evt_d4f27a147e0fec96f73e6f9",
+     "visibility": "org",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {
+      "agg_key": "supply:sd-9/supplier",
+      "child_layer": "agent",
+      "children": [
+       "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+       "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2"
+      ],
+      "contributing_agents": [
+       "emea-procurement-1",
+       "emea-procurement-2"
+      ],
+      "contributing_teams": [
+       "northwind/emea/nw-gmbh/ops/procurement"
+      ],
+      "effective_min_support": 2,
+      "parent_count": 2,
+      "promoted_from": null,
+      "registered_child_units": 2,
+      "roots": [
+       "mem_42bddac020e858048c4609",
+       "mem_ecfdee6021b5ab67bfb562"
+      ],
+      "rule_chain": [],
+      "version_of": null
+     }
+    },
+    {
+     "memory_id": "mem_d8ad3e7f83e789763560f5a",
+     "org_id": "northwind",
+     "layer": "department",
+     "scope": "northwind/emea/nw-gmbh/ops",
+     "text": "R for sd-9",
+     "topic": "r",
+     "slot": null,
+     "entity": "sd-9",
+     "kind": "risk",
+     "confidence": 0.96,
+     "support": 4,
+     "independent_teams": 2,
+     "producer_id": "mycelic",
+     "operator": "slot_composition",
+     "rule_id": "r",
+     "event_id": "evt_d371a0d1ae1d19a491b7754",
+     "visibility": "org",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {
+      "agg_key": "r:sd-9",
+      "candidates": 2,
+      "contributing_agents": [
+       "emea-logistics-1",
+       "emea-logistics-2",
+       "emea-procurement-1",
+       "emea-procurement-2"
+      ],
+      "contributing_teams": [
+       "northwind/emea/nw-gmbh/ops/logistics",
+       "northwind/emea/nw-gmbh/ops/procurement"
+      ],
+      "corroborated_units": {},
+      "evidence": {
+       "mem_d0ecca38837d9096c669cf4": {
+        "layer": "team",
+        "operator": "topic_consolidation",
+        "scope": "northwind/emea/nw-gmbh/ops/logistics",
+        "slot": "transport_disruption"
+       },
+       "mem_db348babaa411b385bf5c7b": {
+        "layer": "team",
+        "operator": "topic_consolidation",
+        "scope": "northwind/emea/nw-gmbh/ops/procurement",
+        "slot": "supplier_buffer_low"
+       }
+      },
+      "fragility": {
+       "apparent_replica_count": 2,
+       "confidence_valid_support_gap": 0.0,
+       "current_confidence": 0.96,
+       "current_task_success": true,
+       "minimal_failure_domain_cut": 1,
+       "minimal_support_coalition_size": 4,
+       "reconstruction_coalition_count": 1,
+       "unique_failure_domain_count": 2,
+       "unique_lineage_root_count": 4,
+       "valid_support_coverage": 1.0
+      },
+      "fragility_scored_candidates": 2,
+      "roots": [
+       "mem_42bddac020e858048c4609",
+       "mem_60ca01cf96c263e0d12e00",
+       "mem_d06bd1a17b5bcc7cd1662a",
+       "mem_ecfdee6021b5ab67bfb562"
+      ],
+      "rule_chain": [
+       "r"
+      ],
+      "slots": {
+       "supplier_buffer_low": "mem_db348babaa411b385bf5c7b",
+       "transport_disruption": "mem_d0ecca38837d9096c669cf4"
+      },
+      "version_of": null
+     }
+    }
+   ],
+   "agg_keys": [
+    null,
+    null,
+    "supply:sd-9/transport",
+    null,
+    null,
+    "supply:sd-9/supplier",
+    "r:sd-9"
+   ],
+   "edges": [
+    {
+     "child_id": "mem_d0ecca38837d9096c669cf4",
+     "parent_id": "mem_60ca01cf96c263e0d12e00",
+     "contributed_by": "emea-logistics-2",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_d0ecca38837d9096c669cf4",
+     "parent_id": "mem_d06bd1a17b5bcc7cd1662a",
+     "contributed_by": "emea-logistics-1",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_d8ad3e7f83e789763560f5a",
+     "parent_id": "mem_d0ecca38837d9096c669cf4",
+     "contributed_by": "mycelic",
+     "parent_layer": "team",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_d8ad3e7f83e789763560f5a",
+     "parent_id": "mem_db348babaa411b385bf5c7b",
+     "contributed_by": "mycelic",
+     "parent_layer": "team",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_db348babaa411b385bf5c7b",
+     "parent_id": "mem_42bddac020e858048c4609",
+     "contributed_by": "emea-procurement-2",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_db348babaa411b385bf5c7b",
+     "parent_id": "mem_ecfdee6021b5ab67bfb562",
+     "contributed_by": "emea-procurement-1",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "events": [
+    {
+     "event_id": "evt_00000000000000000001",
+     "kind": "rule.upserted",
+     "org_id": "_",
+     "agent_id": null,
+     "subject": "mycelic._.rule-upserted",
+     "payload": {
+      "conclusion": "Regional supply risk for {entity}: transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+      "corroborate": false,
+      "emits_slot": "supply_risk",
+      "emits_topic": "strategy:supply-risk",
+      "enabled": true,
+      "kind": "risk",
+      "metadata": {
+       "feeds": "strategic_second_source",
+       "owner": "regional operations"
+      },
+      "min_agents": 3,
+      "min_teams": 2,
+      "min_units": {},
+      "org_id": null,
+      "required_slots": [
+       "transport_disruption",
+       "supplier_buffer_low",
+       "demand_commitment"
+      ],
+      "rule_id": "regional_supply_risk",
+      "sources": [
+       "agent_observation"
+      ],
+      "target_layer": "region",
+      "topic_prefix": "supply:"
+     },
+     "status": "applied",
+     "js_seq": 1,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000002",
+     "kind": "rule.upserted",
+     "org_id": "_",
+     "agent_id": null,
+     "subject": "mycelic._.rule-upserted",
+     "payload": {
+      "conclusion": "Strategic recommendation for {entity}: qualify a second source. The supply risk is corroborated in more than one region ({slot:supply_risk}); demand is growing ({slot:demand_growth}); the supply base is concentrated ({slot:supplier_concentration}).",
+      "corroborate": true,
+      "emits_slot": "sourcing_decision",
+      "emits_topic": "strategy:sourcing",
+      "enabled": true,
+      "kind": "decision",
+      "metadata": {
+       "decision_forum": "quarterly sourcing review",
+       "owner": "strategy office"
+      },
+      "min_agents": 4,
+      "min_teams": 3,
+      "min_units": {
+       "supply_risk": {
+        "region": 2
+       }
+      },
+      "org_id": null,
+      "required_slots": [
+       "supply_risk",
+       "demand_growth",
+       "supplier_concentration"
+      ],
+      "rule_id": "strategic_second_source",
+      "sources": [
+       "slot_composition",
+       "topic_consolidation",
+       "agent_observation"
+      ],
+      "target_layer": "enterprise",
+      "topic_prefix": null
+     },
+     "status": "applied",
+     "js_seq": 2,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000003",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-logistics-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-logistics-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 3,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000004",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-logistics-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-logistics-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 4,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000005",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-procurement-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-procurement-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 5,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000006",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-procurement-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-procurement-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 6,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000007",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-field-sales-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-field-sales-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 7,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000008",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-field-sales-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-field-sales-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 8,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000009",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-logistics-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-logistics-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 9,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000010",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-logistics-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-logistics-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 10,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000011",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-procurement-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-procurement-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 11,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000012",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-procurement-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-procurement-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 12,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000013",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-field-sales-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-field-sales-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 13,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000014",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-field-sales-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-field-sales-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 14,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000015",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "hq-sourcing-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "hq-sourcing-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/hq/northwind-hq/strategy/sourcing/hq-sourcing-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 15,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000016",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "hq-analytics-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "hq-analytics-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/hq/northwind-hq/strategy/analytics/hq-analytics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 16,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000017",
+     "kind": "rule.upserted",
+     "org_id": "_",
+     "agent_id": null,
+     "subject": "mycelic._.rule-upserted",
+     "payload": {
+      "conclusion": "R for {entity}",
+      "corroborate": false,
+      "emits_slot": null,
+      "emits_topic": null,
+      "enabled": true,
+      "kind": "risk",
+      "metadata": {},
+      "min_agents": 2,
+      "min_teams": 2,
+      "min_units": {},
+      "org_id": null,
+      "required_slots": [
+       "transport_disruption",
+       "supplier_buffer_low"
+      ],
+      "rule_id": "r",
+      "sources": [
+       "topic_consolidation"
+      ],
+      "target_layer": "department",
+      "topic_prefix": null
+     },
+     "status": "applied",
+     "js_seq": 17,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000018",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "emea-logistics-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_00000000000000000018",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_d06bd1a17b5bcc7cd1662a",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "emea-logistics-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+      "slot": "transport_disruption",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "note by emea-logistics-1",
+      "topic": "supply:sd-9/transport",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 18,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000019",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "emea-logistics-2",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_00000000000000000019",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_60ca01cf96c263e0d12e00",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "emea-logistics-2",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+      "slot": "transport_disruption",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "note by emea-logistics-2",
+      "topic": "supply:sd-9/transport",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 19,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_d5cf23661b9d5bfb7ed8595",
+     "kind": "memory.derived",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.memory-derived",
+     "payload": {
+      "applied_at": "2026-10-01T12:00:00+00:00",
+      "confidence": 0.96,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_d5cf23661b9d5bfb7ed8595",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "team",
+      "local_ref": null,
+      "memory_id": "mem_d0ecca38837d9096c669cf4",
+      "metadata": {
+       "agg_key": "supply:sd-9/transport",
+       "child_layer": "agent",
+       "children": [
+        "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+        "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2"
+       ],
+       "contributing_agents": [
+        "emea-logistics-1",
+        "emea-logistics-2"
+       ],
+       "contributing_teams": [
+        "northwind/emea/nw-gmbh/ops/logistics"
+       ],
+       "effective_min_support": 2,
+       "parent_count": 2,
+       "promoted_from": null,
+       "registered_child_units": 2,
+       "roots": [
+        "mem_60ca01cf96c263e0d12e00",
+        "mem_d06bd1a17b5bcc7cd1662a"
+       ],
+       "rule_chain": [],
+       "version_of": null
+      },
+      "operator": "topic_consolidation",
+      "org_id": "northwind",
+      "parents": [
+       {
+        "child_id": "mem_d0ecca38837d9096c669cf4",
+        "contributed_by": "emea-logistics-1",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_d06bd1a17b5bcc7cd1662a",
+        "parent_layer": "agent"
+       },
+       {
+        "child_id": "mem_d0ecca38837d9096c669cf4",
+        "contributed_by": "emea-logistics-2",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_60ca01cf96c263e0d12e00",
+        "parent_layer": "agent"
+       }
+      ],
+      "producer_id": "mycelic",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/logistics",
+      "slot": "transport_disruption",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "supersedes": null,
+      "support": 2,
+      "text": "supply:sd-9/transport — consolidated at team 'logistics' from 2 agent sources (2 agents): [emea-logistics-1] note by emea-logistics-1 [emea-logistics-2] note by emea-logistics-2",
+      "topic": "supply:sd-9/transport",
+      "visibility": "org"
+     },
+     "status": "applied",
+     "js_seq": 20,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000020",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "emea-procurement-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_00000000000000000020",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_ecfdee6021b5ab67bfb562",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "emea-procurement-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+      "slot": "supplier_buffer_low",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "note by emea-procurement-1",
+      "topic": "supply:sd-9/supplier",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 21,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000021",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "emea-procurement-2",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_00000000000000000021",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_42bddac020e858048c4609",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "emea-procurement-2",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+      "slot": "supplier_buffer_low",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "note by emea-procurement-2",
+      "topic": "supply:sd-9/supplier",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 22,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_d4f27a147e0fec96f73e6f9",
+     "kind": "memory.derived",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.memory-derived",
+     "payload": {
+      "applied_at": "2026-10-01T12:00:00+00:00",
+      "confidence": 0.96,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_d4f27a147e0fec96f73e6f9",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "team",
+      "local_ref": null,
+      "memory_id": "mem_db348babaa411b385bf5c7b",
+      "metadata": {
+       "agg_key": "supply:sd-9/supplier",
+       "child_layer": "agent",
+       "children": [
+        "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+        "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2"
+       ],
+       "contributing_agents": [
+        "emea-procurement-1",
+        "emea-procurement-2"
+       ],
+       "contributing_teams": [
+        "northwind/emea/nw-gmbh/ops/procurement"
+       ],
+       "effective_min_support": 2,
+       "parent_count": 2,
+       "promoted_from": null,
+       "registered_child_units": 2,
+       "roots": [
+        "mem_42bddac020e858048c4609",
+        "mem_ecfdee6021b5ab67bfb562"
+       ],
+       "rule_chain": [],
+       "version_of": null
+      },
+      "operator": "topic_consolidation",
+      "org_id": "northwind",
+      "parents": [
+       {
+        "child_id": "mem_db348babaa411b385bf5c7b",
+        "contributed_by": "emea-procurement-1",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_ecfdee6021b5ab67bfb562",
+        "parent_layer": "agent"
+       },
+       {
+        "child_id": "mem_db348babaa411b385bf5c7b",
+        "contributed_by": "emea-procurement-2",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_42bddac020e858048c4609",
+        "parent_layer": "agent"
+       }
+      ],
+      "producer_id": "mycelic",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement",
+      "slot": "supplier_buffer_low",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "supersedes": null,
+      "support": 2,
+      "text": "supply:sd-9/supplier — consolidated at team 'procurement' from 2 agent sources (2 agents): [emea-procurement-1] note by emea-procurement-1 [emea-procurement-2] note by emea-procurement-2",
+      "topic": "supply:sd-9/supplier",
+      "visibility": "org"
+     },
+     "status": "applied",
+     "js_seq": 23,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_d371a0d1ae1d19a491b7754",
+     "kind": "memory.derived",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.memory-derived",
+     "payload": {
+      "applied_at": "2026-10-01T12:00:00+00:00",
+      "confidence": 0.96,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_d371a0d1ae1d19a491b7754",
+      "independent_teams": 2,
+      "kind": "risk",
+      "layer": "department",
+      "local_ref": null,
+      "memory_id": "mem_d8ad3e7f83e789763560f5a",
+      "metadata": {
+       "agg_key": "r:sd-9",
+       "candidates": 2,
+       "contributing_agents": [
+        "emea-logistics-1",
+        "emea-logistics-2",
+        "emea-procurement-1",
+        "emea-procurement-2"
+       ],
+       "contributing_teams": [
+        "northwind/emea/nw-gmbh/ops/logistics",
+        "northwind/emea/nw-gmbh/ops/procurement"
+       ],
+       "corroborated_units": {},
+       "evidence": {
+        "mem_d0ecca38837d9096c669cf4": {
+         "layer": "team",
+         "operator": "topic_consolidation",
+         "scope": "northwind/emea/nw-gmbh/ops/logistics",
+         "slot": "transport_disruption"
+        },
+        "mem_db348babaa411b385bf5c7b": {
+         "layer": "team",
+         "operator": "topic_consolidation",
+         "scope": "northwind/emea/nw-gmbh/ops/procurement",
+         "slot": "supplier_buffer_low"
+        }
+       },
+       "fragility": {
+        "apparent_replica_count": 2,
+        "confidence_valid_support_gap": 0.0,
+        "current_confidence": 0.96,
+        "current_task_success": true,
+        "minimal_failure_domain_cut": 1,
+        "minimal_support_coalition_size": 4,
+        "reconstruction_coalition_count": 1,
+        "unique_failure_domain_count": 2,
+        "unique_lineage_root_count": 4,
+        "valid_support_coverage": 1.0
+       },
+       "fragility_scored_candidates": 2,
+       "roots": [
+        "mem_42bddac020e858048c4609",
+        "mem_60ca01cf96c263e0d12e00",
+        "mem_d06bd1a17b5bcc7cd1662a",
+        "mem_ecfdee6021b5ab67bfb562"
+       ],
+       "rule_chain": [
+        "r"
+       ],
+       "slots": {
+        "supplier_buffer_low": "mem_db348babaa411b385bf5c7b",
+        "transport_disruption": "mem_d0ecca38837d9096c669cf4"
+       },
+       "version_of": null
+      },
+      "operator": "slot_composition",
+      "org_id": "northwind",
+      "parents": [
+       {
+        "child_id": "mem_d8ad3e7f83e789763560f5a",
+        "contributed_by": "mycelic",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_d0ecca38837d9096c669cf4",
+        "parent_layer": "team"
+       },
+       {
+        "child_id": "mem_d8ad3e7f83e789763560f5a",
+        "contributed_by": "mycelic",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_db348babaa411b385bf5c7b",
+        "parent_layer": "team"
+       }
+      ],
+      "producer_id": "mycelic",
+      "rule_id": "r",
+      "scope": "northwind/emea/nw-gmbh/ops",
+      "slot": null,
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "supersedes": null,
+      "support": 4,
+      "text": "R for sd-9",
+      "topic": "r",
+      "visibility": "org"
+     },
+     "status": "applied",
+     "js_seq": 24,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "audit": [
+    {
+     "id": 1,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "rule.upsert",
+     "target": "regional_supply_risk",
+     "detail": {
+      "slots": [
+       "transport_disruption",
+       "supplier_buffer_low",
+       "demand_commitment"
+      ],
+      "target_layer": "region"
+     },
+     "remote": null
+    },
+    {
+     "id": 2,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "rule.upsert",
+     "target": "strategic_second_source",
+     "detail": {
+      "slots": [
+       "supply_risk",
+       "demand_growth",
+       "supplier_concentration"
+      ],
+      "target_layer": "enterprise"
+     },
+     "remote": null
+    },
+    {
+     "id": 3,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-logistics-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 4,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-logistics-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 5,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-procurement-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 6,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-procurement-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 7,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-field-sales-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 8,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-field-sales-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 9,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-logistics-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 10,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-logistics-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 11,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-procurement-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 12,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-procurement-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 13,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-field-sales-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 14,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-field-sales-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 15,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "hq-sourcing-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/hq/northwind-hq/strategy/sourcing/hq-sourcing-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 16,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "hq-analytics-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/hq/northwind-hq/strategy/analytics/hq-analytics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 17,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "rule.upsert",
+     "target": "r",
+     "detail": {
+      "slots": [
+       "transport_disruption",
+       "supplier_buffer_low"
+      ],
+      "target_layer": "department"
+     },
+     "remote": null
+    },
+    {
+     "id": 18,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "emea-logistics-1",
+     "action": "memory.ingest",
+     "target": "mem_d06bd1a17b5bcc7cd1662a",
+     "detail": {
+      "event_id": "evt_00000000000000000018",
+      "org_id": "northwind",
+      "slot": "transport_disruption",
+      "topic": "supply:sd-9/transport"
+     },
+     "remote": null
+    },
+    {
+     "id": 19,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "emea-logistics-2",
+     "action": "memory.ingest",
+     "target": "mem_60ca01cf96c263e0d12e00",
+     "detail": {
+      "event_id": "evt_00000000000000000019",
+      "org_id": "northwind",
+      "slot": "transport_disruption",
+      "topic": "supply:sd-9/transport"
+     },
+     "remote": null
+    },
+    {
+     "id": 20,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "emea-procurement-1",
+     "action": "memory.ingest",
+     "target": "mem_ecfdee6021b5ab67bfb562",
+     "detail": {
+      "event_id": "evt_00000000000000000020",
+      "org_id": "northwind",
+      "slot": "supplier_buffer_low",
+      "topic": "supply:sd-9/supplier"
+     },
+     "remote": null
+    },
+    {
+     "id": 21,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "emea-procurement-2",
+     "action": "memory.ingest",
+     "target": "mem_42bddac020e858048c4609",
+     "detail": {
+      "event_id": "evt_00000000000000000021",
+      "org_id": "northwind",
+      "slot": "supplier_buffer_low",
+      "topic": "supply:sd-9/supplier"
+     },
+     "remote": null
+    }
+   ],
+   "rules": [
+    {
+     "rule_id": "r",
+     "target_layer": "department",
+     "required_slots": [
+      "transport_disruption",
+      "supplier_buffer_low"
+     ],
+     "conclusion": "R for {entity}",
+     "topic_prefix": null,
+     "min_agents": 2,
+     "min_teams": 2,
+     "kind": "risk",
+     "org_id": null,
+     "enabled": true,
+     "metadata": {},
+     "sources": [
+      "topic_consolidation"
+     ],
+     "emits_slot": null,
+     "emits_topic": null,
+     "min_units": {},
+     "corroborate": false,
+     "updated_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "rule_id": "regional_supply_risk",
+     "target_layer": "region",
+     "required_slots": [
+      "transport_disruption",
+      "supplier_buffer_low",
+      "demand_commitment"
+     ],
+     "conclusion": "Regional supply risk for {entity}: transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+     "topic_prefix": "supply:",
+     "min_agents": 3,
+     "min_teams": 2,
+     "kind": "risk",
+     "org_id": null,
+     "enabled": true,
+     "metadata": {
+      "feeds": "strategic_second_source",
+      "owner": "regional operations"
+     },
+     "sources": [
+      "agent_observation"
+     ],
+     "emits_slot": "supply_risk",
+     "emits_topic": "strategy:supply-risk",
+     "min_units": {},
+     "corroborate": false,
+     "updated_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "rule_id": "strategic_second_source",
+     "target_layer": "enterprise",
+     "required_slots": [
+      "supply_risk",
+      "demand_growth",
+      "supplier_concentration"
+     ],
+     "conclusion": "Strategic recommendation for {entity}: qualify a second source. The supply risk is corroborated in more than one region ({slot:supply_risk}); demand is growing ({slot:demand_growth}); the supply base is concentrated ({slot:supplier_concentration}).",
+     "topic_prefix": null,
+     "min_agents": 4,
+     "min_teams": 3,
+     "kind": "decision",
+     "org_id": null,
+     "enabled": true,
+     "metadata": {
+      "decision_forum": "quarterly sourcing review",
+      "owner": "strategy office"
+     },
+     "sources": [
+      "slot_composition",
+      "topic_consolidation",
+      "agent_observation"
+     ],
+     "emits_slot": "sourcing_decision",
+     "emits_topic": "strategy:sourcing",
+     "min_units": {
+      "supply_risk": {
+       "region": 2
+      }
+     },
+     "corroborate": true,
+     "updated_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "agents": [
+    {
+     "agent_id": "apac-field-sales-1",
+     "org_id": "northwind",
+     "display_name": "apac-field-sales-1",
+     "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "apac-field-sales-2",
+     "org_id": "northwind",
+     "display_name": "apac-field-sales-2",
+     "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "apac-logistics-1",
+     "org_id": "northwind",
+     "display_name": "apac-logistics-1",
+     "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "apac-logistics-2",
+     "org_id": "northwind",
+     "display_name": "apac-logistics-2",
+     "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "apac-procurement-1",
+     "org_id": "northwind",
+     "display_name": "apac-procurement-1",
+     "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "apac-procurement-2",
+     "org_id": "northwind",
+     "display_name": "apac-procurement-2",
+     "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-field-sales-1",
+     "org_id": "northwind",
+     "display_name": "emea-field-sales-1",
+     "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-field-sales-2",
+     "org_id": "northwind",
+     "display_name": "emea-field-sales-2",
+     "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-logistics-1",
+     "org_id": "northwind",
+     "display_name": "emea-logistics-1",
+     "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-logistics-2",
+     "org_id": "northwind",
+     "display_name": "emea-logistics-2",
+     "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-procurement-1",
+     "org_id": "northwind",
+     "display_name": "emea-procurement-1",
+     "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-procurement-2",
+     "org_id": "northwind",
+     "display_name": "emea-procurement-2",
+     "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "hq-analytics-1",
+     "org_id": "northwind",
+     "display_name": "hq-analytics-1",
+     "path": "northwind/hq/northwind-hq/strategy/analytics/hq-analytics-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "hq-sourcing-1",
+     "org_id": "northwind",
+     "display_name": "hq-sourcing-1",
+     "path": "northwind/hq/northwind-hq/strategy/sourcing/hq-sourcing-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    }
+   ],
+   "orgs": [
+    {
+     "org_id": "northwind",
+     "name": "northwind",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "meta": {
+    "last_applied_seq": "24",
+    "schema_version": "2"
+   }
+  },
+  {
+   "memory_id": "mem_a83589340987c78e8361c0",
+   "event_id": "evt_00000000000000000022",
+   "created": true
+  },
+  null,
+  {
+   "memories": [
+    {
+     "memory_id": "mem_d06bd1a17b5bcc7cd1662a",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+     "text": "note by emea-logistics-1",
+     "topic": "supply:sd-9/transport",
+     "slot": "transport_disruption",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "emea-logistics-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000018",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_60ca01cf96c263e0d12e00",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+     "text": "note by emea-logistics-2",
+     "topic": "supply:sd-9/transport",
+     "slot": "transport_disruption",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "emea-logistics-2",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000019",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_d0ecca38837d9096c669cf4",
+     "org_id": "northwind",
+     "layer": "team",
+     "scope": "northwind/emea/nw-gmbh/ops/logistics",
+     "text": "supply:sd-9/transport — consolidated at team 'logistics' from 2 agent sources (2 agents): [emea-logistics-1] note by emea-logistics-1 [emea-logistics-2] note by emea-logistics-2",
+     "topic": "supply:sd-9/transport",
+     "slot": "transport_disruption",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.96,
+     "support": 2,
+     "independent_teams": 1,
+     "producer_id": "mycelic",
+     "operator": "topic_consolidation",
+     "rule_id": null,
+     "event_id": "evt_d5cf23661b9d5bfb7ed8595",
+     "visibility": "org",
+     "status": "superseded",
+     "superseded_by": "mem_dfd81d3bf67c7ca18a1914d",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {
+      "agg_key": "supply:sd-9/transport",
+      "child_layer": "agent",
+      "children": [
+       "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+       "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2"
+      ],
+      "contributing_agents": [
+       "emea-logistics-1",
+       "emea-logistics-2"
+      ],
+      "contributing_teams": [
+       "northwind/emea/nw-gmbh/ops/logistics"
+      ],
+      "effective_min_support": 2,
+      "parent_count": 2,
+      "promoted_from": null,
+      "registered_child_units": 2,
+      "roots": [
+       "mem_60ca01cf96c263e0d12e00",
+       "mem_d06bd1a17b5bcc7cd1662a"
+      ],
+      "rule_chain": [],
+      "status_reason": "coalition changed",
+      "version_of": null
+     }
+    },
+    {
+     "memory_id": "mem_ecfdee6021b5ab67bfb562",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+     "text": "note by emea-procurement-1",
+     "topic": "supply:sd-9/supplier",
+     "slot": "supplier_buffer_low",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "emea-procurement-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000020",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_42bddac020e858048c4609",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+     "text": "note by emea-procurement-2",
+     "topic": "supply:sd-9/supplier",
+     "slot": "supplier_buffer_low",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.8,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "emea-procurement-2",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000021",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_db348babaa411b385bf5c7b",
+     "org_id": "northwind",
+     "layer": "team",
+     "scope": "northwind/emea/nw-gmbh/ops/procurement",
+     "text": "supply:sd-9/supplier — consolidated at team 'procurement' from 2 agent sources (2 agents): [emea-procurement-1] note by emea-procurement-1 [emea-procurement-2] note by emea-procurement-2",
+     "topic": "supply:sd-9/supplier",
+     "slot": "supplier_buffer_low",
+     "entity": "sd-9",
+     "kind": "observation",
+     "confidence": 0.96,
+     "support": 2,
+     "independent_teams": 1,
+     "producer_id": "mycelic",
+     "operator": "topic_consolidation",
+     "rule_id": null,
+     "event_id": "evt_d4f27a147e0fec96f73e6f9",
+     "visibility": "org",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {
+      "agg_key": "supply:sd-9/supplier",
+      "child_layer": "agent",
+      "children": [
+       "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+       "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2"
+      ],
+      "contributing_agents": [
+       "emea-procurement-1",
+       "emea-procurement-2"
+      ],
+      "contributing_teams": [
+       "northwind/emea/nw-gmbh/ops/procurement"
+      ],
+      "effective_min_support": 2,
+      "parent_count": 2,
+      "promoted_from": null,
+      "registered_child_units": 2,
+      "roots": [
+       "mem_42bddac020e858048c4609",
+       "mem_ecfdee6021b5ab67bfb562"
+      ],
+      "rule_chain": [],
+      "version_of": null
+     }
+    },
+    {
+     "memory_id": "mem_d8ad3e7f83e789763560f5a",
+     "org_id": "northwind",
+     "layer": "department",
+     "scope": "northwind/emea/nw-gmbh/ops",
+     "text": "R for sd-9",
+     "topic": "r",
+     "slot": null,
+     "entity": "sd-9",
+     "kind": "risk",
+     "confidence": 0.96,
+     "support": 4,
+     "independent_teams": 2,
+     "producer_id": "mycelic",
+     "operator": "slot_composition",
+     "rule_id": "r",
+     "event_id": "evt_d371a0d1ae1d19a491b7754",
+     "visibility": "org",
+     "status": "retracted",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {
+      "agg_key": "r:sd-9",
+      "candidates": 2,
+      "contributing_agents": [
+       "emea-logistics-1",
+       "emea-logistics-2",
+       "emea-procurement-1",
+       "emea-procurement-2"
+      ],
+      "contributing_teams": [
+       "northwind/emea/nw-gmbh/ops/logistics",
+       "northwind/emea/nw-gmbh/ops/procurement"
+      ],
+      "corroborated_units": {},
+      "evidence": {
+       "mem_d0ecca38837d9096c669cf4": {
+        "layer": "team",
+        "operator": "topic_consolidation",
+        "scope": "northwind/emea/nw-gmbh/ops/logistics",
+        "slot": "transport_disruption"
+       },
+       "mem_db348babaa411b385bf5c7b": {
+        "layer": "team",
+        "operator": "topic_consolidation",
+        "scope": "northwind/emea/nw-gmbh/ops/procurement",
+        "slot": "supplier_buffer_low"
+       }
+      },
+      "fragility": {
+       "apparent_replica_count": 2,
+       "confidence_valid_support_gap": 0.0,
+       "current_confidence": 0.96,
+       "current_task_success": true,
+       "minimal_failure_domain_cut": 1,
+       "minimal_support_coalition_size": 4,
+       "reconstruction_coalition_count": 1,
+       "unique_failure_domain_count": 2,
+       "unique_lineage_root_count": 4,
+       "valid_support_coverage": 1.0
+      },
+      "fragility_scored_candidates": 2,
+      "roots": [
+       "mem_42bddac020e858048c4609",
+       "mem_60ca01cf96c263e0d12e00",
+       "mem_d06bd1a17b5bcc7cd1662a",
+       "mem_ecfdee6021b5ab67bfb562"
+      ],
+      "rule_chain": [
+       "r"
+      ],
+      "slots": {
+       "supplier_buffer_low": "mem_db348babaa411b385bf5c7b",
+       "transport_disruption": "mem_d0ecca38837d9096c669cf4"
+      },
+      "status_reason": "evidence superseded",
+      "version_of": null
+     }
+    },
+    {
+     "memory_id": "mem_a83589340987c78e8361c0",
+     "org_id": "northwind",
+     "layer": "agent",
+     "scope": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+     "text": "Rail slot for RX-2 frames also affected by the strike.",
+     "topic": "supply:sd-9/transport",
+     "slot": "transport_disruption",
+     "entity": "rx-2",
+     "kind": "observation",
+     "confidence": 0.6,
+     "support": 1,
+     "independent_teams": 1,
+     "producer_id": "emea-logistics-1",
+     "operator": "agent_observation",
+     "rule_id": null,
+     "event_id": "evt_00000000000000000022",
+     "visibility": "team",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {}
+    },
+    {
+     "memory_id": "mem_dfd81d3bf67c7ca18a1914d",
+     "org_id": "northwind",
+     "layer": "team",
+     "scope": "northwind/emea/nw-gmbh/ops/logistics",
+     "text": "supply:sd-9/transport — consolidated at team 'logistics' from 2 agent sources (2 agents): [emea-logistics-1] note by emea-logistics-1 [emea-logistics-1] Rail slot for RX-2 frames also affected by the strike. [emea-logistics-2] note by emea-logistics-2",
+     "topic": "supply:sd-9/transport",
+     "slot": "transport_disruption",
+     "entity": null,
+     "kind": "observation",
+     "confidence": 0.96,
+     "support": 2,
+     "independent_teams": 1,
+     "producer_id": "mycelic",
+     "operator": "topic_consolidation",
+     "rule_id": null,
+     "event_id": "evt_ddbac3cb5139b2833d1ad99",
+     "visibility": "org",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {
+      "agg_key": "supply:sd-9/transport",
+      "child_layer": "agent",
+      "children": [
+       "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+       "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2"
+      ],
+      "contributing_agents": [
+       "emea-logistics-1",
+       "emea-logistics-2"
+      ],
+      "contributing_teams": [
+       "northwind/emea/nw-gmbh/ops/logistics"
+      ],
+      "effective_min_support": 2,
+      "parent_count": 3,
+      "promoted_from": null,
+      "registered_child_units": 2,
+      "roots": [
+       "mem_60ca01cf96c263e0d12e00",
+       "mem_a83589340987c78e8361c0",
+       "mem_d06bd1a17b5bcc7cd1662a"
+      ],
+      "rule_chain": [],
+      "version_of": "mem_d0ecca38837d9096c669cf4"
+     }
+    },
+    {
+     "memory_id": "mem_d08223709c13342c427b426",
+     "org_id": "northwind",
+     "layer": "department",
+     "scope": "northwind/emea/nw-gmbh/ops",
+     "text": "R for unknown entity",
+     "topic": "r",
+     "slot": null,
+     "entity": null,
+     "kind": "risk",
+     "confidence": 0.96,
+     "support": 4,
+     "independent_teams": 2,
+     "producer_id": "mycelic",
+     "operator": "slot_composition",
+     "rule_id": "r",
+     "event_id": "evt_d3fc2d3ef29e559146287ff",
+     "visibility": "org",
+     "status": "active",
+     "superseded_by": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00",
+     "source_event_ids": [],
+     "local_ref": null,
+     "metadata": {
+      "agg_key": "r:*",
+      "candidates": 2,
+      "contributing_agents": [
+       "emea-logistics-1",
+       "emea-logistics-2",
+       "emea-procurement-1",
+       "emea-procurement-2"
+      ],
+      "contributing_teams": [
+       "northwind/emea/nw-gmbh/ops/logistics",
+       "northwind/emea/nw-gmbh/ops/procurement"
+      ],
+      "corroborated_units": {},
+      "evidence": {
+       "mem_db348babaa411b385bf5c7b": {
+        "layer": "team",
+        "operator": "topic_consolidation",
+        "scope": "northwind/emea/nw-gmbh/ops/procurement",
+        "slot": "supplier_buffer_low"
+       },
+       "mem_dfd81d3bf67c7ca18a1914d": {
+        "layer": "team",
+        "operator": "topic_consolidation",
+        "scope": "northwind/emea/nw-gmbh/ops/logistics",
+        "slot": "transport_disruption"
+       }
+      },
+      "fragility": {
+       "apparent_replica_count": 2,
+       "confidence_valid_support_gap": 0.0,
+       "current_confidence": 0.96,
+       "current_task_success": true,
+       "minimal_failure_domain_cut": 1,
+       "minimal_support_coalition_size": 5,
+       "reconstruction_coalition_count": 1,
+       "unique_failure_domain_count": 2,
+       "unique_lineage_root_count": 5,
+       "valid_support_coverage": 1.0
+      },
+      "fragility_scored_candidates": 2,
+      "roots": [
+       "mem_42bddac020e858048c4609",
+       "mem_60ca01cf96c263e0d12e00",
+       "mem_a83589340987c78e8361c0",
+       "mem_d06bd1a17b5bcc7cd1662a",
+       "mem_ecfdee6021b5ab67bfb562"
+      ],
+      "rule_chain": [
+       "r"
+      ],
+      "slots": {
+       "supplier_buffer_low": "mem_db348babaa411b385bf5c7b",
+       "transport_disruption": "mem_dfd81d3bf67c7ca18a1914d"
+      },
+      "version_of": null
+     }
+    }
+   ],
+   "agg_keys": [
+    null,
+    null,
+    "supply:sd-9/transport",
+    null,
+    null,
+    "supply:sd-9/supplier",
+    "r:sd-9",
+    null,
+    "supply:sd-9/transport",
+    "r:*"
+   ],
+   "edges": [
+    {
+     "child_id": "mem_d08223709c13342c427b426",
+     "parent_id": "mem_db348babaa411b385bf5c7b",
+     "contributed_by": "mycelic",
+     "parent_layer": "team",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_d08223709c13342c427b426",
+     "parent_id": "mem_dfd81d3bf67c7ca18a1914d",
+     "contributed_by": "mycelic",
+     "parent_layer": "team",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_d0ecca38837d9096c669cf4",
+     "parent_id": "mem_60ca01cf96c263e0d12e00",
+     "contributed_by": "emea-logistics-2",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_d0ecca38837d9096c669cf4",
+     "parent_id": "mem_d06bd1a17b5bcc7cd1662a",
+     "contributed_by": "emea-logistics-1",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_d8ad3e7f83e789763560f5a",
+     "parent_id": "mem_d0ecca38837d9096c669cf4",
+     "contributed_by": "mycelic",
+     "parent_layer": "team",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_d8ad3e7f83e789763560f5a",
+     "parent_id": "mem_db348babaa411b385bf5c7b",
+     "contributed_by": "mycelic",
+     "parent_layer": "team",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_db348babaa411b385bf5c7b",
+     "parent_id": "mem_42bddac020e858048c4609",
+     "contributed_by": "emea-procurement-2",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_db348babaa411b385bf5c7b",
+     "parent_id": "mem_ecfdee6021b5ab67bfb562",
+     "contributed_by": "emea-procurement-1",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_dfd81d3bf67c7ca18a1914d",
+     "parent_id": "mem_60ca01cf96c263e0d12e00",
+     "contributed_by": "emea-logistics-2",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_dfd81d3bf67c7ca18a1914d",
+     "parent_id": "mem_a83589340987c78e8361c0",
+     "contributed_by": "emea-logistics-1",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "child_id": "mem_dfd81d3bf67c7ca18a1914d",
+     "parent_id": "mem_d06bd1a17b5bcc7cd1662a",
+     "contributed_by": "emea-logistics-1",
+     "parent_layer": "agent",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "events": [
+    {
+     "event_id": "evt_00000000000000000001",
+     "kind": "rule.upserted",
+     "org_id": "_",
+     "agent_id": null,
+     "subject": "mycelic._.rule-upserted",
+     "payload": {
+      "conclusion": "Regional supply risk for {entity}: transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+      "corroborate": false,
+      "emits_slot": "supply_risk",
+      "emits_topic": "strategy:supply-risk",
+      "enabled": true,
+      "kind": "risk",
+      "metadata": {
+       "feeds": "strategic_second_source",
+       "owner": "regional operations"
+      },
+      "min_agents": 3,
+      "min_teams": 2,
+      "min_units": {},
+      "org_id": null,
+      "required_slots": [
+       "transport_disruption",
+       "supplier_buffer_low",
+       "demand_commitment"
+      ],
+      "rule_id": "regional_supply_risk",
+      "sources": [
+       "agent_observation"
+      ],
+      "target_layer": "region",
+      "topic_prefix": "supply:"
+     },
+     "status": "applied",
+     "js_seq": 1,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000002",
+     "kind": "rule.upserted",
+     "org_id": "_",
+     "agent_id": null,
+     "subject": "mycelic._.rule-upserted",
+     "payload": {
+      "conclusion": "Strategic recommendation for {entity}: qualify a second source. The supply risk is corroborated in more than one region ({slot:supply_risk}); demand is growing ({slot:demand_growth}); the supply base is concentrated ({slot:supplier_concentration}).",
+      "corroborate": true,
+      "emits_slot": "sourcing_decision",
+      "emits_topic": "strategy:sourcing",
+      "enabled": true,
+      "kind": "decision",
+      "metadata": {
+       "decision_forum": "quarterly sourcing review",
+       "owner": "strategy office"
+      },
+      "min_agents": 4,
+      "min_teams": 3,
+      "min_units": {
+       "supply_risk": {
+        "region": 2
+       }
+      },
+      "org_id": null,
+      "required_slots": [
+       "supply_risk",
+       "demand_growth",
+       "supplier_concentration"
+      ],
+      "rule_id": "strategic_second_source",
+      "sources": [
+       "slot_composition",
+       "topic_consolidation",
+       "agent_observation"
+      ],
+      "target_layer": "enterprise",
+      "topic_prefix": null
+     },
+     "status": "applied",
+     "js_seq": 2,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000003",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-logistics-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-logistics-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 3,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000004",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-logistics-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-logistics-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 4,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000005",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-procurement-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-procurement-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 5,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000006",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-procurement-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-procurement-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 6,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000007",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-field-sales-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-field-sales-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 7,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000008",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "emea-field-sales-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "emea-field-sales-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 8,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000009",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-logistics-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-logistics-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 9,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000010",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-logistics-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-logistics-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 10,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000011",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-procurement-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-procurement-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 11,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000012",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-procurement-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-procurement-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 12,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000013",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-field-sales-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-field-sales-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 13,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000014",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "apac-field-sales-2",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "apac-field-sales-2",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 14,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000015",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "hq-sourcing-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "hq-sourcing-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/hq/northwind-hq/strategy/sourcing/hq-sourcing-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 15,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000016",
+     "kind": "agent.registered",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.agent-registered",
+     "payload": {
+      "agent_id": "hq-analytics-1",
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "display_name": "hq-analytics-1",
+      "last_seen_at": null,
+      "metadata": {},
+      "org_id": "northwind",
+      "path": "northwind/hq/northwind-hq/strategy/analytics/hq-analytics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ],
+      "status": "active"
+     },
+     "status": "applied",
+     "js_seq": 16,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000017",
+     "kind": "rule.upserted",
+     "org_id": "_",
+     "agent_id": null,
+     "subject": "mycelic._.rule-upserted",
+     "payload": {
+      "conclusion": "R for {entity}",
+      "corroborate": false,
+      "emits_slot": null,
+      "emits_topic": null,
+      "enabled": true,
+      "kind": "risk",
+      "metadata": {},
+      "min_agents": 2,
+      "min_teams": 2,
+      "min_units": {},
+      "org_id": null,
+      "required_slots": [
+       "transport_disruption",
+       "supplier_buffer_low"
+      ],
+      "rule_id": "r",
+      "sources": [
+       "topic_consolidation"
+      ],
+      "target_layer": "department",
+      "topic_prefix": null
+     },
+     "status": "applied",
+     "js_seq": 17,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000018",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "emea-logistics-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_00000000000000000018",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_d06bd1a17b5bcc7cd1662a",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "emea-logistics-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+      "slot": "transport_disruption",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "note by emea-logistics-1",
+      "topic": "supply:sd-9/transport",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 18,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000019",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "emea-logistics-2",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_00000000000000000019",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_60ca01cf96c263e0d12e00",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "emea-logistics-2",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+      "slot": "transport_disruption",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "note by emea-logistics-2",
+      "topic": "supply:sd-9/transport",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 19,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_d5cf23661b9d5bfb7ed8595",
+     "kind": "memory.derived",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.memory-derived",
+     "payload": {
+      "applied_at": "2026-10-01T12:00:00+00:00",
+      "confidence": 0.96,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_d5cf23661b9d5bfb7ed8595",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "team",
+      "local_ref": null,
+      "memory_id": "mem_d0ecca38837d9096c669cf4",
+      "metadata": {
+       "agg_key": "supply:sd-9/transport",
+       "child_layer": "agent",
+       "children": [
+        "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+        "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2"
+       ],
+       "contributing_agents": [
+        "emea-logistics-1",
+        "emea-logistics-2"
+       ],
+       "contributing_teams": [
+        "northwind/emea/nw-gmbh/ops/logistics"
+       ],
+       "effective_min_support": 2,
+       "parent_count": 2,
+       "promoted_from": null,
+       "registered_child_units": 2,
+       "roots": [
+        "mem_60ca01cf96c263e0d12e00",
+        "mem_d06bd1a17b5bcc7cd1662a"
+       ],
+       "rule_chain": [],
+       "version_of": null
+      },
+      "operator": "topic_consolidation",
+      "org_id": "northwind",
+      "parents": [
+       {
+        "child_id": "mem_d0ecca38837d9096c669cf4",
+        "contributed_by": "emea-logistics-1",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_d06bd1a17b5bcc7cd1662a",
+        "parent_layer": "agent"
+       },
+       {
+        "child_id": "mem_d0ecca38837d9096c669cf4",
+        "contributed_by": "emea-logistics-2",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_60ca01cf96c263e0d12e00",
+        "parent_layer": "agent"
+       }
+      ],
+      "producer_id": "mycelic",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/logistics",
+      "slot": "transport_disruption",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "supersedes": null,
+      "support": 2,
+      "text": "supply:sd-9/transport — consolidated at team 'logistics' from 2 agent sources (2 agents): [emea-logistics-1] note by emea-logistics-1 [emea-logistics-2] note by emea-logistics-2",
+      "topic": "supply:sd-9/transport",
+      "visibility": "org"
+     },
+     "status": "applied",
+     "js_seq": 20,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000020",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "emea-procurement-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_00000000000000000020",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_ecfdee6021b5ab67bfb562",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "emea-procurement-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+      "slot": "supplier_buffer_low",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "note by emea-procurement-1",
+      "topic": "supply:sd-9/supplier",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 21,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000021",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "emea-procurement-2",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.8,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_00000000000000000021",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_42bddac020e858048c4609",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "emea-procurement-2",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+      "slot": "supplier_buffer_low",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "note by emea-procurement-2",
+      "topic": "supply:sd-9/supplier",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 22,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_d4f27a147e0fec96f73e6f9",
+     "kind": "memory.derived",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.memory-derived",
+     "payload": {
+      "applied_at": "2026-10-01T12:00:00+00:00",
+      "confidence": 0.96,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_d4f27a147e0fec96f73e6f9",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "team",
+      "local_ref": null,
+      "memory_id": "mem_db348babaa411b385bf5c7b",
+      "metadata": {
+       "agg_key": "supply:sd-9/supplier",
+       "child_layer": "agent",
+       "children": [
+        "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+        "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2"
+       ],
+       "contributing_agents": [
+        "emea-procurement-1",
+        "emea-procurement-2"
+       ],
+       "contributing_teams": [
+        "northwind/emea/nw-gmbh/ops/procurement"
+       ],
+       "effective_min_support": 2,
+       "parent_count": 2,
+       "promoted_from": null,
+       "registered_child_units": 2,
+       "roots": [
+        "mem_42bddac020e858048c4609",
+        "mem_ecfdee6021b5ab67bfb562"
+       ],
+       "rule_chain": [],
+       "version_of": null
+      },
+      "operator": "topic_consolidation",
+      "org_id": "northwind",
+      "parents": [
+       {
+        "child_id": "mem_db348babaa411b385bf5c7b",
+        "contributed_by": "emea-procurement-1",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_ecfdee6021b5ab67bfb562",
+        "parent_layer": "agent"
+       },
+       {
+        "child_id": "mem_db348babaa411b385bf5c7b",
+        "contributed_by": "emea-procurement-2",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_42bddac020e858048c4609",
+        "parent_layer": "agent"
+       }
+      ],
+      "producer_id": "mycelic",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/procurement",
+      "slot": "supplier_buffer_low",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "supersedes": null,
+      "support": 2,
+      "text": "supply:sd-9/supplier — consolidated at team 'procurement' from 2 agent sources (2 agents): [emea-procurement-1] note by emea-procurement-1 [emea-procurement-2] note by emea-procurement-2",
+      "topic": "supply:sd-9/supplier",
+      "visibility": "org"
+     },
+     "status": "applied",
+     "js_seq": 23,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_d371a0d1ae1d19a491b7754",
+     "kind": "memory.derived",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.memory-derived",
+     "payload": {
+      "applied_at": "2026-10-01T12:00:00+00:00",
+      "confidence": 0.96,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "sd-9",
+      "event_id": "evt_d371a0d1ae1d19a491b7754",
+      "independent_teams": 2,
+      "kind": "risk",
+      "layer": "department",
+      "local_ref": null,
+      "memory_id": "mem_d8ad3e7f83e789763560f5a",
+      "metadata": {
+       "agg_key": "r:sd-9",
+       "candidates": 2,
+       "contributing_agents": [
+        "emea-logistics-1",
+        "emea-logistics-2",
+        "emea-procurement-1",
+        "emea-procurement-2"
+       ],
+       "contributing_teams": [
+        "northwind/emea/nw-gmbh/ops/logistics",
+        "northwind/emea/nw-gmbh/ops/procurement"
+       ],
+       "corroborated_units": {},
+       "evidence": {
+        "mem_d0ecca38837d9096c669cf4": {
+         "layer": "team",
+         "operator": "topic_consolidation",
+         "scope": "northwind/emea/nw-gmbh/ops/logistics",
+         "slot": "transport_disruption"
+        },
+        "mem_db348babaa411b385bf5c7b": {
+         "layer": "team",
+         "operator": "topic_consolidation",
+         "scope": "northwind/emea/nw-gmbh/ops/procurement",
+         "slot": "supplier_buffer_low"
+        }
+       },
+       "fragility": {
+        "apparent_replica_count": 2,
+        "confidence_valid_support_gap": 0.0,
+        "current_confidence": 0.96,
+        "current_task_success": true,
+        "minimal_failure_domain_cut": 1,
+        "minimal_support_coalition_size": 4,
+        "reconstruction_coalition_count": 1,
+        "unique_failure_domain_count": 2,
+        "unique_lineage_root_count": 4,
+        "valid_support_coverage": 1.0
+       },
+       "fragility_scored_candidates": 2,
+       "roots": [
+        "mem_42bddac020e858048c4609",
+        "mem_60ca01cf96c263e0d12e00",
+        "mem_d06bd1a17b5bcc7cd1662a",
+        "mem_ecfdee6021b5ab67bfb562"
+       ],
+       "rule_chain": [
+        "r"
+       ],
+       "slots": {
+        "supplier_buffer_low": "mem_db348babaa411b385bf5c7b",
+        "transport_disruption": "mem_d0ecca38837d9096c669cf4"
+       },
+       "version_of": null
+      },
+      "operator": "slot_composition",
+      "org_id": "northwind",
+      "parents": [
+       {
+        "child_id": "mem_d8ad3e7f83e789763560f5a",
+        "contributed_by": "mycelic",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_d0ecca38837d9096c669cf4",
+        "parent_layer": "team"
+       },
+       {
+        "child_id": "mem_d8ad3e7f83e789763560f5a",
+        "contributed_by": "mycelic",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_db348babaa411b385bf5c7b",
+        "parent_layer": "team"
+       }
+      ],
+      "producer_id": "mycelic",
+      "rule_id": "r",
+      "scope": "northwind/emea/nw-gmbh/ops",
+      "slot": null,
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "supersedes": null,
+      "support": 4,
+      "text": "R for sd-9",
+      "topic": "r",
+      "visibility": "org"
+     },
+     "status": "applied",
+     "js_seq": 24,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_00000000000000000022",
+     "kind": "memory.observed",
+     "org_id": "northwind",
+     "agent_id": "emea-logistics-1",
+     "subject": "mycelic.northwind.memory-observed",
+     "payload": {
+      "applied_at": null,
+      "confidence": 0.6,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": "rx-2",
+      "event_id": "evt_00000000000000000022",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "agent",
+      "local_ref": null,
+      "memory_id": "mem_a83589340987c78e8361c0",
+      "metadata": {},
+      "operator": "agent_observation",
+      "org_id": "northwind",
+      "producer_id": "emea-logistics-1",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+      "slot": "transport_disruption",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "support": 1,
+      "text": "Rail slot for RX-2 frames also affected by the strike.",
+      "topic": "supply:sd-9/transport",
+      "visibility": "team"
+     },
+     "status": "applied",
+     "js_seq": 25,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_ddbac3cb5139b2833d1ad99",
+     "kind": "memory.derived",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.memory-derived",
+     "payload": {
+      "applied_at": "2026-10-01T12:00:00+00:00",
+      "confidence": 0.96,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": null,
+      "event_id": "evt_ddbac3cb5139b2833d1ad99",
+      "independent_teams": 1,
+      "kind": "observation",
+      "layer": "team",
+      "local_ref": null,
+      "memory_id": "mem_dfd81d3bf67c7ca18a1914d",
+      "metadata": {
+       "agg_key": "supply:sd-9/transport",
+       "child_layer": "agent",
+       "children": [
+        "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+        "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2"
+       ],
+       "contributing_agents": [
+        "emea-logistics-1",
+        "emea-logistics-2"
+       ],
+       "contributing_teams": [
+        "northwind/emea/nw-gmbh/ops/logistics"
+       ],
+       "effective_min_support": 2,
+       "parent_count": 3,
+       "promoted_from": null,
+       "registered_child_units": 2,
+       "roots": [
+        "mem_60ca01cf96c263e0d12e00",
+        "mem_a83589340987c78e8361c0",
+        "mem_d06bd1a17b5bcc7cd1662a"
+       ],
+       "rule_chain": [],
+       "version_of": "mem_d0ecca38837d9096c669cf4"
+      },
+      "operator": "topic_consolidation",
+      "org_id": "northwind",
+      "parents": [
+       {
+        "child_id": "mem_dfd81d3bf67c7ca18a1914d",
+        "contributed_by": "emea-logistics-1",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_d06bd1a17b5bcc7cd1662a",
+        "parent_layer": "agent"
+       },
+       {
+        "child_id": "mem_dfd81d3bf67c7ca18a1914d",
+        "contributed_by": "emea-logistics-1",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_a83589340987c78e8361c0",
+        "parent_layer": "agent"
+       },
+       {
+        "child_id": "mem_dfd81d3bf67c7ca18a1914d",
+        "contributed_by": "emea-logistics-2",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_60ca01cf96c263e0d12e00",
+        "parent_layer": "agent"
+       }
+      ],
+      "producer_id": "mycelic",
+      "rule_id": null,
+      "scope": "northwind/emea/nw-gmbh/ops/logistics",
+      "slot": "transport_disruption",
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "supersedes": "mem_d0ecca38837d9096c669cf4",
+      "support": 2,
+      "text": "supply:sd-9/transport — consolidated at team 'logistics' from 2 agent sources (2 agents): [emea-logistics-1] note by emea-logistics-1 [emea-logistics-1] Rail slot for RX-2 frames also affected by the strike. [emea-logistics-2] note by emea-logistics-2",
+      "topic": "supply:sd-9/transport",
+      "visibility": "org"
+     },
+     "status": "applied",
+     "js_seq": 26,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "event_id": "evt_d3fc2d3ef29e559146287ff",
+     "kind": "memory.derived",
+     "org_id": "northwind",
+     "agent_id": null,
+     "subject": "mycelic.northwind.memory-derived",
+     "payload": {
+      "applied_at": "2026-10-01T12:00:00+00:00",
+      "confidence": 0.96,
+      "created_at": "2026-10-01T12:00:00+00:00",
+      "entity": null,
+      "event_id": "evt_d3fc2d3ef29e559146287ff",
+      "independent_teams": 2,
+      "kind": "risk",
+      "layer": "department",
+      "local_ref": null,
+      "memory_id": "mem_d08223709c13342c427b426",
+      "metadata": {
+       "agg_key": "r:*",
+       "candidates": 2,
+       "contributing_agents": [
+        "emea-logistics-1",
+        "emea-logistics-2",
+        "emea-procurement-1",
+        "emea-procurement-2"
+       ],
+       "contributing_teams": [
+        "northwind/emea/nw-gmbh/ops/logistics",
+        "northwind/emea/nw-gmbh/ops/procurement"
+       ],
+       "corroborated_units": {},
+       "evidence": {
+        "mem_db348babaa411b385bf5c7b": {
+         "layer": "team",
+         "operator": "topic_consolidation",
+         "scope": "northwind/emea/nw-gmbh/ops/procurement",
+         "slot": "supplier_buffer_low"
+        },
+        "mem_dfd81d3bf67c7ca18a1914d": {
+         "layer": "team",
+         "operator": "topic_consolidation",
+         "scope": "northwind/emea/nw-gmbh/ops/logistics",
+         "slot": "transport_disruption"
+        }
+       },
+       "fragility": {
+        "apparent_replica_count": 2,
+        "confidence_valid_support_gap": 0.0,
+        "current_confidence": 0.96,
+        "current_task_success": true,
+        "minimal_failure_domain_cut": 1,
+        "minimal_support_coalition_size": 5,
+        "reconstruction_coalition_count": 1,
+        "unique_failure_domain_count": 2,
+        "unique_lineage_root_count": 5,
+        "valid_support_coverage": 1.0
+       },
+       "fragility_scored_candidates": 2,
+       "roots": [
+        "mem_42bddac020e858048c4609",
+        "mem_60ca01cf96c263e0d12e00",
+        "mem_a83589340987c78e8361c0",
+        "mem_d06bd1a17b5bcc7cd1662a",
+        "mem_ecfdee6021b5ab67bfb562"
+       ],
+       "rule_chain": [
+        "r"
+       ],
+       "slots": {
+        "supplier_buffer_low": "mem_db348babaa411b385bf5c7b",
+        "transport_disruption": "mem_dfd81d3bf67c7ca18a1914d"
+       },
+       "version_of": null
+      },
+      "operator": "slot_composition",
+      "org_id": "northwind",
+      "parents": [
+       {
+        "child_id": "mem_d08223709c13342c427b426",
+        "contributed_by": "mycelic",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_dfd81d3bf67c7ca18a1914d",
+        "parent_layer": "team"
+       },
+       {
+        "child_id": "mem_d08223709c13342c427b426",
+        "contributed_by": "mycelic",
+        "created_at": "2026-10-01T12:00:00+00:00",
+        "parent_id": "mem_db348babaa411b385bf5c7b",
+        "parent_layer": "team"
+       }
+      ],
+      "producer_id": "mycelic",
+      "rule_id": "r",
+      "scope": "northwind/emea/nw-gmbh/ops",
+      "slot": null,
+      "source_event_ids": [],
+      "status": "active",
+      "superseded_by": null,
+      "supersedes": null,
+      "support": 4,
+      "text": "R for unknown entity",
+      "topic": "r",
+      "visibility": "org"
+     },
+     "status": "applied",
+     "js_seq": 27,
+     "attempts": 0,
+     "last_error": null,
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "published_at": "2026-10-01T12:00:00+00:00",
+     "applied_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "audit": [
+    {
+     "id": 1,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "rule.upsert",
+     "target": "regional_supply_risk",
+     "detail": {
+      "slots": [
+       "transport_disruption",
+       "supplier_buffer_low",
+       "demand_commitment"
+      ],
+      "target_layer": "region"
+     },
+     "remote": null
+    },
+    {
+     "id": 2,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "rule.upsert",
+     "target": "strategic_second_source",
+     "detail": {
+      "slots": [
+       "supply_risk",
+       "demand_growth",
+       "supplier_concentration"
+      ],
+      "target_layer": "enterprise"
+     },
+     "remote": null
+    },
+    {
+     "id": 3,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-logistics-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 4,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-logistics-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 5,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-procurement-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 6,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-procurement-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 7,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-field-sales-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 8,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "emea-field-sales-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 9,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-logistics-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 10,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-logistics-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 11,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-procurement-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 12,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-procurement-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 13,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-field-sales-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 14,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "apac-field-sales-2",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-2",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 15,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "hq-sourcing-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/hq/northwind-hq/strategy/sourcing/hq-sourcing-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 16,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "agent.register",
+     "target": "hq-analytics-1",
+     "detail": {
+      "org_id": "northwind",
+      "path": "northwind/hq/northwind-hq/strategy/analytics/hq-analytics-1",
+      "scopes": [
+       "memory:read",
+       "memory:write",
+       "events:write",
+       "lineage:read"
+      ]
+     },
+     "remote": null
+    },
+    {
+     "id": 17,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "admin",
+     "action": "rule.upsert",
+     "target": "r",
+     "detail": {
+      "slots": [
+       "transport_disruption",
+       "supplier_buffer_low"
+      ],
+      "target_layer": "department"
+     },
+     "remote": null
+    },
+    {
+     "id": 18,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "emea-logistics-1",
+     "action": "memory.ingest",
+     "target": "mem_d06bd1a17b5bcc7cd1662a",
+     "detail": {
+      "event_id": "evt_00000000000000000018",
+      "org_id": "northwind",
+      "slot": "transport_disruption",
+      "topic": "supply:sd-9/transport"
+     },
+     "remote": null
+    },
+    {
+     "id": 19,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "emea-logistics-2",
+     "action": "memory.ingest",
+     "target": "mem_60ca01cf96c263e0d12e00",
+     "detail": {
+      "event_id": "evt_00000000000000000019",
+      "org_id": "northwind",
+      "slot": "transport_disruption",
+      "topic": "supply:sd-9/transport"
+     },
+     "remote": null
+    },
+    {
+     "id": 20,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "emea-procurement-1",
+     "action": "memory.ingest",
+     "target": "mem_ecfdee6021b5ab67bfb562",
+     "detail": {
+      "event_id": "evt_00000000000000000020",
+      "org_id": "northwind",
+      "slot": "supplier_buffer_low",
+      "topic": "supply:sd-9/supplier"
+     },
+     "remote": null
+    },
+    {
+     "id": 21,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "emea-procurement-2",
+     "action": "memory.ingest",
+     "target": "mem_42bddac020e858048c4609",
+     "detail": {
+      "event_id": "evt_00000000000000000021",
+      "org_id": "northwind",
+      "slot": "supplier_buffer_low",
+      "topic": "supply:sd-9/supplier"
+     },
+     "remote": null
+    },
+    {
+     "id": 22,
+     "at": "2026-10-01T12:00:00+00:00",
+     "principal": "emea-logistics-1",
+     "action": "memory.ingest",
+     "target": "mem_a83589340987c78e8361c0",
+     "detail": {
+      "event_id": "evt_00000000000000000022",
+      "org_id": "northwind",
+      "slot": "transport_disruption",
+      "topic": "supply:sd-9/transport"
+     },
+     "remote": null
+    }
+   ],
+   "rules": [
+    {
+     "rule_id": "r",
+     "target_layer": "department",
+     "required_slots": [
+      "transport_disruption",
+      "supplier_buffer_low"
+     ],
+     "conclusion": "R for {entity}",
+     "topic_prefix": null,
+     "min_agents": 2,
+     "min_teams": 2,
+     "kind": "risk",
+     "org_id": null,
+     "enabled": true,
+     "metadata": {},
+     "sources": [
+      "topic_consolidation"
+     ],
+     "emits_slot": null,
+     "emits_topic": null,
+     "min_units": {},
+     "corroborate": false,
+     "updated_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "rule_id": "regional_supply_risk",
+     "target_layer": "region",
+     "required_slots": [
+      "transport_disruption",
+      "supplier_buffer_low",
+      "demand_commitment"
+     ],
+     "conclusion": "Regional supply risk for {entity}: transport is disrupted ({slot:transport_disruption}); the supplier buffer is thin ({slot:supplier_buffer_low}); demand is committed ({slot:demand_commitment}).",
+     "topic_prefix": "supply:",
+     "min_agents": 3,
+     "min_teams": 2,
+     "kind": "risk",
+     "org_id": null,
+     "enabled": true,
+     "metadata": {
+      "feeds": "strategic_second_source",
+      "owner": "regional operations"
+     },
+     "sources": [
+      "agent_observation"
+     ],
+     "emits_slot": "supply_risk",
+     "emits_topic": "strategy:supply-risk",
+     "min_units": {},
+     "corroborate": false,
+     "updated_at": "2026-10-01T12:00:00+00:00"
+    },
+    {
+     "rule_id": "strategic_second_source",
+     "target_layer": "enterprise",
+     "required_slots": [
+      "supply_risk",
+      "demand_growth",
+      "supplier_concentration"
+     ],
+     "conclusion": "Strategic recommendation for {entity}: qualify a second source. The supply risk is corroborated in more than one region ({slot:supply_risk}); demand is growing ({slot:demand_growth}); the supply base is concentrated ({slot:supplier_concentration}).",
+     "topic_prefix": null,
+     "min_agents": 4,
+     "min_teams": 3,
+     "kind": "decision",
+     "org_id": null,
+     "enabled": true,
+     "metadata": {
+      "decision_forum": "quarterly sourcing review",
+      "owner": "strategy office"
+     },
+     "sources": [
+      "slot_composition",
+      "topic_consolidation",
+      "agent_observation"
+     ],
+     "emits_slot": "sourcing_decision",
+     "emits_topic": "strategy:sourcing",
+     "min_units": {
+      "supply_risk": {
+       "region": 2
+      }
+     },
+     "corroborate": true,
+     "updated_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "agents": [
+    {
+     "agent_id": "apac-field-sales-1",
+     "org_id": "northwind",
+     "display_name": "apac-field-sales-1",
+     "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "apac-field-sales-2",
+     "org_id": "northwind",
+     "display_name": "apac-field-sales-2",
+     "path": "northwind/apac/nw-kk/commercial/field-sales/apac-field-sales-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "apac-logistics-1",
+     "org_id": "northwind",
+     "display_name": "apac-logistics-1",
+     "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "apac-logistics-2",
+     "org_id": "northwind",
+     "display_name": "apac-logistics-2",
+     "path": "northwind/apac/nw-kk/ops/logistics/apac-logistics-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "apac-procurement-1",
+     "org_id": "northwind",
+     "display_name": "apac-procurement-1",
+     "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "apac-procurement-2",
+     "org_id": "northwind",
+     "display_name": "apac-procurement-2",
+     "path": "northwind/apac/nw-kk/ops/procurement/apac-procurement-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-field-sales-1",
+     "org_id": "northwind",
+     "display_name": "emea-field-sales-1",
+     "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-field-sales-2",
+     "org_id": "northwind",
+     "display_name": "emea-field-sales-2",
+     "path": "northwind/emea/nw-gmbh/commercial/field-sales/emea-field-sales-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-logistics-1",
+     "org_id": "northwind",
+     "display_name": "emea-logistics-1",
+     "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-logistics-2",
+     "org_id": "northwind",
+     "display_name": "emea-logistics-2",
+     "path": "northwind/emea/nw-gmbh/ops/logistics/emea-logistics-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-procurement-1",
+     "org_id": "northwind",
+     "display_name": "emea-procurement-1",
+     "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "emea-procurement-2",
+     "org_id": "northwind",
+     "display_name": "emea-procurement-2",
+     "path": "northwind/emea/nw-gmbh/ops/procurement/emea-procurement-2",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "hq-analytics-1",
+     "org_id": "northwind",
+     "display_name": "hq-analytics-1",
+     "path": "northwind/hq/northwind-hq/strategy/analytics/hq-analytics-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    },
+    {
+     "agent_id": "hq-sourcing-1",
+     "org_id": "northwind",
+     "display_name": "hq-sourcing-1",
+     "path": "northwind/hq/northwind-hq/strategy/sourcing/hq-sourcing-1",
+     "scopes": [
+      "memory:read",
+      "memory:write",
+      "events:write",
+      "lineage:read"
+     ],
+     "status": "active",
+     "created_at": "2026-10-01T12:00:00+00:00",
+     "metadata": {}
+    }
+   ],
+   "orgs": [
+    {
+     "org_id": "northwind",
+     "name": "northwind",
+     "created_at": "2026-10-01T12:00:00+00:00"
+    }
+   ],
+   "meta": {
+    "last_applied_seq": "27",
+    "schema_version": "2"
+   }
+  }
+ ]
+}

@@ -45,7 +45,7 @@ Optional Prometheus (`--profile observability`) scrapes `/metrics` with `MYCELIC
 (set it in `.env`; it is passed as a compose secret) and listens on `127.0.0.1:9090`.
 
 Building behind a TLS-inspecting corporate proxy: set `CA_BUNDLE_FILE=/path/to/corporate-ca.pem` in `.env`;
-the Dockerfile mounts it as a build secret for `pip` only. Leave it at `./no-ca.pem` (an empty file shipped in
+the Dockerfile mounts it as a build secret for `cargo` only (`CARGO_HTTP_CAINFO`). Leave it at `./no-ca.pem` (an empty file shipped in
 `deploy/mycelic/`) otherwise; a path outside the build context such as `/dev/null` is refused by current Docker.
 
 ### Register the first agent and connect it
@@ -56,7 +56,7 @@ Agents authenticate with per-agent API keys; the administrator token registers t
 export MYCELIC_URL=http://localhost:8080
 export MYCELIC_ADMIN_TOKEN=$(grep ^MYCELIC_ADMIN_TOKEN= deploy/mycelic/.env | cut -d= -f2)
 
-python -m mycelic register-agent --enterprise northwind --region emea --subsidiary nw-gmbh \
+mycelic register-agent --enterprise northwind --region emea --subsidiary nw-gmbh \
     --department ops --team logistics --agent-id logistics-1
 # registered logistics-1 at northwind/emea/nw-gmbh/ops/logistics/logistics-1
 # MYCELIC_API_KEY=mk_logistics-1.…        (shown once)
@@ -66,32 +66,40 @@ The same call over HTTP: `POST /admin/agents` with `{"enterprise","region","subs
 Missing intermediate units default to the enterprise name, so a small organization can register agents with
 `--enterprise acme --team support --agent-id bot-1`.
 
-From the agent's side (Python, no dependencies beyond the standard library):
+(`mycelic` is the binary `cargo build --release` writes to `target/release/`; inside the container it is on `PATH`:
+`docker compose -f deploy/mycelic/docker-compose.yml exec mycelic mycelic register-agent …` with
+`--admin-token` or `MYCELIC_ADMIN_TOKEN`.)
 
-```python
-from mycelic.sdk import MycelicClient, LocalMemory
+From the agent's side, the `mycelic-sdk` crate (no server dependencies; `crates/mycelic-harness/tests/layout.rs`
+checks it):
 
-local = LocalMemory("~/.mycelic/logistics-1.db")             # private notes on the agent's own disk
-client = MycelicClient("http://localhost:8080", api_key="mk_logistics-1.…")
+```rust
+use mycelic_sdk::{LocalMemory, MycelicClient, Note, QueryOptions};
 
-note = local.note("Port of Rotterdam terminal 3 strike announced for weeks 41-43",
-                  topic="supply:sd-9/transport", slot="transport_disruption", entity="sd-9", confidence=0.9)
-local.share(client, note)                                     # idempotent: safe to retry after a crash
+let local = LocalMemory::open("/var/lib/agent/logistics-1.db")?; // private notes on the agent's own disk
+let client = MycelicClient::new("http://localhost:8080", "mk_logistics-1.…");
 
-res = client.query("delivery risk for RX-4 this quarter", scope="northwind")
-print(res["answer"]["text"], res["answer"]["lineage"])
-graph = client.lineage(res["answer"]["memory_id"])
+let local_id = local.note(&Note { text: "Port of Rotterdam terminal 3 strike announced for weeks 41-43".into(),
+                                  topic: Some("supply:sd-9/transport".into()),
+                                  slot: Some("transport_disruption".into()),
+                                  entity: Some("sd-9".into()), confidence: 0.9, ..Note::default() })?;
+local.share(&client, &local_id, "team")?;                         // idempotent: safe to retry after a crash
+
+let res = client.query("delivery risk for RX-4 this quarter", &QueryOptions::scoped("northwind"))?;
+println!("{} {}", res["answer"]["text"], res["answer"]["lineage"]);
+let graph = client.lineage(res["answer"]["memory_id"].as_str().unwrap())?;
 ```
 
-Or from the shell: `python -m mycelic query "delivery risk sd-9" --scope northwind --lineage`
-(`MYCELIC_API_KEY` set). A complete agent process is `python -m mycelic.sdk.agent --help`.
+Any HTTP client works the same way (the API is plain JSON; the old Python SDK keeps working against this service).
+From the shell: `mycelic query "delivery risk sd-9" --scope northwind --lineage` (`MYCELIC_API_KEY` set). A
+complete agent process is `mycelic-agent --help`.
 
 Claude Code / any MCP client (the agent key is the Bearer token; identity is per request):
 
 ```bash
 claude mcp add --transport http mycelic http://localhost:8080/mcp --header "Authorization: Bearer $MYCELIC_API_KEY"
 # stdio for desktop clients:
-python -m mycelic mcp --url http://localhost:8080 --api-key "$MYCELIC_API_KEY"
+mycelic mcp --url http://localhost:8080 --api-key "$MYCELIC_API_KEY"
 ```
 
 Tools: `mycelic_query`, `mycelic_remember`, `mycelic_lineage`, `mycelic_get_memory`, `mycelic_status`.
@@ -99,10 +107,11 @@ Tools: `mycelic_query`, `mycelic_remember`, `mycelic_lineage`, `mycelic_get_memo
 ### Run the canonical demonstration
 
 ```bash
-# the production smoke test against the compose stack you just started (keeps your data: it uses its own project)
-python tests/smoke/mycelic_smoke.py --driver compose
+cargo build --release                         # the smoke test, the demos and the agent process run on the host
+# the production smoke test against a compose stack (keeps your data: it uses its own project)
+./target/release/mycelic-smoke --driver compose
 # the narrated demo (local processes need the nats-server binary on PATH: https://github.com/nats-io/nats-server/releases)
-python demo/mycelic_demo.py --driver compose
+./target/release/mycelic-demo --driver compose
 ```
 
 The smoke test registers agents in three teams, runs them as separate processes, checks the enterprise
@@ -194,8 +203,8 @@ form a cycle is refused at `POST /admin/rules` and in the rules file), and finer
 consolidation that merely restates it. A rule names at most 6 slots. When an observation is retracted, or a
 conclusion loses its support, every dependent conclusion is withdrawn and then re-evaluated on the evidence
 that remains: a conclusion corroborated by three regions survives losing one, and an exact earlier coalition
-is reactivated (`tests/mycelic/test_strategic.py::test_strategy_follows_evidence`).
-`demo/mycelic_strategic_demo.py` shows the two-region case: retracting APAC's supplier notes withdraws the
+is reactivated (`crates/mycelic/tests/strategic.rs`, `test_strategy_follows_evidence`).
+`mycelic-strategic-demo` shows the two-region case: retracting APAC's supplier notes withdraws the
 regional conclusion and the strategy, and fresh evidence brings both back as a new version.
 
 ## 4. Operations
@@ -208,7 +217,8 @@ outbox depth, reconnect count and the masked settings.
 **Backups.** Two things hold state:
 
 1. the Mycelic database (`mycelic-data` volume). Back it up with SQLite's online backup while the service
-   runs: `docker compose -f deploy/mycelic/docker-compose.yml exec mycelic python -c "import sqlite3; s=sqlite3.connect('/data/mycelic.db'); d=sqlite3.connect('/data/backup.db'); s.backup(d)"`
+   runs: `docker compose -f deploy/mycelic/docker-compose.yml exec mycelic mycelic backup /data/backup.db`
+   (SQLite `VACUUM INTO`: one consistent snapshot of every committed transaction)
    then copy `/data/backup.db` out of the volume; or snapshot the volume while the service is stopped;
 2. the JetStream store (`nats-data` volume): snapshot the volume while the broker is stopped, or use the
    `nats` CLI (`nats stream backup MYCELIC <dir>`) against port 4222 from inside the network.
@@ -220,7 +230,7 @@ serving, but nothing can be replayed until new events accumulate; restore the st
 before restoring an older database.
 
 **Recovery procedures** (service crash, broker outage and database loss are exercised by
-`tests/smoke/mycelic_smoke.py` steps 5–7; the other rows by the named tests in `tests/mycelic/test_jetstream.py`):
+the smoke test (`mycelic-smoke`) steps 5–7; the other rows by the named tests in `crates/mycelic/tests/jetstream.rs`):
 
 | Situation | What to do |
 |---|---|
@@ -230,7 +240,7 @@ before restoring an older database.
 | stale database restored from backup | just start it: missing events are re-delivered (`mycelic_recovery_total{kind="replay_restored_backup"}`; `test_restored_backup_receives_the_events_it_missed`) |
 | durable consumer lost (broker state reset) | just start it: the consumer is recreated after the last applied sequence (`kind="consumer_recreated"`; `test_lost_consumer_is_recreated_after_the_last_applied_event`) |
 | stream shorter than the database (purged or recreated) | the database keeps serving; the log restarts from the new sequence and `kind="stream_behind_database"` is counted; restore the stream backup first when you can |
-| force a replay | `python -m mycelic replay` or `POST /admin/replay` (`test_forced_replay_is_idempotent`) |
+| force a replay | `mycelic replay` or `POST /admin/replay` (`test_forced_replay_is_idempotent`) |
 | poison or rejected event | after `NATS_MAX_DELIVER` attempts it is terminated and recorded (`GET /admin/events?org=…&status=failed`, audit `event.failed`); a terminated or unsigned event counts as consumed, so a replay still completes (`test_poison_event_is_terminated_and_replay_completes`) |
 
 **Upgrades.** Build the new image, `docker compose -f deploy/mycelic/docker-compose.yml up -d --build`. The schema version is stored in the
@@ -243,8 +253,8 @@ volume accordingly (a memory event is a few hundred bytes to a few kilobytes).
 
 ## 5. Local processes (no Docker)
 
-Used by CI, the demo and the tests. Needs Python 3.11+, `pip install -r requirements.txt`, and the
-`nats-server` binary (`MYCELIC_NATS_SERVER_BIN` or on `PATH`).
+Used by CI, the demo and the tests. Needs a Rust toolchain (1.88+; `cargo build --release`) and the `nats-server`
+binary (`MYCELIC_NATS_SERVER_BIN` or on `PATH`).
 
 ```bash
 export MYCELIC_HOST=127.0.0.1 MYCELIC_PORT=8080 MYCELIC_DB_PATH=./mycelic.db \
@@ -252,11 +262,11 @@ export MYCELIC_HOST=127.0.0.1 MYCELIC_PORT=8080 MYCELIC_DB_PATH=./mycelic.db \
        MYCELIC_ADMIN_TOKEN=$(openssl rand -hex 32) MYCELIC_EVENT_SIGNING_KEY=$(openssl rand -hex 32) \
        MYCELIC_RULES_FILE=deploy/mycelic/rules.json
 NATS_STORE_DIR=./nats-data NATS_USER=mycelic NATS_PASSWORD=<pw> nats-server -c deploy/mycelic/nats/nats.conf &
-python -m mycelic serve
+./target/release/mycelic serve
 ```
 
-`python -m pytest tests/mycelic -q` runs the unit, API, MCP, JetStream integration and smoke tests
-(the JetStream and smoke modules skip themselves without the binary).
+`cargo test --workspace` runs the unit, golden-fixture, API, MCP, JetStream integration, smoke and demo tests
+(the JetStream and process tests skip themselves without the nats-server binary).
 
 ## 6. Kubernetes
 

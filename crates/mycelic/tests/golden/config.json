@@ -1,0 +1,817 @@
+{
+ "_generated_by": "crates/mycelic/tests/golden/generate_from_python.py against the Python implementation at ace3efb",
+ "cases": [
+  {
+   "env": {},
+   "error": "MYCELIC_ADMIN_TOKEN is required when binding to a non-loopback address"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_PORT": "abc"
+   },
+   "error": "MYCELIC_PORT must be an integer, got 'abc'"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_PORT": "0"
+   },
+   "error": "MYCELIC_PORT must be >= 1, got 0"
+  },
+  {
+   "env": {
+    "MYCELIC_ADMIN_TOKEN": "short"
+   },
+   "error": "MYCELIC_ADMIN_TOKEN must be at least 32 characters (openssl rand -hex 32)"
+  },
+  {
+   "env": {
+    "MYCELIC_ADMIN_TOKEN": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   "settings": {
+    "host": "0.0.0.0",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": "set",
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_ADMIN_TOKEN": "change-me-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   "error": "MYCELIC_ADMIN_TOKEN looks like a placeholder; generate one with: openssl rand -hex 32"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "localhost",
+    "MYCELIC_NATS_URL": "http://nats:4222"
+   },
+   "error": "MYCELIC_NATS_URL must start with nats://, tls://, ws:// or wss://"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "::1",
+    "MYCELIC_NATS_URL": "nats://user:pw@nats:4222"
+   },
+   "error": "do not put credentials in MYCELIC_NATS_URL; use MYCELIC_NATS_USER / MYCELIC_NATS_PASSWORD"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_NATS_URL": ""
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_EVENT_SIGNING_KEY": "short"
+   },
+   "error": "MYCELIC_EVENT_SIGNING_KEY must be at least 32 characters (openssl rand -hex 32)"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_EVENT_SIGNING_KEY": "ExAmPlekkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+   },
+   "error": "MYCELIC_EVENT_SIGNING_KEY looks like a placeholder; generate one with: openssl rand -hex 32"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_NATS_PASSWORD": "placeholder"
+   },
+   "error": "MYCELIC_NATS_PASSWORD looks like a placeholder; generate one with: openssl rand -hex 32"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_METRICS_TOKEN": "REPLACE_ME"
+   },
+   "error": "MYCELIC_METRICS_TOKEN looks like a placeholder; generate one with: openssl rand -hex 32"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_TLS_CERT_FILE": "{rules}"
+   },
+   "error": "MYCELIC_TLS_CERT_FILE and MYCELIC_TLS_KEY_FILE must be set together"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_TLS_CERT_FILE": "{rules}",
+    "MYCELIC_TLS_KEY_FILE": "/nonexistent/key.pem"
+   },
+   "error": "MYCELIC_TLS_KEY_FILE points to a file that does not exist: /nonexistent/key.pem"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_RULES_FILE": "{rules}"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": "{rules}",
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_RULES_FILE": "/nonexistent/rules.json"
+   },
+   "error": "MYCELIC_RULES_FILE points to a file that does not exist: /nonexistent/rules.json"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_PUBLISH_INTERVAL_SECONDS": "0.001"
+   },
+   "error": "MYCELIC_PUBLISH_INTERVAL_SECONDS must be >= 0.01, got 0.001"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_PUBLISH_INTERVAL_SECONDS": "x"
+   },
+   "error": "MYCELIC_PUBLISH_INTERVAL_SECONDS must be a number, got 'x'"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_RATE_LIMIT_RPS": "-1"
+   },
+   "error": "MYCELIC_RATE_LIMIT_RPS must be >= 0.0, got -1.0"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_RATE_LIMIT_RPS": "2.5",
+    "MYCELIC_RATE_LIMIT_BURST": "7"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 2.5,
+    "rate_limit_burst": 7,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_MAX_BODY_BYTES": "100"
+   },
+   "error": "MYCELIC_MAX_BODY_BYTES must be >= 1024, got 100"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_TRUST_PROXY_HEADERS": "YES",
+    "MYCELIC_READY_REQUIRES_NATS": "on",
+    "MYCELIC_ALLOWED_HOSTS": " a.example.com, ,b.example.com ",
+    "MYCELIC_CORS_ORIGINS": "https://x"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": true,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [
+     "a.example.com",
+     "b.example.com"
+    ],
+    "cors_origins": [
+     "https://x"
+    ],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": true,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_TRUST_PROXY_HEADERS": "nope"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_LOG_LEVEL": "debug",
+    "MYCELIC_NATS_MAX_BYTES": "-5"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "DEBUG",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -5,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_NATS_MAX_AGE_SECONDS": "-1"
+   },
+   "error": "MYCELIC_NATS_MAX_AGE_SECONDS must be >= 0, got -1"
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_PORT": " 8081"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8081,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_PORT": "1_000"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 1000,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_PUBLISH_INTERVAL_SECONDS": "1e-1"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.1,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_PUBLISH_INTERVAL_SECONDS": " inf"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": Infinity,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "127.0.0.1",
+    "MYCELIC_NATS_URL": "tls://nats:4222",
+    "MYCELIC_NATS_TOKEN": "t"
+   },
+   "settings": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "db_path": "/data/mycelic.db",
+    "instance_id": "mycelic-main",
+    "log_level": "INFO",
+    "nats_url": "tls://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": "set",
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": null,
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  },
+  {
+   "env": {
+    "MYCELIC_HOST": "0.0.0.0",
+    "MYCELIC_ADMIN_TOKEN": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "MYCELIC_DB_PATH": "/tmp/x.db",
+    "MYCELIC_INSTANCE_ID": "i"
+   },
+   "settings": {
+    "host": "0.0.0.0",
+    "port": 8080,
+    "db_path": "/tmp/x.db",
+    "instance_id": "i",
+    "log_level": "INFO",
+    "nats_url": "nats://nats:4222",
+    "nats_user": null,
+    "nats_password": null,
+    "nats_token": null,
+    "nats_ca_file": null,
+    "nats_stream": "MYCELIC",
+    "nats_consumer": "mycelic-main",
+    "nats_max_age_seconds": 0,
+    "nats_max_bytes": -1,
+    "nats_duplicate_window_seconds": 7200,
+    "nats_ack_wait_seconds": 30,
+    "nats_max_deliver": 8,
+    "publish_batch": 100,
+    "publish_interval_seconds": 0.2,
+    "consume_batch": 1,
+    "admin_token": "set",
+    "metrics_token": null,
+    "ready_requires_nats": false,
+    "tls_cert_file": null,
+    "tls_key_file": null,
+    "allowed_hosts": [],
+    "cors_origins": [],
+    "rate_limit_rps": 50.0,
+    "rate_limit_burst": 100,
+    "max_body_bytes": 1048576,
+    "max_text_chars": 4000,
+    "max_batch": 100,
+    "max_event_bytes": 262144,
+    "trust_proxy_headers": false,
+    "trusted_proxy_hops": 1,
+    "audit_retention_days": 90,
+    "event_signing_key": null,
+    "min_support": 2,
+    "rules_file": null,
+    "public_url": null
+   }
+  }
+ ]
+}

@@ -20,3 +20,6 @@ research/mycelic/artifacts/hyp_features_*.jsonl
 
 # rows a rerun sets aside when v1/ is already archived (research/mycelic/final_rerun.sh)
 research/mycelic/artifacts/previous/
+
+# Rust build output
+/target/

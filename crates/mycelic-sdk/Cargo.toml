@@ -1,0 +1,24 @@
+[package]
+name = "mycelic-sdk"
+description = "Agent side of Mycelic: HTTP client, agent-local memory, reference agent process (no server dependencies)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish = false
+
+[[bin]]
+name = "mycelic-agent"
+path = "src/bin/mycelic-agent.rs"
+
+[dependencies]
+chrono.workspace = true
+clap.workspace = true
+rusqlite.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+ureq.workspace = true
+uuid.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

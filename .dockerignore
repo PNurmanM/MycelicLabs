@@ -1,13 +1,11 @@
 .git
-.venv
-**/__pycache__
-**/*.pyc
-.pytest_cache
 .context/
+target/
+crates/*/tests/
 research/
 docs/
 demo/
-tests/
+scripts/
 deploy/mycelic/.env
 *.db
 *.db-wal

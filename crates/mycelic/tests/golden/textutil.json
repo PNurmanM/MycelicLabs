@@ -1,0 +1,3074 @@
+{
+ "_generated_by": "crates/mycelic/tests/golden/generate_from_python.py against the Python implementation at ace3efb",
+ "cases": [
+  {
+   "text": "",
+   "tokens": [],
+   "tokens_nostem": [],
+   "tokens_nonum": [],
+   "fold": "",
+   "normalize_ws": ""
+  },
+  {
+   "text": "   ",
+   "tokens": [],
+   "tokens_nostem": [],
+   "tokens_nonum": [],
+   "fold": "   ",
+   "normalize_ws": ""
+  },
+  {
+   "text": "The port of Rotterdam terminal 3 strike announced for weeks 41-43.",
+   "tokens": [
+    "port",
+    "rotterdam",
+    "terminal",
+    "3",
+    "strike",
+    "announc",
+    "week",
+    "41-43"
+   ],
+   "tokens_nostem": [
+    "port",
+    "rotterdam",
+    "terminal",
+    "3",
+    "strike",
+    "announced",
+    "weeks",
+    "41-43"
+   ],
+   "tokens_nonum": [
+    "port",
+    "rotterdam",
+    "terminal",
+    "strike",
+    "announc",
+    "week",
+    "41-43"
+   ],
+   "fold": "the port of rotterdam terminal 3 strike announced for weeks 41-43.",
+   "normalize_ws": "The port of Rotterdam terminal 3 strike announced for weeks 41-43."
+  },
+  {
+   "text": "Zürich naïve café façade Ærø straße İstanbul ﬁnance Ⅻ x² ＡＢＣ résumé",
+   "tokens": [
+    "zurich",
+    "naive",
+    "cafe",
+    "facade",
+    "stra",
+    "istanbul",
+    "finance",
+    "xii",
+    "abc",
+    "resume"
+   ],
+   "tokens_nostem": [
+    "zurich",
+    "naive",
+    "cafe",
+    "facade",
+    "stra",
+    "istanbul",
+    "finance",
+    "xii",
+    "abc",
+    "resume"
+   ],
+   "tokens_nonum": [
+    "zurich",
+    "naive",
+    "cafe",
+    "facade",
+    "stra",
+    "istanbul",
+    "finance",
+    "xii",
+    "abc",
+    "resume"
+   ],
+   "fold": "zurich naive cafe facade ærø straße istanbul finance xii x2 abc resume",
+   "normalize_ws": "Zürich naïve café façade Ærø straße İstanbul ﬁnance Ⅻ x² ＡＢＣ résumé"
+  },
+  {
+   "text": "rock'n'roll o'neill's children's it's its don't can't let's 'quoted' --dash-- -lead trail-",
+   "tokens": [
+    "rocknroll",
+    "oneill",
+    "children",
+    "dont",
+    "cant",
+    "quot",
+    "dash",
+    "lead",
+    "trail"
+   ],
+   "tokens_nostem": [
+    "rocknroll",
+    "oneill",
+    "children",
+    "dont",
+    "cant",
+    "quoted",
+    "dash",
+    "lead",
+    "trail"
+   ],
+   "tokens_nonum": [
+    "rocknroll",
+    "oneill",
+    "children",
+    "dont",
+    "cant",
+    "quot",
+    "dash",
+    "lead",
+    "trail"
+   ],
+   "fold": "rock'n'roll o'neill's children's it's its don't can't let's 'quoted' --dash-- -lead trail-",
+   "normalize_ws": "rock'n'roll o'neill's children's it's its don't can't let's 'quoted' --dash-- -lead trail-"
+  },
+  {
+   "text": "1990s 3d e-mail re-entry a1 x ab abc 42 7 000 0 12-34 'tis",
+   "tokens": [
+    "1990",
+    "e-mail",
+    "re-entry",
+    "abc",
+    "42",
+    "7",
+    "000",
+    "0",
+    "12-34",
+    "tis"
+   ],
+   "tokens_nostem": [
+    "1990s",
+    "e-mail",
+    "re-entry",
+    "abc",
+    "42",
+    "7",
+    "000",
+    "0",
+    "12-34",
+    "tis"
+   ],
+   "tokens_nonum": [
+    "1990",
+    "e-mail",
+    "re-entry",
+    "abc",
+    "000",
+    "12-34",
+    "tis"
+   ],
+   "fold": "1990s 3d e-mail re-entry a1 x ab abc 42 7 000 0 12-34 'tis",
+   "normalize_ws": "1990s 3d e-mail re-entry a1 x ab abc 42 7 000 0 12-34 'tis"
+  },
+  {
+   "text": "Running lives moved cities hoping stopped planned fixing hopping tries dies agreed played buses boxes buzzes wishes",
+   "tokens": [
+    "run",
+    "live",
+    "move",
+    "city",
+    "hope",
+    "stop",
+    "plan",
+    "fix",
+    "hop",
+    "try",
+    "die",
+    "agre",
+    "play",
+    "bus",
+    "box",
+    "buzz",
+    "wish"
+   ],
+   "tokens_nostem": [
+    "running",
+    "lives",
+    "moved",
+    "cities",
+    "hoping",
+    "stopped",
+    "planned",
+    "fixing",
+    "hopping",
+    "tries",
+    "dies",
+    "agreed",
+    "played",
+    "buses",
+    "boxes",
+    "buzzes",
+    "wishes"
+   ],
+   "tokens_nonum": [
+    "run",
+    "live",
+    "move",
+    "city",
+    "hope",
+    "stop",
+    "plan",
+    "fix",
+    "hop",
+    "try",
+    "die",
+    "agre",
+    "play",
+    "bus",
+    "box",
+    "buzz",
+    "wish"
+   ],
+   "fold": "running lives moved cities hoping stopped planned fixing hopping tries dies agreed played buses boxes buzzes wishes",
+   "normalize_ws": "Running lives moved cities hoping stopped planned fixing hopping tries dies agreed played buses boxes buzzes wishes"
+  },
+  {
+   "text": "Kessler Antriebe confirms roughly two weeks of SD-9 inventory left; no second source qualified.",
+   "tokens": [
+    "kessler",
+    "antriebe",
+    "confirm",
+    "roughly",
+    "two",
+    "week",
+    "sd-9",
+    "inventory",
+    "left",
+    "second",
+    "source",
+    "qualifi"
+   ],
+   "tokens_nostem": [
+    "kessler",
+    "antriebe",
+    "confirms",
+    "roughly",
+    "two",
+    "weeks",
+    "sd-9",
+    "inventory",
+    "left",
+    "second",
+    "source",
+    "qualified"
+   ],
+   "tokens_nonum": [
+    "kessler",
+    "antriebe",
+    "confirm",
+    "roughly",
+    "two",
+    "week",
+    "sd-9",
+    "inventory",
+    "left",
+    "second",
+    "source",
+    "qualifi"
+   ],
+   "fold": "kessler antriebe confirms roughly two weeks of sd-9 inventory left; no second source qualified.",
+   "normalize_ws": "Kessler Antriebe confirms roughly two weeks of SD-9 inventory left; no second source qualified."
+  },
+  {
+   "text": "Helios Automation committed to 40 RX-4 arms for November; every RX-4 uses an SD-9 drive.",
+   "tokens": [
+    "helio",
+    "automation",
+    "commit",
+    "40",
+    "rx-4",
+    "arm",
+    "november",
+    "every",
+    "rx-4",
+    "us",
+    "sd-9",
+    "drive"
+   ],
+   "tokens_nostem": [
+    "helios",
+    "automation",
+    "committed",
+    "40",
+    "rx-4",
+    "arms",
+    "november",
+    "every",
+    "rx-4",
+    "uses",
+    "sd-9",
+    "drive"
+   ],
+   "tokens_nonum": [
+    "helio",
+    "automation",
+    "commit",
+    "rx-4",
+    "arm",
+    "november",
+    "every",
+    "rx-4",
+    "us",
+    "sd-9",
+    "drive"
+   ],
+   "fold": "helios automation committed to 40 rx-4 arms for november; every rx-4 uses an sd-9 drive.",
+   "normalize_ws": "Helios Automation committed to 40 RX-4 arms for November; every RX-4 uses an SD-9 drive."
+  },
+  {
+   "text": "yeah thanks sounds good great awesome okay well still the and for are but not",
+   "tokens": [],
+   "tokens_nostem": [],
+   "tokens_nonum": [],
+   "fold": "yeah thanks sounds good great awesome okay well still the and for are but not",
+   "normalize_ws": "yeah thanks sounds good great awesome okay well still the and for are but not"
+  },
+  {
+   "text": "ÀÉÎÕÜ àéîõü ÇÑ çñ Œuvre œuvre Ðð Þþ ß ı Ĳ ĳ ŉ ǅ",
+   "tokens": [
+    "aeiou",
+    "aeiou",
+    "uvre",
+    "uvre"
+   ],
+   "tokens_nostem": [
+    "aeiou",
+    "aeiou",
+    "uvre",
+    "uvre"
+   ],
+   "tokens_nonum": [
+    "aeiou",
+    "aeiou",
+    "uvre",
+    "uvre"
+   ],
+   "fold": "aeiou aeiou cn cn œuvre œuvre ðð þþ ß ı ij ij ʼn dz",
+   "normalize_ws": "ÀÉÎÕÜ àéîõü ÇÑ çñ Œuvre œuvre Ðð Þþ ß ı Ĳ ĳ ŉ ǅ"
+  },
+  {
+   "text": "tab\tnew\nline\r\nmixed nbsp emspace​zw",
+   "tokens": [
+    "tab",
+    "new",
+    "line",
+    "mix",
+    "nbsp",
+    "emspace"
+   ],
+   "tokens_nostem": [
+    "tab",
+    "new",
+    "line",
+    "mixed",
+    "nbsp",
+    "emspace"
+   ],
+   "tokens_nonum": [
+    "tab",
+    "new",
+    "line",
+    "mix",
+    "nbsp",
+    "emspace"
+   ],
+   "fold": "tab\tnew\nline\r\nmixed nbsp emspace​zw",
+   "normalize_ws": "tab new line mixed nbsp emspace​zw"
+  },
+  {
+   "text": "UPPER lower MiXeD caseS CASES Cases",
+   "tokens": [
+    "upper",
+    "lower",
+    "mix",
+    "cas",
+    "cas",
+    "cas"
+   ],
+   "tokens_nostem": [
+    "upper",
+    "lower",
+    "mixed",
+    "cases",
+    "cases",
+    "cases"
+   ],
+   "tokens_nonum": [
+    "upper",
+    "lower",
+    "mix",
+    "cas",
+    "cas",
+    "cas"
+   ],
+   "fold": "upper lower mixed cases cases cases",
+   "normalize_ws": "UPPER lower MiXeD caseS CASES Cases"
+  },
+  {
+   "text": "agreed fed bled sled need speed hoped hated rated fizzed fished",
+   "tokens": [
+    "agre",
+    "fed",
+    "bled",
+    "sled",
+    "need",
+    "spe",
+    "hope",
+    "hate",
+    "rate",
+    "fizz",
+    "fish"
+   ],
+   "tokens_nostem": [
+    "agreed",
+    "fed",
+    "bled",
+    "sled",
+    "need",
+    "speed",
+    "hoped",
+    "hated",
+    "rated",
+    "fizzed",
+    "fished"
+   ],
+   "tokens_nonum": [
+    "agre",
+    "fed",
+    "bled",
+    "sled",
+    "need",
+    "spe",
+    "hope",
+    "hate",
+    "rate",
+    "fizz",
+    "fish"
+   ],
+   "fold": "agreed fed bled sled need speed hoped hated rated fizzed fished",
+   "normalize_ws": "agreed fed bled sled need speed hoped hated rated fizzed fished"
+  },
+  {
+   "text": "agrees sees glasses misses classes passes kisses",
+   "tokens": [
+    "agree",
+    "see",
+    "glass",
+    "miss",
+    "class",
+    "pass",
+    "kiss"
+   ],
+   "tokens_nostem": [
+    "agrees",
+    "sees",
+    "glasses",
+    "misses",
+    "classes",
+    "passes",
+    "kisses"
+   ],
+   "tokens_nonum": [
+    "agree",
+    "see",
+    "glass",
+    "miss",
+    "class",
+    "pass",
+    "kiss"
+   ],
+   "fold": "agrees sees glasses misses classes passes kisses",
+   "normalize_ws": "agrees sees glasses misses classes passes kisses"
+  },
+  {
+   "text": "caresses ponies ties caress cats running sing ring ding king",
+   "tokens": [
+    "caress",
+    "pony",
+    "tie",
+    "caress",
+    "cat",
+    "run",
+    "sing",
+    "ring",
+    "ding",
+    "king"
+   ],
+   "tokens_nostem": [
+    "caresses",
+    "ponies",
+    "ties",
+    "caress",
+    "cats",
+    "running",
+    "sing",
+    "ring",
+    "ding",
+    "king"
+   ],
+   "tokens_nonum": [
+    "caress",
+    "pony",
+    "tie",
+    "caress",
+    "cat",
+    "run",
+    "sing",
+    "ring",
+    "ding",
+    "king"
+   ],
+   "fold": "caresses ponies ties caress cats running sing ring ding king",
+   "normalize_ws": "caresses ponies ties caress cats running sing ring ding king"
+  },
+  {
+   "text": "ssss's x's ab's abc's '' ''' -'- '-a-' a'-'b",
+   "tokens": [
+    "ssss",
+    "abc",
+    "a'-b"
+   ],
+   "tokens_nostem": [
+    "ssss",
+    "abc",
+    "a'-b"
+   ],
+   "tokens_nonum": [
+    "ssss",
+    "abc",
+    "a'-b"
+   ],
+   "fold": "ssss's x's ab's abc's '' ''' -'- '-a-' a'-'b",
+   "normalize_ws": "ssss's x's ab's abc's '' ''' -'- '-a-' a'-'b"
+  },
+  {
+   "text": "co-operate co--operate 'n' n' 'n -- '' a-b-c-d",
+   "tokens": [
+    "co-operate",
+    "co--operate",
+    "a-b-c-d"
+   ],
+   "tokens_nostem": [
+    "co-operate",
+    "co--operate",
+    "a-b-c-d"
+   ],
+   "tokens_nonum": [
+    "co-operate",
+    "co--operate",
+    "a-b-c-d"
+   ],
+   "fold": "co-operate co--operate 'n' n' 'n -- '' a-b-c-d",
+   "normalize_ws": "co-operate co--operate 'n' n' 'n -- '' a-b-c-d"
+  },
+  {
+   "text": "ÅNGSTRÖM Kelvin K Ω ohm µ micro ﬀ ﬃ ﬄ ﬅ ﬆ",
+   "tokens": [
+    "angstrom",
+    "kelvin",
+    "ohm",
+    "micro",
+    "ffi",
+    "ffl"
+   ],
+   "tokens_nostem": [
+    "angstrom",
+    "kelvin",
+    "ohm",
+    "micro",
+    "ffi",
+    "ffl"
+   ],
+   "tokens_nonum": [
+    "angstrom",
+    "kelvin",
+    "ohm",
+    "micro",
+    "ffi",
+    "ffl"
+   ],
+   "fold": "angstrom kelvin k ω ohm μ micro ff ffi ffl st st",
+   "normalize_ws": "ÅNGSTRÖM Kelvin K Ω ohm µ micro ﬀ ﬃ ﬄ ﬅ ﬆ"
+  },
+  {
+   "text": "日本語 中文 한국어 العربية עברית ελληνικά русский",
+   "tokens": [],
+   "tokens_nostem": [],
+   "tokens_nonum": [],
+   "fold": "日本語 中文 한국어 العربية עברית ελληνικα русскии",
+   "normalize_ws": "日本語 中文 한국어 العربية עברית ελληνικά русский"
+  },
+  {
+   "text": "Σίσυφος ΣΑΣ σας ΟΔΟΣ",
+   "tokens": [],
+   "tokens_nostem": [],
+   "tokens_nonum": [],
+   "fold": "σισυφος σας σας οδος",
+   "normalize_ws": "Σίσυφος ΣΑΣ σας ΟΔΟΣ"
+  },
+  {
+   "text": "emoji 🚀 rocket 👍🏽 thumbs ❤️ heart",
+   "tokens": [
+    "emoji",
+    "rocket",
+    "thumb",
+    "heart"
+   ],
+   "tokens_nostem": [
+    "emoji",
+    "rocket",
+    "thumbs",
+    "heart"
+   ],
+   "tokens_nonum": [
+    "emoji",
+    "rocket",
+    "thumb",
+    "heart"
+   ],
+   "fold": "emoji 🚀 rocket 👍🏽 thumbs ❤️ heart",
+   "normalize_ws": "emoji 🚀 rocket 👍🏽 thumbs ❤️ heart"
+  },
+  {
+   "text": "supply:sd-9/transport supply:sd-9/supplier strategy:supply-risk",
+   "tokens": [
+    "supply",
+    "sd-9",
+    "transport",
+    "supply",
+    "sd-9",
+    "supplier",
+    "strategy",
+    "supply-risk"
+   ],
+   "tokens_nostem": [
+    "supply",
+    "sd-9",
+    "transport",
+    "supply",
+    "sd-9",
+    "supplier",
+    "strategy",
+    "supply-risk"
+   ],
+   "tokens_nonum": [
+    "supply",
+    "sd-9",
+    "transport",
+    "supply",
+    "sd-9",
+    "supplier",
+    "strategy",
+    "supply-risk"
+   ],
+   "fold": "supply:sd-9/transport supply:sd-9/supplier strategy:supply-risk",
+   "normalize_ws": "supply:sd-9/transport supply:sd-9/supplier strategy:supply-risk"
+  },
+  {
+   "text": "x'''y ab'''cd abc'-'def 'abc' \"abc\" «abc» ‘abc’ “abc”",
+   "tokens": [
+    "x''y",
+    "ab''cd",
+    "abc'-def",
+    "abc",
+    "abc",
+    "abc",
+    "abc",
+    "abc"
+   ],
+   "tokens_nostem": [
+    "x''y",
+    "ab''cd",
+    "abc'-def",
+    "abc",
+    "abc",
+    "abc",
+    "abc",
+    "abc"
+   ],
+   "tokens_nonum": [
+    "x''y",
+    "ab''cd",
+    "abc'-def",
+    "abc",
+    "abc",
+    "abc",
+    "abc",
+    "abc"
+   ],
+   "fold": "x'''y ab'''cd abc'-'def 'abc' \"abc\" «abc» ‘abc’ “abc”",
+   "normalize_ws": "x'''y ab'''cd abc'-'def 'abc' \"abc\" «abc» ‘abc’ “abc”"
+  },
+  {
+   "text": "drive invoice 'quoted' terminal carrier it's supplier recall 1990s terminal moved.",
+   "tokens": [
+    "drive",
+    "invoice",
+    "quot",
+    "terminal",
+    "carrier",
+    "supplier",
+    "recall",
+    "1990",
+    "terminal",
+    "move"
+   ],
+   "tokens_nostem": [
+    "drive",
+    "invoice",
+    "quoted",
+    "terminal",
+    "carrier",
+    "supplier",
+    "recall",
+    "1990s",
+    "terminal",
+    "moved"
+   ],
+   "tokens_nonum": [
+    "drive",
+    "invoice",
+    "quot",
+    "terminal",
+    "carrier",
+    "supplier",
+    "recall",
+    "1990",
+    "terminal",
+    "move"
+   ],
+   "fold": "drive invoice 'quoted' terminal carrier it's supplier recall 1990s terminal moved.",
+   "normalize_ws": "drive invoice 'quoted' terminal carrier it's supplier recall 1990s terminal moved."
+  },
+  {
+   "text": "ETA price?",
+   "tokens": [
+    "eta",
+    "price"
+   ],
+   "tokens_nostem": [
+    "eta",
+    "price"
+   ],
+   "tokens_nonum": [
+    "eta",
+    "price"
+   ],
+   "fold": "eta price?",
+   "normalize_ws": "ETA price?"
+  },
+  {
+   "text": "forecast ETA o'neill's?",
+   "tokens": [
+    "forecast",
+    "eta",
+    "oneill"
+   ],
+   "tokens_nostem": [
+    "forecast",
+    "eta",
+    "oneill"
+   ],
+   "tokens_nonum": [
+    "forecast",
+    "eta",
+    "oneill"
+   ],
+   "fold": "forecast eta o'neill's?",
+   "normalize_ws": "forecast ETA o'neill's?"
+  },
+  {
+   "text": "re-entry stock.",
+   "tokens": [
+    "re-entry",
+    "stock"
+   ],
+   "tokens_nostem": [
+    "re-entry",
+    "stock"
+   ],
+   "tokens_nonum": [
+    "re-entry",
+    "stock"
+   ],
+   "fold": "re-entry stock.",
+   "normalize_ws": "re-entry stock."
+  },
+  {
+   "text": "re-entry 1990s?",
+   "tokens": [
+    "re-entry",
+    "1990"
+   ],
+   "tokens_nostem": [
+    "re-entry",
+    "1990s"
+   ],
+   "tokens_nonum": [
+    "re-entry",
+    "1990"
+   ],
+   "fold": "re-entry 1990s?",
+   "normalize_ws": "re-entry 1990s?"
+  },
+  {
+   "text": "delay Rotterdam;",
+   "tokens": [
+    "delay",
+    "rotterdam"
+   ],
+   "tokens_nostem": [
+    "delay",
+    "rotterdam"
+   ],
+   "tokens_nonum": [
+    "delay",
+    "rotterdam"
+   ],
+   "fold": "delay rotterdam;",
+   "normalize_ws": "delay Rotterdam;"
+  },
+  {
+   "text": "APAC contract drive it's stock;",
+   "tokens": [
+    "apac",
+    "contract",
+    "drive",
+    "stock"
+   ],
+   "tokens_nostem": [
+    "apac",
+    "contract",
+    "drive",
+    "stock"
+   ],
+   "tokens_nonum": [
+    "apac",
+    "contract",
+    "drive",
+    "stock"
+   ],
+   "fold": "apac contract drive it's stock;",
+   "normalize_ws": "APAC contract drive it's stock;"
+  },
+  {
+   "text": "o'neill's a customer supplier 1990s re-entry naïve November recall supplier;",
+   "tokens": [
+    "oneill",
+    "customer",
+    "supplier",
+    "1990",
+    "re-entry",
+    "naive",
+    "november",
+    "recall",
+    "supplier"
+   ],
+   "tokens_nostem": [
+    "oneill",
+    "customer",
+    "supplier",
+    "1990s",
+    "re-entry",
+    "naive",
+    "november",
+    "recall",
+    "supplier"
+   ],
+   "tokens_nonum": [
+    "oneill",
+    "customer",
+    "supplier",
+    "1990",
+    "re-entry",
+    "naive",
+    "november",
+    "recall",
+    "supplier"
+   ],
+   "fold": "o'neill's a customer supplier 1990s re-entry naive november recall supplier;",
+   "normalize_ws": "o'neill's a customer supplier 1990s re-entry naïve November recall supplier;"
+  },
+  {
+   "text": "re-entry terminal Zürich.",
+   "tokens": [
+    "re-entry",
+    "terminal",
+    "zurich"
+   ],
+   "tokens_nostem": [
+    "re-entry",
+    "terminal",
+    "zurich"
+   ],
+   "tokens_nonum": [
+    "re-entry",
+    "terminal",
+    "zurich"
+   ],
+   "fold": "re-entry terminal zurich.",
+   "normalize_ws": "re-entry terminal Zürich."
+  },
+  {
+   "text": "a it's price inventory and 1990s and recall warehouse forecast customer b forecast ETA re-entry warehouse;",
+   "tokens": [
+    "price",
+    "inventory",
+    "1990",
+    "recall",
+    "warehouse",
+    "forecast",
+    "customer",
+    "forecast",
+    "eta",
+    "re-entry",
+    "warehouse"
+   ],
+   "tokens_nostem": [
+    "price",
+    "inventory",
+    "1990s",
+    "recall",
+    "warehouse",
+    "forecast",
+    "customer",
+    "forecast",
+    "eta",
+    "re-entry",
+    "warehouse"
+   ],
+   "tokens_nonum": [
+    "price",
+    "inventory",
+    "1990",
+    "recall",
+    "warehouse",
+    "forecast",
+    "customer",
+    "forecast",
+    "eta",
+    "re-entry",
+    "warehouse"
+   ],
+   "fold": "a it's price inventory and 1990s and recall warehouse forecast customer b forecast eta re-entry warehouse;",
+   "normalize_ws": "a it's price inventory and 1990s and recall warehouse forecast customer b forecast ETA re-entry warehouse;"
+  },
+  {
+   "text": "quality the APAC 42 carrier stock moved contract order quality drive running contract Rotterdam --x-- carrier;",
+   "tokens": [
+    "quality",
+    "apac",
+    "42",
+    "carrier",
+    "stock",
+    "move",
+    "contract",
+    "order",
+    "quality",
+    "drive",
+    "run",
+    "contract",
+    "rotterdam",
+    "carrier"
+   ],
+   "tokens_nostem": [
+    "quality",
+    "apac",
+    "42",
+    "carrier",
+    "stock",
+    "moved",
+    "contract",
+    "order",
+    "quality",
+    "drive",
+    "running",
+    "contract",
+    "rotterdam",
+    "carrier"
+   ],
+   "tokens_nonum": [
+    "quality",
+    "apac",
+    "carrier",
+    "stock",
+    "move",
+    "contract",
+    "order",
+    "quality",
+    "drive",
+    "run",
+    "contract",
+    "rotterdam",
+    "carrier"
+   ],
+   "fold": "quality the apac 42 carrier stock moved contract order quality drive running contract rotterdam --x-- carrier;",
+   "normalize_ws": "quality the APAC 42 carrier stock moved contract order quality drive running contract Rotterdam --x-- carrier;"
+  },
+  {
+   "text": "quality b defect 42 running 1990s and carrier ETA EMEA for",
+   "tokens": [
+    "quality",
+    "defect",
+    "42",
+    "run",
+    "1990",
+    "carrier",
+    "eta",
+    "emea"
+   ],
+   "tokens_nostem": [
+    "quality",
+    "defect",
+    "42",
+    "running",
+    "1990s",
+    "carrier",
+    "eta",
+    "emea"
+   ],
+   "tokens_nonum": [
+    "quality",
+    "defect",
+    "run",
+    "1990",
+    "carrier",
+    "eta",
+    "emea"
+   ],
+   "fold": "quality b defect 42 running 1990s and carrier eta emea for",
+   "normalize_ws": "quality b defect 42 running 1990s and carrier ETA EMEA for"
+  },
+  {
+   "text": "b warehouse;",
+   "tokens": [
+    "warehouse"
+   ],
+   "tokens_nostem": [
+    "warehouse"
+   ],
+   "tokens_nonum": [
+    "warehouse"
+   ],
+   "fold": "b warehouse;",
+   "normalize_ws": "b warehouse;"
+  },
+  {
+   "text": "APAC audit --x-- defect strike and defect order Zürich stock running terminal shipment APAC servo.",
+   "tokens": [
+    "apac",
+    "audit",
+    "defect",
+    "strike",
+    "defect",
+    "order",
+    "zurich",
+    "stock",
+    "run",
+    "terminal",
+    "shipment",
+    "apac",
+    "servo"
+   ],
+   "tokens_nostem": [
+    "apac",
+    "audit",
+    "defect",
+    "strike",
+    "defect",
+    "order",
+    "zurich",
+    "stock",
+    "running",
+    "terminal",
+    "shipment",
+    "apac",
+    "servo"
+   ],
+   "tokens_nonum": [
+    "apac",
+    "audit",
+    "defect",
+    "strike",
+    "defect",
+    "order",
+    "zurich",
+    "stock",
+    "run",
+    "terminal",
+    "shipment",
+    "apac",
+    "servo"
+   ],
+   "fold": "apac audit --x-- defect strike and defect order zurich stock running terminal shipment apac servo.",
+   "normalize_ws": "APAC audit --x-- defect strike and defect order Zürich stock running terminal shipment APAC servo."
+  },
+  {
+   "text": "invoice running ETA order the invoice o'neill's EMEA servo price o'neill's EMEA contract!",
+   "tokens": [
+    "invoice",
+    "run",
+    "eta",
+    "order",
+    "invoice",
+    "oneill",
+    "emea",
+    "servo",
+    "price",
+    "oneill",
+    "emea",
+    "contract"
+   ],
+   "tokens_nostem": [
+    "invoice",
+    "running",
+    "eta",
+    "order",
+    "invoice",
+    "oneill",
+    "emea",
+    "servo",
+    "price",
+    "oneill",
+    "emea",
+    "contract"
+   ],
+   "tokens_nonum": [
+    "invoice",
+    "run",
+    "eta",
+    "order",
+    "invoice",
+    "oneill",
+    "emea",
+    "servo",
+    "price",
+    "oneill",
+    "emea",
+    "contract"
+   ],
+   "fold": "invoice running eta order the invoice o'neill's emea servo price o'neill's emea contract!",
+   "normalize_ws": "invoice running ETA order the invoice o'neill's EMEA servo price o'neill's EMEA contract!"
+  },
+  {
+   "text": "delay drive ETA customer drive delay --x-- delay port running 1990s customer region!",
+   "tokens": [
+    "delay",
+    "drive",
+    "eta",
+    "customer",
+    "drive",
+    "delay",
+    "delay",
+    "port",
+    "run",
+    "1990",
+    "customer",
+    "region"
+   ],
+   "tokens_nostem": [
+    "delay",
+    "drive",
+    "eta",
+    "customer",
+    "drive",
+    "delay",
+    "delay",
+    "port",
+    "running",
+    "1990s",
+    "customer",
+    "region"
+   ],
+   "tokens_nonum": [
+    "delay",
+    "drive",
+    "eta",
+    "customer",
+    "drive",
+    "delay",
+    "delay",
+    "port",
+    "run",
+    "1990",
+    "customer",
+    "region"
+   ],
+   "fold": "delay drive eta customer drive delay --x-- delay port running 1990s customer region!",
+   "normalize_ws": "delay drive ETA customer drive delay --x-- delay port running 1990s customer region!"
+  },
+  {
+   "text": "drive?",
+   "tokens": [
+    "drive"
+   ],
+   "tokens_nostem": [
+    "drive"
+   ],
+   "tokens_nonum": [
+    "drive"
+   ],
+   "fold": "drive?",
+   "normalize_ws": "drive?"
+  },
+  {
+   "text": "recall Zürich re-entry inventory servo b moved Zürich 'quoted' a terminal and a o'neill's invoice invoice invoice invoice",
+   "tokens": [
+    "recall",
+    "zurich",
+    "re-entry",
+    "inventory",
+    "servo",
+    "move",
+    "zurich",
+    "quot",
+    "terminal",
+    "oneill",
+    "invoice",
+    "invoice",
+    "invoice",
+    "invoice"
+   ],
+   "tokens_nostem": [
+    "recall",
+    "zurich",
+    "re-entry",
+    "inventory",
+    "servo",
+    "moved",
+    "zurich",
+    "quoted",
+    "terminal",
+    "oneill",
+    "invoice",
+    "invoice",
+    "invoice",
+    "invoice"
+   ],
+   "tokens_nonum": [
+    "recall",
+    "zurich",
+    "re-entry",
+    "inventory",
+    "servo",
+    "move",
+    "zurich",
+    "quot",
+    "terminal",
+    "oneill",
+    "invoice",
+    "invoice",
+    "invoice",
+    "invoice"
+   ],
+   "fold": "recall zurich re-entry inventory servo b moved zurich 'quoted' a terminal and a o'neill's invoice invoice invoice invoice",
+   "normalize_ws": "recall Zürich re-entry inventory servo b moved Zürich 'quoted' a terminal and a o'neill's invoice invoice invoice invoice"
+  },
+  {
+   "text": "naïve invoice terminal November carrier shipment the order stock quality 42 terminal supplier port re-entry drive;",
+   "tokens": [
+    "naive",
+    "invoice",
+    "terminal",
+    "november",
+    "carrier",
+    "shipment",
+    "order",
+    "stock",
+    "quality",
+    "42",
+    "terminal",
+    "supplier",
+    "port",
+    "re-entry",
+    "drive"
+   ],
+   "tokens_nostem": [
+    "naive",
+    "invoice",
+    "terminal",
+    "november",
+    "carrier",
+    "shipment",
+    "order",
+    "stock",
+    "quality",
+    "42",
+    "terminal",
+    "supplier",
+    "port",
+    "re-entry",
+    "drive"
+   ],
+   "tokens_nonum": [
+    "naive",
+    "invoice",
+    "terminal",
+    "november",
+    "carrier",
+    "shipment",
+    "order",
+    "stock",
+    "quality",
+    "terminal",
+    "supplier",
+    "port",
+    "re-entry",
+    "drive"
+   ],
+   "fold": "naive invoice terminal november carrier shipment the order stock quality 42 terminal supplier port re-entry drive;",
+   "normalize_ws": "naïve invoice terminal November carrier shipment the order stock quality 42 terminal supplier port re-entry drive;"
+  },
+  {
+   "text": "recall Zürich strike carrier.",
+   "tokens": [
+    "recall",
+    "zurich",
+    "strike",
+    "carrier"
+   ],
+   "tokens_nostem": [
+    "recall",
+    "zurich",
+    "strike",
+    "carrier"
+   ],
+   "tokens_nonum": [
+    "recall",
+    "zurich",
+    "strike",
+    "carrier"
+   ],
+   "fold": "recall zurich strike carrier.",
+   "normalize_ws": "recall Zürich strike carrier."
+  },
+  {
+   "text": "drive naïve region defect 42 recall for stock stock running and for for!",
+   "tokens": [
+    "drive",
+    "naive",
+    "region",
+    "defect",
+    "42",
+    "recall",
+    "stock",
+    "stock",
+    "run"
+   ],
+   "tokens_nostem": [
+    "drive",
+    "naive",
+    "region",
+    "defect",
+    "42",
+    "recall",
+    "stock",
+    "stock",
+    "running"
+   ],
+   "tokens_nonum": [
+    "drive",
+    "naive",
+    "region",
+    "defect",
+    "recall",
+    "stock",
+    "stock",
+    "run"
+   ],
+   "fold": "drive naive region defect 42 recall for stock stock running and for for!",
+   "normalize_ws": "drive naïve region defect 42 recall for stock stock running and for for!"
+  },
+  {
+   "text": "drive supplier quality!",
+   "tokens": [
+    "drive",
+    "supplier",
+    "quality"
+   ],
+   "tokens_nostem": [
+    "drive",
+    "supplier",
+    "quality"
+   ],
+   "tokens_nonum": [
+    "drive",
+    "supplier",
+    "quality"
+   ],
+   "fold": "drive supplier quality!",
+   "normalize_ws": "drive supplier quality!"
+  },
+  {
+   "text": "b order cities strike shipment cities recall drive b it's strike cities warehouse 'quoted' ETA b!",
+   "tokens": [
+    "order",
+    "city",
+    "strike",
+    "shipment",
+    "city",
+    "recall",
+    "drive",
+    "strike",
+    "city",
+    "warehouse",
+    "quot",
+    "eta"
+   ],
+   "tokens_nostem": [
+    "order",
+    "cities",
+    "strike",
+    "shipment",
+    "cities",
+    "recall",
+    "drive",
+    "strike",
+    "cities",
+    "warehouse",
+    "quoted",
+    "eta"
+   ],
+   "tokens_nonum": [
+    "order",
+    "city",
+    "strike",
+    "shipment",
+    "city",
+    "recall",
+    "drive",
+    "strike",
+    "city",
+    "warehouse",
+    "quot",
+    "eta"
+   ],
+   "fold": "b order cities strike shipment cities recall drive b it's strike cities warehouse 'quoted' eta b!",
+   "normalize_ws": "b order cities strike shipment cities recall drive b it's strike cities warehouse 'quoted' ETA b!"
+  },
+  {
+   "text": "recall order defect delay it's it's moved quality naïve delay Zürich November forecast invoice delay November cities?",
+   "tokens": [
+    "recall",
+    "order",
+    "defect",
+    "delay",
+    "move",
+    "quality",
+    "naive",
+    "delay",
+    "zurich",
+    "november",
+    "forecast",
+    "invoice",
+    "delay",
+    "november",
+    "city"
+   ],
+   "tokens_nostem": [
+    "recall",
+    "order",
+    "defect",
+    "delay",
+    "moved",
+    "quality",
+    "naive",
+    "delay",
+    "zurich",
+    "november",
+    "forecast",
+    "invoice",
+    "delay",
+    "november",
+    "cities"
+   ],
+   "tokens_nonum": [
+    "recall",
+    "order",
+    "defect",
+    "delay",
+    "move",
+    "quality",
+    "naive",
+    "delay",
+    "zurich",
+    "november",
+    "forecast",
+    "invoice",
+    "delay",
+    "november",
+    "city"
+   ],
+   "fold": "recall order defect delay it's it's moved quality naive delay zurich november forecast invoice delay november cities?",
+   "normalize_ws": "recall order defect delay it's it's moved quality naïve delay Zürich November forecast invoice delay November cities?"
+  },
+  {
+   "text": "strike strike EMEA for region November b 42 defect the defect recall",
+   "tokens": [
+    "strike",
+    "strike",
+    "emea",
+    "region",
+    "november",
+    "42",
+    "defect",
+    "defect",
+    "recall"
+   ],
+   "tokens_nostem": [
+    "strike",
+    "strike",
+    "emea",
+    "region",
+    "november",
+    "42",
+    "defect",
+    "defect",
+    "recall"
+   ],
+   "tokens_nonum": [
+    "strike",
+    "strike",
+    "emea",
+    "region",
+    "november",
+    "defect",
+    "defect",
+    "recall"
+   ],
+   "fold": "strike strike emea for region november b 42 defect the defect recall",
+   "normalize_ws": "strike strike EMEA for region November b 42 defect the defect recall"
+  },
+  {
+   "text": "supplier delay for November quality shipment for Zürich;",
+   "tokens": [
+    "supplier",
+    "delay",
+    "november",
+    "quality",
+    "shipment",
+    "zurich"
+   ],
+   "tokens_nostem": [
+    "supplier",
+    "delay",
+    "november",
+    "quality",
+    "shipment",
+    "zurich"
+   ],
+   "tokens_nonum": [
+    "supplier",
+    "delay",
+    "november",
+    "quality",
+    "shipment",
+    "zurich"
+   ],
+   "fold": "supplier delay for november quality shipment for zurich;",
+   "normalize_ws": "supplier delay for November quality shipment for Zürich;"
+  },
+  {
+   "text": "for!",
+   "tokens": [],
+   "tokens_nostem": [],
+   "tokens_nonum": [],
+   "fold": "for!",
+   "normalize_ws": "for!"
+  },
+  {
+   "text": "--x-- stock audit.",
+   "tokens": [
+    "stock",
+    "audit"
+   ],
+   "tokens_nostem": [
+    "stock",
+    "audit"
+   ],
+   "tokens_nonum": [
+    "stock",
+    "audit"
+   ],
+   "fold": "--x-- stock audit.",
+   "normalize_ws": "--x-- stock audit."
+  },
+  {
+   "text": "customer price naïve quality ETA invoice and invoice ETA order order servo strike drive 1990s and.",
+   "tokens": [
+    "customer",
+    "price",
+    "naive",
+    "quality",
+    "eta",
+    "invoice",
+    "invoice",
+    "eta",
+    "order",
+    "order",
+    "servo",
+    "strike",
+    "drive",
+    "1990"
+   ],
+   "tokens_nostem": [
+    "customer",
+    "price",
+    "naive",
+    "quality",
+    "eta",
+    "invoice",
+    "invoice",
+    "eta",
+    "order",
+    "order",
+    "servo",
+    "strike",
+    "drive",
+    "1990s"
+   ],
+   "tokens_nonum": [
+    "customer",
+    "price",
+    "naive",
+    "quality",
+    "eta",
+    "invoice",
+    "invoice",
+    "eta",
+    "order",
+    "order",
+    "servo",
+    "strike",
+    "drive",
+    "1990"
+   ],
+   "fold": "customer price naive quality eta invoice and invoice eta order order servo strike drive 1990s and.",
+   "normalize_ws": "customer price naïve quality ETA invoice and invoice ETA order order servo strike drive 1990s and."
+  },
+  {
+   "text": "--x-- defect drive o'neill's o'neill's servo strike port 'quoted' supplier cities servo price November shipment strike!",
+   "tokens": [
+    "defect",
+    "drive",
+    "oneill",
+    "oneill",
+    "servo",
+    "strike",
+    "port",
+    "quot",
+    "supplier",
+    "city",
+    "servo",
+    "price",
+    "november",
+    "shipment",
+    "strike"
+   ],
+   "tokens_nostem": [
+    "defect",
+    "drive",
+    "oneill",
+    "oneill",
+    "servo",
+    "strike",
+    "port",
+    "quoted",
+    "supplier",
+    "cities",
+    "servo",
+    "price",
+    "november",
+    "shipment",
+    "strike"
+   ],
+   "tokens_nonum": [
+    "defect",
+    "drive",
+    "oneill",
+    "oneill",
+    "servo",
+    "strike",
+    "port",
+    "quot",
+    "supplier",
+    "city",
+    "servo",
+    "price",
+    "november",
+    "shipment",
+    "strike"
+   ],
+   "fold": "--x-- defect drive o'neill's o'neill's servo strike port 'quoted' supplier cities servo price november shipment strike!",
+   "normalize_ws": "--x-- defect drive o'neill's o'neill's servo strike port 'quoted' supplier cities servo price November shipment strike!"
+  },
+  {
+   "text": "APAC moved forecast 1990s inventory region it's?",
+   "tokens": [
+    "apac",
+    "move",
+    "forecast",
+    "1990",
+    "inventory",
+    "region"
+   ],
+   "tokens_nostem": [
+    "apac",
+    "moved",
+    "forecast",
+    "1990s",
+    "inventory",
+    "region"
+   ],
+   "tokens_nonum": [
+    "apac",
+    "move",
+    "forecast",
+    "1990",
+    "inventory",
+    "region"
+   ],
+   "fold": "apac moved forecast 1990s inventory region it's?",
+   "normalize_ws": "APAC moved forecast 1990s inventory region it's?"
+  },
+  {
+   "text": "terminal defect and --x-- 1990s;",
+   "tokens": [
+    "terminal",
+    "defect",
+    "1990"
+   ],
+   "tokens_nostem": [
+    "terminal",
+    "defect",
+    "1990s"
+   ],
+   "tokens_nonum": [
+    "terminal",
+    "defect",
+    "1990"
+   ],
+   "fold": "terminal defect and --x-- 1990s;",
+   "normalize_ws": "terminal defect and --x-- 1990s;"
+  },
+  {
+   "text": "moved servo it's drive cities moved strike the customer 42 port drive customer drive?",
+   "tokens": [
+    "move",
+    "servo",
+    "drive",
+    "city",
+    "move",
+    "strike",
+    "customer",
+    "42",
+    "port",
+    "drive",
+    "customer",
+    "drive"
+   ],
+   "tokens_nostem": [
+    "moved",
+    "servo",
+    "drive",
+    "cities",
+    "moved",
+    "strike",
+    "customer",
+    "42",
+    "port",
+    "drive",
+    "customer",
+    "drive"
+   ],
+   "tokens_nonum": [
+    "move",
+    "servo",
+    "drive",
+    "city",
+    "move",
+    "strike",
+    "customer",
+    "port",
+    "drive",
+    "customer",
+    "drive"
+   ],
+   "fold": "moved servo it's drive cities moved strike the customer 42 port drive customer drive?",
+   "normalize_ws": "moved servo it's drive cities moved strike the customer 42 port drive customer drive?"
+  },
+  {
+   "text": "o'neill's terminal inventory a;",
+   "tokens": [
+    "oneill",
+    "terminal",
+    "inventory"
+   ],
+   "tokens_nostem": [
+    "oneill",
+    "terminal",
+    "inventory"
+   ],
+   "tokens_nonum": [
+    "oneill",
+    "terminal",
+    "inventory"
+   ],
+   "fold": "o'neill's terminal inventory a;",
+   "normalize_ws": "o'neill's terminal inventory a;"
+  },
+  {
+   "text": "o'neill's for supplier o'neill's terminal forecast November EMEA Rotterdam supplier moved the o'neill's strike carrier the inventory;",
+   "tokens": [
+    "oneill",
+    "supplier",
+    "oneill",
+    "terminal",
+    "forecast",
+    "november",
+    "emea",
+    "rotterdam",
+    "supplier",
+    "move",
+    "oneill",
+    "strike",
+    "carrier",
+    "inventory"
+   ],
+   "tokens_nostem": [
+    "oneill",
+    "supplier",
+    "oneill",
+    "terminal",
+    "forecast",
+    "november",
+    "emea",
+    "rotterdam",
+    "supplier",
+    "moved",
+    "oneill",
+    "strike",
+    "carrier",
+    "inventory"
+   ],
+   "tokens_nonum": [
+    "oneill",
+    "supplier",
+    "oneill",
+    "terminal",
+    "forecast",
+    "november",
+    "emea",
+    "rotterdam",
+    "supplier",
+    "move",
+    "oneill",
+    "strike",
+    "carrier",
+    "inventory"
+   ],
+   "fold": "o'neill's for supplier o'neill's terminal forecast november emea rotterdam supplier moved the o'neill's strike carrier the inventory;",
+   "normalize_ws": "o'neill's for supplier o'neill's terminal forecast November EMEA Rotterdam supplier moved the o'neill's strike carrier the inventory;"
+  },
+  {
+   "text": "42 moved November b EMEA the moved it's for moved forecast b cities region o'neill's November the.",
+   "tokens": [
+    "42",
+    "move",
+    "november",
+    "emea",
+    "move",
+    "move",
+    "forecast",
+    "city",
+    "region",
+    "oneill",
+    "november"
+   ],
+   "tokens_nostem": [
+    "42",
+    "moved",
+    "november",
+    "emea",
+    "moved",
+    "moved",
+    "forecast",
+    "cities",
+    "region",
+    "oneill",
+    "november"
+   ],
+   "tokens_nonum": [
+    "move",
+    "november",
+    "emea",
+    "move",
+    "move",
+    "forecast",
+    "city",
+    "region",
+    "oneill",
+    "november"
+   ],
+   "fold": "42 moved november b emea the moved it's for moved forecast b cities region o'neill's november the.",
+   "normalize_ws": "42 moved November b EMEA the moved it's for moved forecast b cities region o'neill's November the."
+  },
+  {
+   "text": "stock invoice the inventory carrier --x-- forecast price carrier shipment --x-- warehouse stock drive!",
+   "tokens": [
+    "stock",
+    "invoice",
+    "inventory",
+    "carrier",
+    "forecast",
+    "price",
+    "carrier",
+    "shipment",
+    "warehouse",
+    "stock",
+    "drive"
+   ],
+   "tokens_nostem": [
+    "stock",
+    "invoice",
+    "inventory",
+    "carrier",
+    "forecast",
+    "price",
+    "carrier",
+    "shipment",
+    "warehouse",
+    "stock",
+    "drive"
+   ],
+   "tokens_nonum": [
+    "stock",
+    "invoice",
+    "inventory",
+    "carrier",
+    "forecast",
+    "price",
+    "carrier",
+    "shipment",
+    "warehouse",
+    "stock",
+    "drive"
+   ],
+   "fold": "stock invoice the inventory carrier --x-- forecast price carrier shipment --x-- warehouse stock drive!",
+   "normalize_ws": "stock invoice the inventory carrier --x-- forecast price carrier shipment --x-- warehouse stock drive!"
+  },
+  {
+   "text": "region servo and delay supplier?",
+   "tokens": [
+    "region",
+    "servo",
+    "delay",
+    "supplier"
+   ],
+   "tokens_nostem": [
+    "region",
+    "servo",
+    "delay",
+    "supplier"
+   ],
+   "tokens_nonum": [
+    "region",
+    "servo",
+    "delay",
+    "supplier"
+   ],
+   "fold": "region servo and delay supplier?",
+   "normalize_ws": "region servo and delay supplier?"
+  },
+  {
+   "text": "order --x-- delay order price moved invoice quality contract November defect inventory ETA recall strike quality;",
+   "tokens": [
+    "order",
+    "delay",
+    "order",
+    "price",
+    "move",
+    "invoice",
+    "quality",
+    "contract",
+    "november",
+    "defect",
+    "inventory",
+    "eta",
+    "recall",
+    "strike",
+    "quality"
+   ],
+   "tokens_nostem": [
+    "order",
+    "delay",
+    "order",
+    "price",
+    "moved",
+    "invoice",
+    "quality",
+    "contract",
+    "november",
+    "defect",
+    "inventory",
+    "eta",
+    "recall",
+    "strike",
+    "quality"
+   ],
+   "tokens_nonum": [
+    "order",
+    "delay",
+    "order",
+    "price",
+    "move",
+    "invoice",
+    "quality",
+    "contract",
+    "november",
+    "defect",
+    "inventory",
+    "eta",
+    "recall",
+    "strike",
+    "quality"
+   ],
+   "fold": "order --x-- delay order price moved invoice quality contract november defect inventory eta recall strike quality;",
+   "normalize_ws": "order --x-- delay order price moved invoice quality contract November defect inventory ETA recall strike quality;"
+  },
+  {
+   "text": "the strike audit quality cities Zürich APAC moved carrier stock delay supplier ETA region EMEA",
+   "tokens": [
+    "strike",
+    "audit",
+    "quality",
+    "city",
+    "zurich",
+    "apac",
+    "move",
+    "carrier",
+    "stock",
+    "delay",
+    "supplier",
+    "eta",
+    "region",
+    "emea"
+   ],
+   "tokens_nostem": [
+    "strike",
+    "audit",
+    "quality",
+    "cities",
+    "zurich",
+    "apac",
+    "moved",
+    "carrier",
+    "stock",
+    "delay",
+    "supplier",
+    "eta",
+    "region",
+    "emea"
+   ],
+   "tokens_nonum": [
+    "strike",
+    "audit",
+    "quality",
+    "city",
+    "zurich",
+    "apac",
+    "move",
+    "carrier",
+    "stock",
+    "delay",
+    "supplier",
+    "eta",
+    "region",
+    "emea"
+   ],
+   "fold": "the strike audit quality cities zurich apac moved carrier stock delay supplier eta region emea",
+   "normalize_ws": "the strike audit quality cities Zürich APAC moved carrier stock delay supplier ETA region EMEA"
+  },
+  {
+   "text": "EMEA servo price a region invoice.",
+   "tokens": [
+    "emea",
+    "servo",
+    "price",
+    "region",
+    "invoice"
+   ],
+   "tokens_nostem": [
+    "emea",
+    "servo",
+    "price",
+    "region",
+    "invoice"
+   ],
+   "tokens_nonum": [
+    "emea",
+    "servo",
+    "price",
+    "region",
+    "invoice"
+   ],
+   "fold": "emea servo price a region invoice.",
+   "normalize_ws": "EMEA servo price a region invoice."
+  },
+  {
+   "text": "moved re-entry running b inventory ETA EMEA terminal b customer price carrier EMEA strike naïve ETA region ETA;",
+   "tokens": [
+    "move",
+    "re-entry",
+    "run",
+    "inventory",
+    "eta",
+    "emea",
+    "terminal",
+    "customer",
+    "price",
+    "carrier",
+    "emea",
+    "strike",
+    "naive",
+    "eta",
+    "region",
+    "eta"
+   ],
+   "tokens_nostem": [
+    "moved",
+    "re-entry",
+    "running",
+    "inventory",
+    "eta",
+    "emea",
+    "terminal",
+    "customer",
+    "price",
+    "carrier",
+    "emea",
+    "strike",
+    "naive",
+    "eta",
+    "region",
+    "eta"
+   ],
+   "tokens_nonum": [
+    "move",
+    "re-entry",
+    "run",
+    "inventory",
+    "eta",
+    "emea",
+    "terminal",
+    "customer",
+    "price",
+    "carrier",
+    "emea",
+    "strike",
+    "naive",
+    "eta",
+    "region",
+    "eta"
+   ],
+   "fold": "moved re-entry running b inventory eta emea terminal b customer price carrier emea strike naive eta region eta;",
+   "normalize_ws": "moved re-entry running b inventory ETA EMEA terminal b customer price carrier EMEA strike naïve ETA region ETA;"
+  },
+  {
+   "text": "carrier region stock and port quality o'neill's contract!",
+   "tokens": [
+    "carrier",
+    "region",
+    "stock",
+    "port",
+    "quality",
+    "oneill",
+    "contract"
+   ],
+   "tokens_nostem": [
+    "carrier",
+    "region",
+    "stock",
+    "port",
+    "quality",
+    "oneill",
+    "contract"
+   ],
+   "tokens_nonum": [
+    "carrier",
+    "region",
+    "stock",
+    "port",
+    "quality",
+    "oneill",
+    "contract"
+   ],
+   "fold": "carrier region stock and port quality o'neill's contract!",
+   "normalize_ws": "carrier region stock and port quality o'neill's contract!"
+  },
+  {
+   "text": "Rotterdam cities forecast stock order!",
+   "tokens": [
+    "rotterdam",
+    "city",
+    "forecast",
+    "stock",
+    "order"
+   ],
+   "tokens_nostem": [
+    "rotterdam",
+    "cities",
+    "forecast",
+    "stock",
+    "order"
+   ],
+   "tokens_nonum": [
+    "rotterdam",
+    "city",
+    "forecast",
+    "stock",
+    "order"
+   ],
+   "fold": "rotterdam cities forecast stock order!",
+   "normalize_ws": "Rotterdam cities forecast stock order!"
+  },
+  {
+   "text": "customer November!",
+   "tokens": [
+    "customer",
+    "november"
+   ],
+   "tokens_nostem": [
+    "customer",
+    "november"
+   ],
+   "tokens_nonum": [
+    "customer",
+    "november"
+   ],
+   "fold": "customer november!",
+   "normalize_ws": "customer November!"
+  },
+  {
+   "text": "cities shipment APAC the moved a customer EMEA defect strike!",
+   "tokens": [
+    "city",
+    "shipment",
+    "apac",
+    "move",
+    "customer",
+    "emea",
+    "defect",
+    "strike"
+   ],
+   "tokens_nostem": [
+    "cities",
+    "shipment",
+    "apac",
+    "moved",
+    "customer",
+    "emea",
+    "defect",
+    "strike"
+   ],
+   "tokens_nonum": [
+    "city",
+    "shipment",
+    "apac",
+    "move",
+    "customer",
+    "emea",
+    "defect",
+    "strike"
+   ],
+   "fold": "cities shipment apac the moved a customer emea defect strike!",
+   "normalize_ws": "cities shipment APAC the moved a customer EMEA defect strike!"
+  },
+  {
+   "text": "port strike;",
+   "tokens": [
+    "port",
+    "strike"
+   ],
+   "tokens_nostem": [
+    "port",
+    "strike"
+   ],
+   "tokens_nonum": [
+    "port",
+    "strike"
+   ],
+   "fold": "port strike;",
+   "normalize_ws": "port strike;"
+  },
+  {
+   "text": "November moved for forecast the supplier --x-- 'quoted' price --x-- running it's invoice moved warehouse b shipment delay!",
+   "tokens": [
+    "november",
+    "move",
+    "forecast",
+    "supplier",
+    "quot",
+    "price",
+    "run",
+    "invoice",
+    "move",
+    "warehouse",
+    "shipment",
+    "delay"
+   ],
+   "tokens_nostem": [
+    "november",
+    "moved",
+    "forecast",
+    "supplier",
+    "quoted",
+    "price",
+    "running",
+    "invoice",
+    "moved",
+    "warehouse",
+    "shipment",
+    "delay"
+   ],
+   "tokens_nonum": [
+    "november",
+    "move",
+    "forecast",
+    "supplier",
+    "quot",
+    "price",
+    "run",
+    "invoice",
+    "move",
+    "warehouse",
+    "shipment",
+    "delay"
+   ],
+   "fold": "november moved for forecast the supplier --x-- 'quoted' price --x-- running it's invoice moved warehouse b shipment delay!",
+   "normalize_ws": "November moved for forecast the supplier --x-- 'quoted' price --x-- running it's invoice moved warehouse b shipment delay!"
+  },
+  {
+   "text": "naïve servo invoice defect terminal servo port",
+   "tokens": [
+    "naive",
+    "servo",
+    "invoice",
+    "defect",
+    "terminal",
+    "servo",
+    "port"
+   ],
+   "tokens_nostem": [
+    "naive",
+    "servo",
+    "invoice",
+    "defect",
+    "terminal",
+    "servo",
+    "port"
+   ],
+   "tokens_nonum": [
+    "naive",
+    "servo",
+    "invoice",
+    "defect",
+    "terminal",
+    "servo",
+    "port"
+   ],
+   "fold": "naive servo invoice defect terminal servo port",
+   "normalize_ws": "naïve servo invoice defect terminal servo port"
+  },
+  {
+   "text": "price order terminal ETA --x-- audit moved --x-- APAC;",
+   "tokens": [
+    "price",
+    "order",
+    "terminal",
+    "eta",
+    "audit",
+    "move",
+    "apac"
+   ],
+   "tokens_nostem": [
+    "price",
+    "order",
+    "terminal",
+    "eta",
+    "audit",
+    "moved",
+    "apac"
+   ],
+   "tokens_nonum": [
+    "price",
+    "order",
+    "terminal",
+    "eta",
+    "audit",
+    "move",
+    "apac"
+   ],
+   "fold": "price order terminal eta --x-- audit moved --x-- apac;",
+   "normalize_ws": "price order terminal ETA --x-- audit moved --x-- APAC;"
+  },
+  {
+   "text": "b APAC Rotterdam and customer order EMEA the",
+   "tokens": [
+    "apac",
+    "rotterdam",
+    "customer",
+    "order",
+    "emea"
+   ],
+   "tokens_nostem": [
+    "apac",
+    "rotterdam",
+    "customer",
+    "order",
+    "emea"
+   ],
+   "tokens_nonum": [
+    "apac",
+    "rotterdam",
+    "customer",
+    "order",
+    "emea"
+   ],
+   "fold": "b apac rotterdam and customer order emea the",
+   "normalize_ws": "b APAC Rotterdam and customer order EMEA the"
+  },
+  {
+   "text": "recall quality o'neill's inventory forecast Rotterdam warehouse shipment defect.",
+   "tokens": [
+    "recall",
+    "quality",
+    "oneill",
+    "inventory",
+    "forecast",
+    "rotterdam",
+    "warehouse",
+    "shipment",
+    "defect"
+   ],
+   "tokens_nostem": [
+    "recall",
+    "quality",
+    "oneill",
+    "inventory",
+    "forecast",
+    "rotterdam",
+    "warehouse",
+    "shipment",
+    "defect"
+   ],
+   "tokens_nonum": [
+    "recall",
+    "quality",
+    "oneill",
+    "inventory",
+    "forecast",
+    "rotterdam",
+    "warehouse",
+    "shipment",
+    "defect"
+   ],
+   "fold": "recall quality o'neill's inventory forecast rotterdam warehouse shipment defect.",
+   "normalize_ws": "recall quality o'neill's inventory forecast Rotterdam warehouse shipment defect."
+  },
+  {
+   "text": "quality?",
+   "tokens": [
+    "quality"
+   ],
+   "tokens_nostem": [
+    "quality"
+   ],
+   "tokens_nonum": [
+    "quality"
+   ],
+   "fold": "quality?",
+   "normalize_ws": "quality?"
+  },
+  {
+   "text": "for EMEA moved.",
+   "tokens": [
+    "emea",
+    "move"
+   ],
+   "tokens_nostem": [
+    "emea",
+    "moved"
+   ],
+   "tokens_nonum": [
+    "emea",
+    "move"
+   ],
+   "fold": "for emea moved.",
+   "normalize_ws": "for EMEA moved."
+  },
+  {
+   "text": "moved port ETA region ETA drive invoice 1990s",
+   "tokens": [
+    "move",
+    "port",
+    "eta",
+    "region",
+    "eta",
+    "drive",
+    "invoice",
+    "1990"
+   ],
+   "tokens_nostem": [
+    "moved",
+    "port",
+    "eta",
+    "region",
+    "eta",
+    "drive",
+    "invoice",
+    "1990s"
+   ],
+   "tokens_nonum": [
+    "move",
+    "port",
+    "eta",
+    "region",
+    "eta",
+    "drive",
+    "invoice",
+    "1990"
+   ],
+   "fold": "moved port eta region eta drive invoice 1990s",
+   "normalize_ws": "moved port ETA region ETA drive invoice 1990s"
+  },
+  {
+   "text": "strike warehouse warehouse naïve delay ETA 1990s cities drive --x-- 42 audit inventory?",
+   "tokens": [
+    "strike",
+    "warehouse",
+    "warehouse",
+    "naive",
+    "delay",
+    "eta",
+    "1990",
+    "city",
+    "drive",
+    "42",
+    "audit",
+    "inventory"
+   ],
+   "tokens_nostem": [
+    "strike",
+    "warehouse",
+    "warehouse",
+    "naive",
+    "delay",
+    "eta",
+    "1990s",
+    "cities",
+    "drive",
+    "42",
+    "audit",
+    "inventory"
+   ],
+   "tokens_nonum": [
+    "strike",
+    "warehouse",
+    "warehouse",
+    "naive",
+    "delay",
+    "eta",
+    "1990",
+    "city",
+    "drive",
+    "audit",
+    "inventory"
+   ],
+   "fold": "strike warehouse warehouse naive delay eta 1990s cities drive --x-- 42 audit inventory?",
+   "normalize_ws": "strike warehouse warehouse naïve delay ETA 1990s cities drive --x-- 42 audit inventory?"
+  },
+  {
+   "text": "APAC Zürich 'quoted' drive Rotterdam;",
+   "tokens": [
+    "apac",
+    "zurich",
+    "quot",
+    "drive",
+    "rotterdam"
+   ],
+   "tokens_nostem": [
+    "apac",
+    "zurich",
+    "quoted",
+    "drive",
+    "rotterdam"
+   ],
+   "tokens_nonum": [
+    "apac",
+    "zurich",
+    "quot",
+    "drive",
+    "rotterdam"
+   ],
+   "fold": "apac zurich 'quoted' drive rotterdam;",
+   "normalize_ws": "APAC Zürich 'quoted' drive Rotterdam;"
+  },
+  {
+   "text": "b moved servo cities moved re-entry strike a 1990s a b 'quoted' delay ETA",
+   "tokens": [
+    "move",
+    "servo",
+    "city",
+    "move",
+    "re-entry",
+    "strike",
+    "1990",
+    "quot",
+    "delay",
+    "eta"
+   ],
+   "tokens_nostem": [
+    "moved",
+    "servo",
+    "cities",
+    "moved",
+    "re-entry",
+    "strike",
+    "1990s",
+    "quoted",
+    "delay",
+    "eta"
+   ],
+   "tokens_nonum": [
+    "move",
+    "servo",
+    "city",
+    "move",
+    "re-entry",
+    "strike",
+    "1990",
+    "quot",
+    "delay",
+    "eta"
+   ],
+   "fold": "b moved servo cities moved re-entry strike a 1990s a b 'quoted' delay eta",
+   "normalize_ws": "b moved servo cities moved re-entry strike a 1990s a b 'quoted' delay ETA"
+  },
+  {
+   "text": "servo naïve!",
+   "tokens": [
+    "servo",
+    "naive"
+   ],
+   "tokens_nostem": [
+    "servo",
+    "naive"
+   ],
+   "tokens_nonum": [
+    "servo",
+    "naive"
+   ],
+   "fold": "servo naive!",
+   "normalize_ws": "servo naïve!"
+  },
+  {
+   "text": "audit the o'neill's terminal",
+   "tokens": [
+    "audit",
+    "oneill",
+    "terminal"
+   ],
+   "tokens_nostem": [
+    "audit",
+    "oneill",
+    "terminal"
+   ],
+   "tokens_nonum": [
+    "audit",
+    "oneill",
+    "terminal"
+   ],
+   "fold": "audit the o'neill's terminal",
+   "normalize_ws": "audit the o'neill's terminal"
+  }
+ ],
+ "stem": [
+  [
+   "lives",
+   "live"
+  ],
+  [
+   "moved",
+   "move"
+  ],
+  [
+   "running",
+   "run"
+  ],
+  [
+   "cities",
+   "city"
+  ],
+  [
+   "hoping",
+   "hope"
+  ],
+  [
+   "hopped",
+   "hop"
+  ],
+  [
+   "planned",
+   "plan"
+  ],
+  [
+   "fixing",
+   "fix"
+  ],
+  [
+   "tries",
+   "try"
+  ],
+  [
+   "dies",
+   "die"
+  ],
+  [
+   "agreed",
+   "agre"
+  ],
+  [
+   "played",
+   "play"
+  ],
+  [
+   "buses",
+   "bus"
+  ],
+  [
+   "boxes",
+   "box"
+  ],
+  [
+   "buzzes",
+   "buzz"
+  ],
+  [
+   "wishes",
+   "wish"
+  ],
+  [
+   "caresses",
+   "caress"
+  ],
+  [
+   "ponies",
+   "pony"
+  ],
+  [
+   "ties",
+   "tie"
+  ],
+  [
+   "caress",
+   "caress"
+  ],
+  [
+   "cats",
+   "cat"
+  ],
+  [
+   "sing",
+   "sing"
+  ],
+  [
+   "ring",
+   "ring"
+  ],
+  [
+   "dinged",
+   "ding"
+  ],
+  [
+   "kinged",
+   "king"
+  ],
+  [
+   "rated",
+   "rate"
+  ],
+  [
+   "hated",
+   "hate"
+  ],
+  [
+   "fizzed",
+   "fizz"
+  ],
+  [
+   "fished",
+   "fish"
+  ],
+  [
+   "bled",
+   "bled"
+  ],
+  [
+   "sled",
+   "sled"
+  ],
+  [
+   "need",
+   "need"
+  ],
+  [
+   "speed",
+   "spe"
+  ],
+  [
+   "seed",
+   "seed"
+  ],
+  [
+   "feed",
+   "feed"
+  ],
+  [
+   "fed",
+   "fed"
+  ],
+  [
+   "red",
+   "red"
+  ],
+  [
+   "bed",
+   "bed"
+  ],
+  [
+   "shed",
+   "shed"
+  ],
+  [
+   "sped",
+   "sped"
+  ],
+  [
+   "ies",
+   "ies"
+  ],
+  [
+   "dies",
+   "die"
+  ],
+  [
+   "lies",
+   "lie"
+  ],
+  [
+   "xies",
+   "xie"
+  ],
+  [
+   "abed",
+   "abed"
+  ],
+  [
+   "aed",
+   "aed"
+  ],
+  [
+   "ing",
+   "ing"
+  ],
+  [
+   "ning",
+   "ning"
+  ],
+  [
+   "sting",
+   "sting"
+  ],
+  [
+   "string",
+   "string"
+  ],
+  [
+   "bring",
+   "bring"
+  ],
+  [
+   "ss",
+   "ss"
+  ],
+  [
+   "s",
+   "s"
+  ],
+  [
+   "es",
+   "es"
+  ],
+  [
+   "ses",
+   "ses"
+  ],
+  [
+   "xes",
+   "xes"
+  ],
+  [
+   "zes",
+   "zes"
+  ],
+  [
+   "hes",
+   "hes"
+  ],
+  [
+   "ches",
+   "ch"
+  ],
+  [
+   "shes",
+   "sh"
+  ],
+  [
+   "gases",
+   "gas"
+  ],
+  [
+   "pass",
+   "pass"
+  ],
+  [
+   "class",
+   "class"
+  ],
+  [
+   "glass",
+   "glass"
+  ],
+  [
+   "a",
+   "a"
+  ],
+  [
+   "ab",
+   "ab"
+  ],
+  [
+   "abc",
+   "abc"
+  ],
+  [
+   "abcd",
+   "abcd"
+  ],
+  [
+   "abcde",
+   "abcde"
+  ],
+  [
+   "conflated",
+   "conflate"
+  ],
+  [
+   "troubled",
+   "trouble"
+  ],
+  [
+   "sized",
+   "size"
+  ],
+  [
+   "hoping",
+   "hope"
+  ],
+  [
+   "filing",
+   "file"
+  ],
+  [
+   "falling",
+   "fall"
+  ],
+  [
+   "hissing",
+   "hiss"
+  ],
+  [
+   "tanned",
+   "tan"
+  ],
+  [
+   "failing",
+   "fail"
+  ],
+  [
+   "filed",
+   "file"
+  ],
+  [
+   "hopping",
+   "hop"
+  ],
+  [
+   "controlled",
+   "controll"
+  ],
+  [
+   "rolled",
+   "roll"
+  ],
+  [
+   "bowled",
+   "bowl"
+  ],
+  [
+   "boxed",
+   "box"
+  ],
+  [
+   "taxed",
+   "tax"
+  ],
+  [
+   "flying",
+   "flying"
+  ],
+  [
+   "played",
+   "play"
+  ],
+  [
+   "stayed",
+   "stay"
+  ],
+  [
+   "fixed",
+   "fix"
+  ],
+  [
+   "mixed",
+   "mix"
+  ],
+  [
+   "waxed",
+   "wax"
+  ],
+  [
+   "plying",
+   "plying"
+  ]
+ ]
+}

@@ -1,0 +1,877 @@
+{
+ "_generated_by": "crates/mycelic/tests/golden/generate_from_python.py against the Python implementation at ace3efb",
+ "cases": [
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "bad id!",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "error": "'rule_id' contains characters outside ^[A-Za-z0-9_.:-]{1,200}$"
+  },
+  {
+   "body": {
+    "rule_id": "",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "error": "'rule_id' is required"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "agent",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "error": "'target_layer' must be one of ('team', 'department', 'subsidiary', 'region', 'enterprise')"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "nope",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "error": "'target_layer' must be one of ('team', 'department', 'subsidiary', 'region', 'enterprise')"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "error": "'required_slots' must be a non-empty list of slot names"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": "a",
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "error": "'required_slots' must be a non-empty list of slot names"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b",
+     "c",
+     "d",
+     "e",
+     "f",
+     "g"
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "error": "'required_slots' may name at most 6 slots"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b",
+     "c",
+     "d",
+     "e",
+     "f",
+     "a"
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b",
+     "c",
+     "d",
+     "e",
+     "f"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "bad slot"
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "error": "'required_slots' must be a non-empty list of slot names"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": ""
+   },
+   "error": "'conclusion' is required"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "kind": "nope"
+   },
+   "error": "'kind' must be one of ('fact', 'observation', 'event', 'risk', 'decision', 'plan', 'preference', 'other')"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "kind": "decision"
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "decision",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_agents": 0
+   },
+   "error": "'min_agents' must be a positive integer"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_agents": true
+   },
+   "error": "'min_agents' must be a positive integer"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_agents": 2.0
+   },
+   "error": "'min_agents' must be a positive integer"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_teams": "2"
+   },
+   "error": "'min_teams' must be a positive integer"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "sources": []
+   },
+   "error": "'sources' must be a non-empty subset of ('agent_observation', 'topic_consolidation', 'slot_composition')"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "sources": [
+     "x"
+    ]
+   },
+   "error": "'sources' must be a non-empty subset of ('agent_observation', 'topic_consolidation', 'slot_composition')"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "sources": [
+     "slot_composition",
+     "slot_composition"
+    ]
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "slot_composition"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "emits_slot": "a"
+   },
+   "error": "'emits_slot' must not be one of the rule's own required slots"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "emits_slot": "c",
+    "emits_topic": "t"
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": "c",
+    "emits_topic": "t",
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "emits_slot": "bad slot"
+   },
+   "error": "'emits_slot' contains characters outside ^[A-Za-z0-9_.:-]{1,100}$"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_units": {
+     "a": {
+      "region": 2
+     }
+    }
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {
+     "a": {
+      "region": 2
+     }
+    },
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_units": {
+     "c": {
+      "region": 2
+     }
+    }
+   },
+   "error": "'min_units' must map required slots to {layer: positive integer} with layers in ('team', 'department', 'subsidiary', 'region', 'enterprise')"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_units": {
+     "a": {
+      "agent": 2
+     }
+    }
+   },
+   "error": "'min_units' must map required slots to {layer: positive integer} with layers in ('team', 'department', 'subsidiary', 'region', 'enterprise')"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_units": {
+     "a": {
+      "region": 0
+     }
+    }
+   },
+   "error": "'min_units' must map required slots to {layer: positive integer} with layers in ('team', 'department', 'subsidiary', 'region', 'enterprise')"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_units": {
+     "a": {}
+    }
+   },
+   "error": "'min_units' must map required slots to {layer: positive integer} with layers in ('team', 'department', 'subsidiary', 'region', 'enterprise')"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_units": {
+     "a": {
+      "region": true
+     }
+    }
+   },
+   "error": "'min_units' must map required slots to {layer: positive integer} with layers in ('team', 'department', 'subsidiary', 'region', 'enterprise')"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_units": []
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "min_units": null
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "corroborate": 1
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": true
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "enabled": 0
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": false,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "org_id": "acme"
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": "acme",
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": "  supply: "
+   },
+   "rule": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": "supply:",
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "metadata": {
+     "x": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+    }
+   },
+   "error": "'metadata' is larger than 2048 bytes"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "metadata": []
+   },
+   "error": "'metadata' must be an object"
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": 5
+   },
+   "error": "'conclusion' must be a string"
+  },
+  {
+   "body": "not an object",
+   "error": "rule must be an object"
+  },
+  {
+   "body": {
+    "rule_id": " r2 ",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "rule": {
+    "rule_id": "r2",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     "b"
+    ],
+    "conclusion": "C {entity} {slot:a}",
+    "topic_prefix": null,
+    "min_agents": 2,
+    "min_teams": 1,
+    "kind": "risk",
+    "org_id": null,
+    "enabled": true,
+    "metadata": {},
+    "sources": [
+     "agent_observation"
+    ],
+    "emits_slot": null,
+    "emits_topic": null,
+    "min_units": {},
+    "corroborate": false
+   }
+  },
+  {
+   "body": {
+    "rule_id": "r1",
+    "target_layer": "team",
+    "required_slots": [
+     "a",
+     1
+    ],
+    "conclusion": "C {entity} {slot:a}"
+   },
+   "error": "'required_slots' must be a non-empty list of slot names"
+  }
+ ]
+}
