@@ -189,7 +189,14 @@ pub fn search_index(index: &OrgIndex, query: &str, visible: &dyn Fn(&Memory) -> 
         let docs: Vec<(&HashMap<u32, u32>, usize)> = view.iter().map(|&i| (&index.tf[i], index.len[i])).collect();
         Bm25::new(&docs, &q, K1, B).get_scores(&q)
     };
-    let mut hits: Vec<Hit> = Vec::new();
+    // rank row indices; only the k hits returned are cloned and explained
+    struct Candidate {
+        row: usize,
+        score: f64,
+        bm25: f64,
+        layer: usize,
+    }
+    let mut candidates: Vec<Candidate> = Vec::new();
     for (&i, &s) in view.iter().zip(&scores) {
         let m = &index.rows[i];
         if let Some(scope) = p.scope.filter(|s| !s.is_empty())
@@ -215,32 +222,47 @@ pub fn search_index(index: &OrgIndex, query: &str, visible: &dyn Fn(&Memory) -> 
             continue;
         }
         let boost = 1.0 + LAYER_BOOST * li as f64;
-        let (score, why) = if !q.is_empty() {
-            (s * boost, format!("bm25={} × layer boost {} ({})", fmt_fixed(s, 3), fmt_fixed(boost, 2), m.layer))
-        } else {
-            (boost * (1.0 + m.confidence), format!("no query terms: ranked by layer and confidence ({})", m.layer))
-        };
-        hits.push(Hit { memory: m.clone(), score, bm25: s, explanation: why });
+        let score = if !q.is_empty() { s * boost } else { boost * (1.0 + m.confidence) };
+        candidates.push(Candidate { row: i, score, bm25: s, layer: li });
     }
     // a memory promoted unchanged to a single-child parent unit is the same knowledge: keep the highest copy only
-    let promoted_away: HashSet<String> = hits
+    let promoted_away: HashSet<&str> = candidates
         .iter()
-        .filter(|h| h.memory.layer != "agent")
-        .filter_map(|h| {
-            h.memory.metadata.get("promoted_from").and_then(Value::as_str).filter(|s| !s.is_empty()).map(String::from)
-        })
+        .map(|c| &index.rows[c.row])
+        .filter(|m| m.layer != "agent")
+        .filter_map(|m| m.metadata.get("promoted_from").and_then(Value::as_str).filter(|s| !s.is_empty()))
         .collect();
-    hits.retain(|h| !promoted_away.contains(&h.memory.memory_id));
-    hits.sort_by(|a, b| {
+    candidates.retain(|c| !promoted_away.contains(index.rows[c.row].memory_id.as_str()));
+    // (-score, -layer, created_at, memory_id): memory ids are unique, so this is a total order and selecting the k
+    // smallest before sorting them gives exactly the order a full sort would
+    let order = |a: &Candidate, b: &Candidate| {
+        let (ma, mb) = (&index.rows[a.row], &index.rows[b.row]);
         b.score
             .partial_cmp(&a.score)
             .unwrap_or(std::cmp::Ordering::Equal)
-            .then_with(|| layer_pos(&b.memory.layer).cmp(&layer_pos(&a.memory.layer)))
-            .then_with(|| a.memory.created_at.cmp(&b.memory.created_at))
-            .then_with(|| a.memory.memory_id.cmp(&b.memory.memory_id))
-    });
-    hits.truncate(p.k.max(1));
-    hits
+            .then_with(|| b.layer.cmp(&a.layer))
+            .then_with(|| ma.created_at.cmp(&mb.created_at))
+            .then_with(|| ma.memory_id.cmp(&mb.memory_id))
+    };
+    let k = p.k.max(1);
+    if candidates.len() > k {
+        candidates.select_nth_unstable_by(k - 1, order);
+        candidates.truncate(k);
+    }
+    candidates.sort_by(order);
+    candidates
+        .into_iter()
+        .map(|c| {
+            let m = &index.rows[c.row];
+            let explanation = if !q.is_empty() {
+                let boost = 1.0 + LAYER_BOOST * c.layer as f64;
+                format!("bm25={} × layer boost {} ({})", fmt_fixed(c.bm25, 3), fmt_fixed(boost, 2), m.layer)
+            } else {
+                format!("no query terms: ranked by layer and confidence ({})", m.layer)
+            };
+            Hit { memory: m.clone(), score: c.score, bm25: c.bm25, explanation }
+        })
+        .collect()
 }
 
 /// The per-organization index cache, keyed by the store revision it was built at.
