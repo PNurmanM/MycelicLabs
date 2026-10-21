@@ -13,7 +13,7 @@ anyhow = "1"
 async-nats = "0.50"
 async-trait = "0.1"
 axum = { version = "0.8", default-features = false, features = ["http1", "http2", "json", "query", "tokio", "matched-path", "original-uri"] }
-axum-server = { version = "0.8", features = ["tls-rustls"] }
+axum-server = { version = "0.8", features = ["tls-rustls-no-provider"] }
 base64 = "0.22"
 bytes = "1"
 chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
@@ -26,6 +26,7 @@ prometheus = { version = "0.14", default-features = false }
 rand = "0.9"
 regex = "1"
 rusqlite = { version = "0.37", features = ["bundled"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12", "logging"] }
 ryu = "1"
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order", "float_roundtrip"] }

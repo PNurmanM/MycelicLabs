@@ -485,7 +485,8 @@ impl Transport for JetStreamTransport {
         let mut options = async_nats::ConnectOptions::new()
             .name(&self.s.instance_id)
             .max_reconnects(None)
-            .reconnect_delay_callback(|_| Duration::from_secs(1))
+            // the callback is consulted before the very first attempt too: no delay then, a second between reconnects
+            .reconnect_delay_callback(|attempts| if attempts == 0 { Duration::ZERO } else { Duration::from_secs(1) })
             .connection_timeout(Duration::from_secs(5))
             .event_callback(move |event| {
                 let (connected, reconnects, last_error, on_state, was_disconnected) = (

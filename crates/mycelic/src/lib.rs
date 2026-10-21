@@ -7,11 +7,13 @@
 //! See `DEPLOYMENT.md` for running it and `docs/MYCELIC_ARCHITECTURE.md` for what actually runs.
 
 pub mod aggregation;
+pub mod api;
 pub mod auth;
 pub mod config;
 pub mod coordination;
 pub mod hierarchy;
 pub mod lineage;
+pub mod mcp;
 pub mod metrics;
 pub mod models;
 pub mod pyjson;

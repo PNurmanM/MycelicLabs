@@ -975,20 +975,19 @@ impl MycelicService {
             Err(e) => return Ok(Err(e)),
         };
         if p.kind == "agent" {
-            let mut touched = self.last_seen_touch.lock().unwrap_or_else(|e| e.into_inner());
-            let due = touched.get(&p.id).is_none_or(|t| t.elapsed() > Duration::from_secs(30));
+            let due = {
+                let mut touched = self.last_seen_touch.lock().unwrap_or_else(|e| e.into_inner());
+                let due = touched.get(&p.id).is_none_or(|t| t.elapsed() > Duration::from_secs(30));
+                if due {
+                    touched.insert(p.id.clone(), Instant::now());
+                }
+                due
+            };
             if due {
-                touched.insert(p.id.clone(), Instant::now());
-                let (store, id) = (self.store.clone(), p.id.clone());
-                let touch = move || {
-                    let at = store.now();
-                    let _ = store.transaction(|tx| tx.touch_agent(&id, &at));
-                };
-                match tokio::runtime::Handle::try_current() {
-                    Ok(h) => {
-                        h.spawn_blocking(touch);
-                    }
-                    Err(_) => touch(),
+                // synchronous, so the next request sees it (Python's touch task always ran before the next one)
+                let at = self.store.now();
+                if let Err(e) = self.store.transaction(|tx| tx.touch_agent(&p.id, &at)) {
+                    tracing::warn!("recording last_seen_at for {} failed: {e}", p.id);
                 }
             }
         }
@@ -2091,7 +2090,9 @@ fn memory_from_payload(p: &Map<String, Value>, now: &str) -> anyhow::Result<Memo
     let source_event_ids = match p.get("source_event_ids") {
         Some(Value::Array(items)) => items.iter().map(py_str).collect(),
         Some(v) if truthy(v) => {
-            return Err(ServiceError::Validation("memory payload field 'source_event_ids' must be a list".into()).into());
+            return Err(
+                ServiceError::Validation("memory payload field 'source_event_ids' must be a list".into()).into()
+            );
         }
         _ => Vec::new(),
     };
