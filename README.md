@@ -12,8 +12,10 @@ back to the observations, agents and teams it rests on, redacted to what the rea
 - **Durable by construction.** Every write lands in SQLite and an outbox in one transaction, is published to
   NATS JetStream with an HMAC signature, and is applied idempotently. Kill the service, kill the broker,
   delete the database: everything is rebuilt from the event log.
-- **MCP and REST.** Claude Code or any MCP client can query and write as an agent; the SDK and agent process
-  use the standard library alone.
+- **MCP and REST.** Claude Code or any MCP client can query and write as an agent; the SDK and the agent
+  process (`mycelic-sdk`) carry none of the server's dependencies.
+- **One binary.** The service is written in Rust: `mycelic serve` is the whole server (API, MCP, outbox publisher,
+  JetStream consumer and aggregator).
 - **Self-hosted.** Docker Compose for one machine, kustomize manifests for Kubernetes, Prometheus metrics.
 
 Mycelic is the enterprise sibling of [NeuralGraph](https://github.com/anovruzov/NeuralGraph), the local-only
@@ -32,12 +34,11 @@ curl -s http://localhost:8080/health
 ```
 
 Without Docker, the end-to-end demo runs the broker and the service as local processes
-(needs Python 3.11+ and [`nats-server`](https://github.com/nats-io/nats-server/releases) on `PATH`):
+(needs a Rust toolchain, 1.88 or newer, and [`nats-server`](https://github.com/nats-io/nats-server/releases) on `PATH`):
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-python demo/mycelic_demo.py
+cargo build --release
+./target/release/mycelic-demo
 ```
 
 Connect Claude Code with an agent key:
@@ -60,13 +61,15 @@ claude mcp add --transport http mycelic http://localhost:8080/mcp --header "Auth
 ## Repository layout
 
 ```
-mycelic/          the service: API, store, aggregation, lineage, retrieval, MCP, transport, SDK
-tests/mycelic/    unit, API, MCP, JetStream and process tests
-tests/smoke/      the production smoke test (process or compose driver)
-deploy/mycelic/   Dockerfile, docker-compose.yml, nats.conf, Prometheus, rules.json, k8s/
-demo/             runnable demos
-research/mycelic/ the enterprise-hierarchy benchmark: simulator, experiments, artifacts, logs
-docs/             architecture, benchmark and research reports
+crates/mycelic/          the service (binary `mycelic`): API, store, aggregation, lineage, retrieval, MCP, transport;
+                         tests/ holds the unit, API, MCP, JetStream and golden-fixture tests
+crates/mycelic-sdk/      the agent side: HTTP client, agent-local memory, the `mycelic-agent` reference process
+crates/mycelic-harness/  process and compose drivers, the production smoke test (`mycelic-smoke`) and the demos
+deploy/mycelic/          Dockerfile, docker-compose.yml, nats.conf, Prometheus, rules.json, k8s/
+demo/                    the live console page and its recorded trace, demo outputs
+scripts/                 the Python-to-Rust compatibility check and the HTTP benchmark
+research/mycelic/        the enterprise-hierarchy benchmark (Python): simulator, experiments, artifacts, logs
+docs/                    architecture, benchmark and research reports
 ```
 
 ## Contributing

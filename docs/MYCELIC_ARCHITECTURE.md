@@ -18,9 +18,9 @@ customer; they never talk to the broker.
                      │ HTTPS, Bearer mk_<agent>.<secret>                     │ HTTPS, Bearer
                      ▼                 ▼                                     ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│  mycelic  (container / process; python -m mycelic serve)                                    │
+│  mycelic  (container / process; mycelic serve)                                              │
 │                                                                                             │
-│   aiohttp API ── auth ── rate/size limits ── audit ──► MycelicService                         │
+│   axum API ──── auth ── rate/size limits ── audit ──► MycelicService                         │
 │   /memory /events /query /memory/{id} /lineage/{id}      │                                   │
 │   /health /ready /metrics /admin/* /mcp                  │                                   │
 │                                                          ▼                                   │
@@ -41,34 +41,35 @@ customer; they never talk to the broker.
 
 | Deployment | Definition | Verified how |
 |---|---|---|
-| Docker Compose | `deploy/mycelic/docker-compose.yml` (services `nats`, `mycelic`, optional `prometheus`) | `tests/smoke/mycelic_smoke.py --driver compose` built the image and passed all nine steps in this repository's CI sandbox |
-| Local processes | `mycelic/harness.py` `ProcessDriver` (nats-server binary + `python -m mycelic serve`) | `tests/smoke/mycelic_smoke.py --driver process` (also run under pytest by `tests/mycelic/test_smoke_process.py`); the service itself against a real broker: `tests/mycelic/test_jetstream.py` |
+| Docker Compose | `deploy/mycelic/docker-compose.yml` (services `nats`, `mycelic`, optional `prometheus`) | `mycelic-smoke --driver compose` builds the image and runs all nine steps (the `compose` CI job) |
+| Local processes | `ProcessDriver` in `crates/mycelic-harness/src/lib.rs` (nats-server binary + `mycelic serve`) | `mycelic-smoke --driver process` (also run by `cargo test` as `crates/mycelic-harness/tests/smoke_process.rs`); the service itself against a real broker: `crates/mycelic/tests/jetstream.rs` |
 | Kubernetes | `deploy/mycelic/k8s/` (kustomize: two StatefulSets, Service, Ingress, ConfigMaps, Secret template) | `kubectl kustomize` renders; **not applied to a cluster in this repository** |
 
 ## 2. Modules
 
 | Module | Responsibility |
 |---|---|
-| `mycelic/hierarchy.py` | Layers `agent → team → department → subsidiary → region → enterprise`; unit paths; ancestor/subtree relations |
-| `mycelic/config.py` | `MYCELIC_*` environment variables, validated at start (secrets never in source; placeholder values refused) |
-| `mycelic/store.py` | SQLite schema (version 2, additive migrations) and transactions (`BEGIN IMMEDIATE`, one writer, `synchronous=FULL`) |
-| `mycelic/transport.py` | `JetStreamTransport` (nats-py) and `InProcessTransport` (unit tests) |
-| `mycelic/aggregation.py` | Topic consolidation and slot-composition rules; deterministic derived ids; supersession |
-| `mycelic/lineage.py` | Lineage graph reconstruction with per-principal redaction |
-| `mycelic/retrieval.py` | BM25 (positive IDF) over visible memories, layer boost |
-| `mycelic/auth.py` | API keys, principals, the visibility rule, token-bucket rate limiter |
-| `mycelic/service.py` | Ingest, apply, query, lineage, admin operations, publisher/consumer loops, recovery |
-| `mycelic/api.py` | aiohttp routes and middleware |
-| `mycelic/mcp.py` | MCP tools over the protocol core in `mcp_protocol.py`; per-request identity; stdio proxy |
-| `mycelic/metrics.py` | Prometheus metrics |
-| `mycelic/sdk/` | `MycelicClient` (urllib, no dependencies), `LocalMemory`, reference agent process |
-| `mycelic/harness.py` | Process and Compose drivers for the smoke test and the demo |
+| `crates/mycelic/src/hierarchy.rs` | Layers `agent → team → department → subsidiary → region → enterprise`; unit paths; ancestor/subtree relations |
+| `config.rs` | `MYCELIC_*` environment variables, validated at start (secrets never in source; placeholder values refused) |
+| `store.rs` | SQLite schema (version 2, additive migrations) and transactions (`BEGIN IMMEDIATE`, one writer, `synchronous=FULL`) |
+| `transport.rs` | `JetStreamTransport` (async-nats) and `InProcessTransport` (unit tests) |
+| `aggregation.rs` | Topic consolidation and slot-composition rules; deterministic derived ids; supersession |
+| `lineage.rs` | Lineage graph reconstruction with per-principal redaction |
+| `retrieval.rs` | BM25 (positive IDF) over visible memories, layer boost |
+| `auth.rs` | API keys, principals, the visibility rule, token-bucket rate limiter |
+| `service.rs` | Ingest, apply, query, lineage, admin operations, publisher/consumer loops, recovery |
+| `api.rs` | axum routes and middleware (in aiohttp's order, with its error texts) |
+| `mcp.rs` | MCP protocol core, Streamable HTTP transport, tools; per-request identity; stdio proxy |
+| `metrics.rs` | Prometheus metrics |
+| `pyjson.rs` | Python's `json.dumps` text and float `repr`, so stored JSON and hashes match deployments the Python version wrote |
+| `crates/mycelic-sdk` | `MycelicClient` (ureq, no server dependencies), `LocalMemory`, reference agent process `mycelic-agent` |
+| `crates/mycelic-harness` | Process and Compose drivers, the smoke test and the demos |
 
 Copied from [NeuralGraph](https://github.com/anovruzov/NeuralGraph) at `e7ef73ea` when Mycelic moved to its
-own repository, and owned here since: `mycelic/coordination/` (`ClaimEnvelope`, `RuleBasedSynthesizer`,
-`LineageAnalyzer`, from `NeuralGraph.research.coordination`), `mycelic/mcp_protocol.py` (JSON-RPC/MCP core and
-Streamable HTTP transport, from `NeuralGraph.chat_memory.mcp_server`, cut down to a pluggable tool set) and
-`mycelic/textutil.py` (tokenizer). The store/transaction pattern follows `NeuralGraph.chat_memory.store`.
+own repository, owned here since, and ported to Rust with it: `coordination.rs` (`ClaimEnvelope`,
+`RuleBasedSynthesizer`, `LineageAnalyzer`, from `NeuralGraph.research.coordination`), the protocol core in
+`mcp.rs` (JSON-RPC/MCP and Streamable HTTP transport, from `NeuralGraph.chat_memory.mcp_server`) and
+`textutil.rs` (tokenizer). The store/transaction pattern follows `NeuralGraph.chat_memory.store`.
 
 ## 3. The data path
 
@@ -91,7 +92,7 @@ lineage   GET /lineage/{id} → walk lineage_edges upward to the raw observation
 ```
 
 Every hop is a real service call; the unit tests replace only the broker (with an in-process log that
-still goes through the same outbox/apply code), and `tests/mycelic/test_jetstream.py` plus the smoke test
+still goes through the same outbox/apply code), and `crates/mycelic/tests/jetstream.rs` plus the smoke test
 use the real broker.
 
 ## 4. Event log
@@ -133,15 +134,16 @@ then `term`.
   rule sets are refused at the admin entry points), and finer-grained evidence is preferred over a
   consolidation that restates it. Fragility metrics score at most six claims per slot. After a retraction,
   a withdrawal for lost support, or a supersession that leaves a dependent behind, dependents are retired and
-  re-evaluated on the remaining evidence (`Aggregator.reevaluate`). Verified by `tests/mycelic/test_strategic.py` and
-  `demo/mycelic_strategic_demo.py` (run under pytest by `tests/mycelic/test_strategic_demo_process.py`).
+  re-evaluated on the remaining evidence (`Aggregator.reevaluate`). Verified by `crates/mycelic/tests/strategic.rs`, the
+  golden scenarios in `golden_scenarios.rs`, and `mycelic-strategic-demo` (run by `cargo test` as
+  `crates/mycelic-harness/tests/strategic_demo_process.rs`).
 * **Determinism.** A derived memory's id is `sha256(operator, unit, key, sorted parent ids)`. Recomputing
   the parent set from currently active evidence either leaves the active memory as is, supersedes it with
   a new version (old one readable as `previous_versions`), reactivates an earlier version whose exact
   coalition returned, or retracts it when support falls below the threshold. At most one active derived
   memory per (unit, operator, key) is enforced by a unique index.
 
-Verified by `tests/mycelic/test_datapath.py` (consolidation, rule firing, supersession, reactivation,
+Verified by `crates/mycelic/tests/datapath.rs` (consolidation, rule firing, supersession, reactivation,
 retraction) and by the smoke test on a live deployment.
 
 ## 6. Lineage semantics
@@ -187,6 +189,8 @@ entity are withheld, the unit (team) path, layer, timestamps and confidence rema
 `mycelic_auth_failures_total{reason}`, `mycelic_active_agents`, `mycelic_registered_agents`,
 `mycelic_memories{layer}`, `mycelic_outbox_pending`, `mycelic_transport_connected`,
 `mycelic_consumer_pending` (read from the broker at scrape time), `mycelic_build_info{version}`.
+The Python version also exported a `_created` timestamp series per counter (a `prometheus_client` default);
+the Rust exposition does not.
 
 `GET /health` (public: status, version, transport connected, consumer running), `GET /ready`,
 `GET /admin/status` (full checks, stream/consumer positions, masked settings), `GET /admin/audit`,
@@ -201,7 +205,7 @@ flowchart LR
     A2[agent + LocalMemory] -- HTTPS bearer --> API
   end
   subgraph Mycelic["mycelic container"]
-    API[aiohttp API + MCP] --> SVC[MycelicService]
+    API[axum API + MCP] --> SVC[MycelicService]
     SVC --> DB[(SQLite /data/mycelic.db)]
     SVC --> PUB[publisher]
     CONS[consumer / aggregator] --> SVC

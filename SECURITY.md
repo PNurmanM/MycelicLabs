@@ -9,7 +9,7 @@ repository.
 | Principal | Credential | Where it comes from |
 |---|---|---|
 | Administrator | `MYCELIC_ADMIN_TOKEN` (≥ 32 characters, environment only) | operator; rotating it means restarting the service |
-| Agent | API key `mk_<agent_id>.<256-bit secret>` | `POST /admin/agents` / `python -m mycelic register-agent`; shown once |
+| Agent | API key `mk_<agent_id>.<256-bit secret>` | `POST /admin/agents` / `mycelic register-agent`; shown once |
 | Service ↔ broker | NATS user/password (`MYCELIC_NATS_USER/PASSWORD`) | environment; the broker enforces `authorization {}` |
 | Service ↔ itself across the log | `MYCELIC_EVENT_SIGNING_KEY` (HMAC-SHA256 over every published event) | environment |
 
@@ -35,9 +35,11 @@ to its organization; a deployment may host several.
 | `/health`, `/ready`, `/` | public, minimal (status, version, transport connected); details need the admin token |
 | `/mcp` | same bearer authentication as the REST routes; the MCP identity is the agent whose key is presented, per request |
 
-The visibility rule is written once in SQL (`MycelicStore.visible_rows`, behind `GET /memories`) and once in
-Python (`auth.memory_visible`, behind every other read); `tests/mycelic/test_hierarchy_and_auth.py` checks
-the Python rule and `test_api.py` checks both through the API. Retrieval computes its BM25 statistics over
+The visibility rule is written once in SQL (`Db::visible_rows` in `crates/mycelic/src/store.rs`, behind
+`GET /memories`) and once in Rust (`auth::memory_visible`, behind every other read);
+`crates/mycelic/tests/hierarchy_and_auth.rs` checks the Rust rule, `api.rs` checks both through the API, and
+`golden_units.rs` (`visibility_rule_in_code_and_in_sql_matches_python`) holds both to the decisions the original
+Python implementation made over the same grid of memories and principals. Retrieval computes its BM25 statistics over
 the caller's view only, so memories outside it influence neither the results nor their order.
 
 ## 3. Transport and integrity
@@ -86,12 +88,14 @@ refused at start, and placeholder-looking secrets are refused too.
 
 ## 6. What is verified
 
-`tests/mycelic/test_api.py`: 401/403/404/413/415/421/429 behaviour, non-ASCII tokens, admin cannot write,
+All paths below are under `crates/`. `mycelic/tests/api.rs`: 401/403/404/413/415/421/429 behaviour, non-ASCII tokens, admin cannot write,
 agents cannot administer, rotate/revoke, per-scope refusals, metadata that names other teams' agents never
 leaves through `/query`, the SQL visibility rule behind `GET /memories`, `X-Forwarded-For` handling, MCP
-identity, MCP batch limits and per-organization MCP status. `tests/mycelic/test_datapath.py`: write-as-self, visibility and lineage redaction,
-idempotent re-sends. `tests/mycelic/test_jetstream.py`: forged/unsigned events on the real broker are
-rejected. `tests/smoke/mycelic_smoke.py`: a sales agent cannot read a logistics raw note (404) while an
+identity, MCP batch limits and per-organization MCP status. `mycelic/tests/golden_api.rs`: about 190 HTTP and
+MCP requests (status, headers, body) replayed against the responses the Python service gave.
+`mycelic/tests/datapath.rs`: write-as-self, visibility and lineage redaction, idempotent re-sends.
+`mycelic/tests/jetstream.rs`: forged/unsigned events on the real broker are rejected.
+`mycelic-harness/src/smoke.rs` (`mycelic-smoke`, run by `cargo test` as `smoke_process.rs`): a sales agent cannot read a logistics raw note (404) while an
 administrator sees every contributor.
 
 ## 7. Limitations (read these)
