@@ -101,36 +101,22 @@ pub fn wait_http(url: &str, timeout: Duration, status: u16, headers: &[(&str, &s
     bail!("{url} did not answer {status} within {}s (last: {last})", timeout.as_secs())
 }
 
-/// Where the `mycelic` and `mycelic-agent` binaries live.
-pub fn bin_dir() -> PathBuf {
+/// Where a binary of this workspace lives: `MYCELIC_BIN_DIR`, the directory of the running executable (or one of its
+/// parents: `target/debug/deps` for tests), the repository's `target/{release,debug}`, or `PATH`.
+pub fn binary(name: &str) -> PathBuf {
     if let Some(d) = std::env::var_os("MYCELIC_BIN_DIR") {
-        return PathBuf::from(d);
+        return PathBuf::from(d).join(name);
     }
+    let mut candidates: Vec<PathBuf> = Vec::new();
     if let Ok(exe) = std::env::current_exe() {
-        for dir in exe.ancestors().skip(1).take(3) {
-            if dir.join("mycelic").is_file() && dir.join("mycelic-agent").is_file() {
-                return dir.to_path_buf();
-            }
-        }
+        candidates.extend(exe.ancestors().skip(1).take(3).map(|d| d.join(name)));
     }
     let target = repo_root().join("target");
-    for profile in ["release", "debug"] {
-        if target.join(profile).join("mycelic").is_file() {
-            return target.join(profile);
-        }
+    candidates.extend(["release", "debug"].iter().map(|p| target.join(p).join(name)));
+    if let Some(paths) = std::env::var_os("PATH") {
+        candidates.extend(std::env::split_paths(&paths).map(|d| d.join(name)));
     }
-    PathBuf::from("")
-}
-
-/// A binary from [`bin_dir`], or from PATH.
-pub fn binary(name: &str) -> PathBuf {
-    let p = bin_dir().join(name);
-    if p.is_file() {
-        return p;
-    }
-    std::env::var_os("PATH")
-        .and_then(|paths| std::env::split_paths(&paths).map(|d| d.join(name)).find(|p| p.is_file()))
-        .unwrap_or_else(|| PathBuf::from(name))
+    candidates.into_iter().find(|p| p.is_file()).unwrap_or_else(|| PathBuf::from(name))
 }
 
 /// `nats-server` from `MYCELIC_NATS_SERVER_BIN` or PATH.
