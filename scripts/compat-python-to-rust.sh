@@ -10,7 +10,9 @@
 #    signing key: the Python-issued agent keys authenticate, the answer, its lineage and every active memory are
 #    the same, and a new observation is applied and aggregated on top of the Python state;
 # 3. the Rust service is stopped, the database deleted and the Rust service started again: it replays the whole
-#    stream (Python-signed events first, then its own) and rebuilds exactly the state it had.
+#    stream (Python-signed events first, then its own) and rebuilds exactly the state it had;
+# 4. the Python production smoke test (tests/smoke/mycelic_smoke.py at the same commit, its nine steps unchanged,
+#    Python SDK agent processes) runs against the Rust service.
 #
 # Needs: nats-server on PATH (or MYCELIC_NATS_SERVER_BIN), a Python 3.11 with aiohttp, nats-py, prometheus-client,
 # numpy and rank-bm25 (the old requirements-runtime.txt), and the Rust binary (built here if missing).
@@ -204,6 +206,41 @@ start_rust rebuild
 grep -q "replaying the full log" "$WORK/rust.rebuild.log" && echo "  ok   rust logged the full replay of the stream"
 "$PYTHON" "$CHECK" rust-rebuild
 stop_service
+
+echo "== 4. the Python smoke test's nine steps (tests/smoke/mycelic_smoke.py @ $PY_COMMIT, Python SDK agents) against the rust service"
+cat > "$WORK/smoke_vs_rust.py" <<'PYEOF'
+import json, os, subprocess, sys
+from pathlib import Path
+tree, rust = Path(sys.argv[1]), Path(sys.argv[2])
+sys.path.insert(0, str(tree))
+from mycelic.harness import ProcessDriver
+from tests.smoke import mycelic_smoke
+
+class RustServiceDriver(ProcessDriver):
+    """The Python harness, unchanged, except that the service it starts is the Rust binary."""
+    def start(self, service):
+        if service != "mycelic" or service in self.procs:
+            return super().start(service)
+        log = open(self.workdir / "mycelic.log", "ab")
+        self.procs["mycelic"] = subprocess.Popen([str(rust), "serve"], env=self.env(), cwd=str(tree), stdout=log, stderr=subprocess.STDOUT)
+        self.wait_ready(60)
+
+driver = RustServiceDriver()
+try:
+    report = mycelic_smoke.run(driver, agents_per_team=2, log=print)
+finally:
+    driver.down()
+ok = report["result"] == "PASS" and len(report["steps"]) == 9
+out = os.environ.get("CHECKS")
+prev = json.load(open(out)) if out and os.path.exists(out) else []
+prev.append({"phase": "python-smoke", "ok": ok, "text": f"python smoke test, nine steps, against the rust service: {report['result']} in {report['seconds']}s"})
+if out:
+    json.dump(prev, open(out, "w"))
+print(("  ok   " if ok else "  FAIL ") + prev[-1]["text"])
+sys.exit(0 if ok else 1)
+PYEOF
+(env -u MYCELIC_HOST -u MYCELIC_PORT -u MYCELIC_DB_PATH -u MYCELIC_NATS_URL -u MYCELIC_ADMIN_TOKEN -u MYCELIC_EVENT_SIGNING_KEY \
+     PATH="$(dirname "$NATS_BIN"):$PATH" "$PYTHON" "$WORK/smoke_vs_rust.py" "$PYTREE" "$RUST_BIN") | grep -E "^==|  ok  |  ok   |FAIL"
 
 if [ -n "$REPORT" ]; then
   "$PYTHON" - "$CHECKS" "$REPORT" "$PY_COMMIT" <<'PYEOF'
