@@ -7,7 +7,10 @@ type Entry = fn(&[String]) -> Result<()>;
 
 /// (subcommand, what it does, entry point)
 fn modules() -> Vec<(&'static str, &'static str, Entry)> {
-    use mycelic_research::{analysis, loss_doc, loss_report, report, vnext_data, vnext_docs};
+    use mycelic_research::{
+        analysis, live_rank, live_tasks, loss_doc, loss_report, make_pdf, plots, report, score_live, vnext_data,
+        vnext_docs,
+    };
     vec![
         ("org", "org-chart statistics at 1k, 10k and 50k users", mycelic_research::org::main),
         ("corpus", "corpus and gold statistics at 1k and 10k users", mycelic_research::corpus::main),
@@ -39,6 +42,23 @@ fn modules() -> Vec<(&'static str, &'static str, Entry)> {
         ("report", "write docs/MYCELIC_ENTERPRISE.md", report::main),
         ("vnext_data", "print every vNext table", vnext_data::main),
         ("vnext_docs", "write docs/mycelic_vnext/", vnext_docs::main),
+        ("live_tasks", "build the operator test-set and its answer key (seed 900, 2,000 users)", live_tasks::main),
+        ("score_live", "score the live operator answers and fit q to each model", score_live::main),
+        (
+            "live_rank",
+            "candidate-discrimination tasks: build, or `score` the answers; `rich` adds source notes",
+            live_rank::main,
+        ),
+        (
+            "plots",
+            "the report figures from the rows; optional output directory (default artifacts/figures)",
+            plots::main,
+        ),
+        (
+            "make_pdf",
+            "render a generated Markdown report to a paginated A4 PDF: [src out [title [subtitle]]]",
+            make_pdf::main,
+        ),
     ]
 }
 
