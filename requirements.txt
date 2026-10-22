@@ -1,3 +1,0 @@
-# The research code (research/mycelic): the simulator, the experiments and the document generators.
-# The product is the Rust workspace (Cargo.toml); it needs no Python. Python >= 3.11.
-numpy>=1.26
