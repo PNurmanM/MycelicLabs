@@ -4,8 +4,11 @@
 //! are the `_Generated ...` lines, which carry the generation date and name the generator (the Python module then,
 //! the Rust one now).  Also the report-generator tests of `test_mycelic.py` (`TestReportGenerators`).
 
+use mycelic_research::loss_report::{int, text};
+use mycelic_research::py::fmt;
 use mycelic_research::runner::{art, repo_root};
-use mycelic_research::{loss_doc, vnext_docs};
+use mycelic_research::{findings, loss_doc, report, vnext_docs};
+use std::collections::BTreeSet;
 
 const DATE: &str = "2026-10-21";
 
@@ -82,4 +85,32 @@ fn vnext_docs_regenerate() {
     assert!(report.contains(&format!(
         "_Generated {stamp} from `research/mycelic/artifacts/` (new) and `artifacts/v1/` (old) by `vnext_docs.rs`."
     )));
+}
+
+#[test]
+fn enterprise_report_regenerates() {
+    let text = report::build_at(DATE);
+    assert_matches_committed("docs/MYCELIC_ENTERPRISE.md", &text);
+    assert!(text.contains(&format!("_Generated {DATE} by `crates/mycelic-research/src/report.rs` from the\n")));
+}
+
+#[test]
+fn missing_architecture_is_never_reported_as_zero() {
+    let rows = findings::rows();
+    let ladder = ["C_recursive_sum", "D_hier_nolineage", "E_hier_lineage", "F_hier_retrieval", "G_hier_questions"];
+    let sc = findings::largest_complete_scale(&rows, &ladder).expect("a scale with the whole ladder");
+    let ran = |a: &str, s: i64| rows.iter().any(|r| text(r, "arch") == a && int(r, "scale") == s);
+    for a in ladder {
+        assert!(ran(a, sc), "{a}");
+    }
+    let summary = findings::executive_summary();
+    let before_2 = summary.split("**2.").next().unwrap();
+    for s in rows.iter().map(|r| int(r, "scale")).collect::<BTreeSet<_>>() {
+        if ladder.iter().any(|a| !ran(a, s)) {
+            assert!(
+                !before_2.contains(&format!("At {} users", fmt::i(s, ","))),
+                "scale {s} reported with a rung missing"
+            );
+        }
+    }
 }

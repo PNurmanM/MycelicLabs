@@ -63,21 +63,23 @@ pub fn is_summary(r: &Row) -> bool {
 }
 
 /// `r.get(key) is not None`
-pub(crate) fn has(r: &Row, key: &str) -> bool {
+pub fn has(r: &Row, key: &str) -> bool {
     r.get(key).is_some_and(|v| !v.is_null())
 }
 
 /// `bool(r[key])`
-pub(crate) fn flag(r: &Row, key: &str) -> bool {
+pub fn flag(r: &Row, key: &str) -> bool {
     truthy(r.get(key).unwrap_or_else(|| panic!("funnel row has no {key:?}")))
 }
 
-pub(crate) fn int(r: &Row, key: &str) -> i64 {
+/// `r[key]` as an int (an integral float truncates, as `int()` does).
+pub fn int(r: &Row, key: &str) -> i64 {
     let v = &r[key];
     v.as_i64().unwrap_or_else(|| num(v).unwrap_or_else(|| panic!("{key} is not a number: {v}")) as i64)
 }
 
-pub(crate) fn text<'a>(r: &'a Row, key: &str) -> &'a str {
+/// `r[key]` as a str.
+pub fn text<'a>(r: &'a Row, key: &str) -> &'a str {
     r.get(key).and_then(Value::as_str).unwrap_or_else(|| panic!("row has no string {key:?}"))
 }
 
