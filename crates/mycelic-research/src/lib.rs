@@ -15,6 +15,7 @@ pub mod corpus;
 pub mod evalm;
 pub mod experiments;
 pub mod loss_accounting;
+pub mod loss_doc;
 pub mod loss_report;
 pub mod models;
 pub mod np;
