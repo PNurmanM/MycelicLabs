@@ -107,3 +107,68 @@ pub fn truthy(v: &Value) -> bool {
 pub fn fl(x: f64) -> Value {
     serde_json::Number::from_f64(x).map(Value::Number).unwrap_or(Value::Null)
 }
+
+/// `format(v, spec)` for a value loaded from JSON: an int (or bool) takes the int path, so `"{:,}"` of `68463`
+/// prints `68,463` while the float `40.0` prints `40.0`; a float spec on an int formats it as a float, as Python
+/// does; a string takes width and alignment; an empty spec on anything else is `str(v)`.
+pub fn format(v: &Value, spec: &str) -> String {
+    match v {
+        Value::Number(n) if n.is_f64() => fmt::f(n.as_f64().unwrap(), spec),
+        Value::Number(n) => match n.as_i64() {
+            Some(i) => fmt::i(i, spec),
+            None => fmt::f(n.as_f64().unwrap(), spec),
+        },
+        Value::Bool(b) if !spec.is_empty() => fmt::i(i64::from(*b), spec),
+        Value::String(s) => fmt::s(s, spec),
+        other if spec.is_empty() => py_str(other),
+        other => panic!("cannot format {other} with {spec:?}"),
+    }
+}
+
+/// Python's builtin `sum` over floats: left to right from 0, which is not numpy's pairwise order.
+pub fn sum(xs: impl IntoIterator<Item = f64>) -> f64 {
+    xs.into_iter().fold(0.0, |acc, x| acc + x)
+}
+
+/// Python's `max(items, key=...)`: the FIRST item with the largest key.  Rust's `Iterator::max_by` returns the
+/// last of equal maxima, which would change which architecture a tied table names.
+pub fn max_by<T>(items: impl IntoIterator<Item = T>, key: impl Fn(&T) -> f64) -> Option<T> {
+    let mut best: Option<(T, f64)> = None;
+    for it in items {
+        let k = key(&it);
+        let replace = match &best {
+            None => true,
+            Some((_, bk)) => k > *bk,
+        };
+        if replace {
+            best = Some((it, k));
+        }
+    }
+    best.map(|b| b.0)
+}
+
+/// Python's `min(items, key=...)`: the first item with the smallest key.
+pub fn min_by<T>(items: impl IntoIterator<Item = T>, key: impl Fn(&T) -> f64) -> Option<T> {
+    let mut best: Option<(T, f64)> = None;
+    for it in items {
+        let k = key(&it);
+        let replace = match &best {
+            None => true,
+            Some((_, bk)) => k < *bk,
+        };
+        if replace {
+            best = Some((it, k));
+        }
+    }
+    best.map(|b| b.0)
+}
+
+/// Python's `max(a, b)` for floats: `b` only if it compares greater, so a NaN second argument loses.
+pub fn max2(a: f64, b: f64) -> f64 {
+    if b > a { b } else { a }
+}
+
+/// Python's `min(a, b)` for floats.
+pub fn min2(a: f64, b: f64) -> f64 {
+    if b < a { b } else { a }
+}

@@ -239,6 +239,38 @@ pub fn repr(x: f64) -> String {
     }
 }
 
+/// `template.format_map(values)` for templates whose fields are bare names (`{name}`), with `{{`/`}}` escapes.
+/// An unknown name panics, as Python raises KeyError.
+pub fn format_map(template: &str, lookup: impl Fn(&str) -> Option<String>) -> String {
+    let mut out = String::with_capacity(template.len());
+    let mut rest = template;
+    while let Some(p) = rest.find(['{', '}']) {
+        out.push_str(&rest[..p]);
+        let tail = &rest[p..];
+        if tail.starts_with("{{") || tail.starts_with("}}") {
+            out.push_str(&tail[..1]);
+            rest = &tail[2..];
+            continue;
+        }
+        assert!(tail.starts_with('{'), "single '}}' in format string {template:?}");
+        let end = tail.find('}').unwrap_or_else(|| panic!("unclosed field in {template:?}"));
+        let name = &tail[1..end];
+        out.push_str(&lookup(name).unwrap_or_else(|| panic!("KeyError: {name:?}")));
+        rest = &tail[end + 1..];
+    }
+    out.push_str(rest);
+    out
+}
+
+/// Python's `str.capitalize`: the first character upper-cased, the rest lower-cased.
+pub fn capitalize(text: &str) -> String {
+    let mut chars = text.chars();
+    match chars.next() {
+        Some(c) => c.to_uppercase().chain(chars.flat_map(char::to_lowercase)).collect(),
+        None => String::new(),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -261,5 +293,7 @@ mod tests {
         assert_eq!(f(f64::NAN, ".1%"), "nan%");
         assert_eq!(f(-1.5e-5, "+.2e"), "-1.50e-05");
         assert_eq!(s("ab", "6s"), "ab    ");
+        assert_eq!(format_map("{a} {{b}} {a}", |k| (k == "a").then(|| "x".to_string())), "x {b} x");
+        assert_eq!(capitalize("an Exact test"), "An exact test");
     }
 }

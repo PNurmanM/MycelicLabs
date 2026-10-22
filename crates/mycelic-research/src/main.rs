@@ -7,6 +7,7 @@ type Entry = fn(&[String]) -> Result<()>;
 
 /// (subcommand, what it does, entry point)
 fn modules() -> Vec<(&'static str, &'static str, Entry)> {
+    use mycelic_research::{analysis, loss_doc, loss_report, report, vnext_data, vnext_docs};
     vec![
         ("org", "org-chart statistics at 1k, 10k and 50k users", mycelic_research::org::main),
         ("corpus", "corpus and gold statistics at 1k and 10k users", mycelic_research::corpus::main),
@@ -32,6 +33,12 @@ fn modules() -> Vec<(&'static str, &'static str, Entry)> {
             "freeze vNext knobs into calibration.json with provenance",
             mycelic_research::freeze_vnext::main,
         ),
+        ("analysis", "headline summary of each artifact file given", analysis::main),
+        ("loss_doc", "write docs/MYCELIC_LOSS_ACCOUNTING.md", loss_doc::main),
+        ("loss_report", "print the loss-funnel tables", loss_report::main),
+        ("report", "write docs/MYCELIC_ENTERPRISE.md", report::main),
+        ("vnext_data", "print every vNext table", vnext_data::main),
+        ("vnext_docs", "write docs/mycelic_vnext/", vnext_docs::main),
     ]
 }
 
