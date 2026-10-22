@@ -21,6 +21,8 @@ pub mod models;
 pub mod np;
 pub mod ops;
 pub mod org;
+pub mod plots;
+pub mod plotting;
 pub mod py;
 pub mod runner;
 pub mod score_live;

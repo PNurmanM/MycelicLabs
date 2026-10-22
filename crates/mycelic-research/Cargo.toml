@@ -22,8 +22,10 @@ indexmap = "2"
 rayon = "1"
 rustc-hash = "2"
 regex.workspace = true
+resvg = { version = "0.48", default-features = false, features = ["text", "system-fonts"] }
 ryu.workspace = true
 serde_json.workspace = true
+skrifa = "0.44"
 
 [dev-dependencies]
 serde_json.workspace = true

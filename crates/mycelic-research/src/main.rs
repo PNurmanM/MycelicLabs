@@ -2,7 +2,7 @@
 //! arguments the module's `python3 -m research.mycelic.<module>` took.
 
 use anyhow::{Result, bail};
-use mycelic_research::{live_rank, live_tasks, score_live};
+use mycelic_research::{live_rank, live_tasks, plots, score_live};
 
 type Entry = fn(&[String]) -> Result<()>;
 
@@ -15,6 +15,11 @@ fn modules() -> Vec<(&'static str, &'static str, Entry)> {
             "live_rank",
             "candidate-discrimination tasks: build, or `score` the answers; `rich` adds source notes",
             live_rank::main,
+        ),
+        (
+            "plots",
+            "the report figures from the rows; optional output directory (default artifacts/figures)",
+            plots::main,
         ),
     ]
 }
