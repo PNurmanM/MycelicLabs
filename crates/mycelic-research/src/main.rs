@@ -2,12 +2,21 @@
 //! arguments the module's `python3 -m research.mycelic.<module>` took.
 
 use anyhow::{Result, bail};
+use mycelic_research::{live_rank, live_tasks, score_live};
 
 type Entry = fn(&[String]) -> Result<()>;
 
 /// (subcommand, what it does, entry point)
 fn modules() -> Vec<(&'static str, &'static str, Entry)> {
-    vec![]
+    vec![
+        ("live_tasks", "build the operator test-set and its answer key (seed 900, 2,000 users)", live_tasks::main),
+        ("score_live", "score the live operator answers and fit q to each model", score_live::main),
+        (
+            "live_rank",
+            "candidate-discrimination tasks: build, or `score` the answers; `rich` adds source notes",
+            live_rank::main,
+        ),
+    ]
 }
 
 fn main() -> Result<()> {
