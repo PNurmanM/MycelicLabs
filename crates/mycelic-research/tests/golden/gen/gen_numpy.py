@@ -279,6 +279,20 @@ def boot_cases():
     return out
 
 
+def argsort_cases():
+    """np.argsort's default (unstable) order on arrays with many ties, small and large."""
+    g = np.random.default_rng(3)
+    out = []
+    for n in list(range(1, 40)) + [100, 257, 1000, 3000]:
+        for levels in (2, 5, 50, None):
+            if levels is None:
+                a = g.random(n)
+            else:
+                a = g.integers(0, levels, n) / levels
+            out.append({"v": [bits(x) for x in a], "argsort": compact(np.argsort(a)), "neg": compact(np.argsort(-a))})
+    return out
+
+
 def dump(name, obj):
     with open(os.path.join(OUT, name), "w") as fh:
         json.dump(obj, fh, separators=(",", ":"))
@@ -294,3 +308,4 @@ if __name__ == "__main__":
     dump("pyset.json", {"python": sys.version.split()[0], "cases": pyset_cases()})
     dump("pyfmt.json", fmt_cases())
     dump("boot.json", boot_cases())
+    dump("argsort.json", argsort_cases())

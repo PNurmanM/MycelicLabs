@@ -192,12 +192,10 @@ pub fn argsort_stable<T: PartialOrd>(a: &[T]) -> Vec<usize> {
     idx
 }
 
-/// `np.argsort(-x)` for values without ties: a descending order (ties, which the callers rule out by
-/// construction, fall back to index order).
+/// `np.argsort(-x)`: numpy's default (introsort) order of the negated values, ties included.
 pub fn argsort_desc(a: &[f64]) -> Vec<usize> {
-    let mut idx: Vec<usize> = (0..a.len()).collect();
-    idx.sort_by(|&i, &j| (-a[i]).partial_cmp(&-a[j]).expect("argsort: NaN"));
-    idx
+    let neg: Vec<f64> = a.iter().map(|x| -x).collect();
+    argsort_quick(&neg)
 }
 
 /// `np.unique(a, return_index=True, return_counts=True)` for sorted-able integers: (values, first index,
@@ -251,6 +249,146 @@ pub fn bincount(a: &[i64], minlength: usize) -> Vec<i64> {
 /// `np.rint` (round half to even)
 pub fn rint(x: f64) -> f64 {
     x.round_ties_even()
+}
+
+/// numpy's float `less`: NaNs sort to the end.
+fn np_less(a: f64, b: f64) -> bool {
+    a < b || (b.is_nan() && !a.is_nan())
+}
+
+fn aheapsort(v: &[f64], tosort: &mut [usize]) {
+    let n0 = tosort.len();
+    // one-based indexing, as numpy's heapsort
+    let mut a: Vec<usize> = Vec::with_capacity(n0 + 1);
+    a.push(0);
+    a.extend_from_slice(tosort);
+    let mut n = n0;
+    let mut l = n >> 1;
+    while l > 0 {
+        let tmp = a[l];
+        let (mut i, mut j) = (l, l << 1);
+        while j <= n {
+            if j < n && np_less(v[a[j]], v[a[j + 1]]) {
+                j += 1;
+            }
+            if np_less(v[tmp], v[a[j]]) {
+                a[i] = a[j];
+                i = j;
+                j += j;
+            } else {
+                break;
+            }
+        }
+        a[i] = tmp;
+        l -= 1;
+    }
+    while n > 1 {
+        let tmp = a[n];
+        a[n] = a[1];
+        n -= 1;
+        let (mut i, mut j) = (1, 2);
+        while j <= n {
+            if j < n && np_less(v[a[j]], v[a[j + 1]]) {
+                j += 1;
+            }
+            if np_less(v[tmp], v[a[j]]) {
+                a[i] = a[j];
+                i = j;
+                j += j;
+            } else {
+                break;
+            }
+        }
+        a[i] = tmp;
+    }
+    tosort.copy_from_slice(&a[1..]);
+}
+
+/// `np.argsort(v)` with the default kind: numpy's introsort (`aquicksort_`, median-of-three partitions above 16
+/// elements, insertion sort below that, heapsort past the depth limit).  It is not stable, so where values tie the
+/// order is numpy's own - which decides AUC ranks and top-k cuts over tied scores.
+pub fn argsort_quick(v: &[f64]) -> Vec<usize> {
+    let num = v.len();
+    let mut idx: Vec<usize> = (0..num).collect();
+    if num < 2 {
+        return idx;
+    }
+    const SMALL_QUICKSORT: usize = 15;
+    let msb = (usize::BITS - 1 - num.leading_zeros()) as i64;
+    let mut cdepth: i64 = msb * 2;
+    let mut stack: Vec<(usize, usize, i64)> = Vec::new();
+    let (mut pl, mut pr) = (0usize, num - 1);
+    loop {
+        if cdepth < 0 {
+            aheapsort(v, &mut idx[pl..=pr]);
+        } else {
+            while pr - pl > SMALL_QUICKSORT {
+                let pm = pl + ((pr - pl) >> 1);
+                if np_less(v[idx[pm]], v[idx[pl]]) {
+                    idx.swap(pm, pl);
+                }
+                if np_less(v[idx[pr]], v[idx[pm]]) {
+                    idx.swap(pr, pm);
+                }
+                if np_less(v[idx[pm]], v[idx[pl]]) {
+                    idx.swap(pm, pl);
+                }
+                let vp = v[idx[pm]];
+                let mut pi = pl;
+                let mut pj = pr - 1;
+                idx.swap(pm, pj);
+                loop {
+                    loop {
+                        pi += 1;
+                        if !np_less(v[idx[pi]], vp) {
+                            break;
+                        }
+                    }
+                    loop {
+                        pj -= 1;
+                        if !np_less(vp, v[idx[pj]]) {
+                            break;
+                        }
+                    }
+                    if pi >= pj {
+                        break;
+                    }
+                    idx.swap(pi, pj);
+                }
+                let pk = pr - 1;
+                idx.swap(pi, pk);
+                // push the larger partition, continue with the smaller
+                cdepth -= 1;
+                if pi - pl < pr - pi {
+                    stack.push((pi + 1, pr, cdepth));
+                    pr = pi - 1;
+                } else {
+                    stack.push((pl, pi - 1, cdepth));
+                    pl = pi + 1;
+                }
+            }
+            // insertion sort
+            for pi in pl + 1..=pr {
+                let vi = idx[pi];
+                let vp = v[vi];
+                let mut pj = pi;
+                while pj > pl && np_less(vp, v[idx[pj - 1]]) {
+                    idx[pj] = idx[pj - 1];
+                    pj -= 1;
+                }
+                idx[pj] = vi;
+            }
+        }
+        match stack.pop() {
+            None => break,
+            Some((l, r, d)) => {
+                pl = l;
+                pr = r;
+                cdepth = d;
+            }
+        }
+    }
+    idx
 }
 
 #[cfg(test)]

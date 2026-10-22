@@ -327,3 +327,16 @@ fn bootstrap_and_sign_test_match_python() {
         assert_eq!(p, rec["sign"][2].as_f64().unwrap());
     }
 }
+
+#[test]
+fn default_argsort_matches_numpy_on_ties() {
+    let fx = load("argsort.json");
+    for rec in fx.as_array().unwrap() {
+        let v: Vec<f64> = rec["v"].as_array().unwrap().iter().map(f).collect();
+        let got: Vec<i64> = math::argsort_quick(&v).into_iter().map(|i| i as i64).collect();
+        check_ints(&got, &rec["argsort"], &format!("argsort n={}", v.len()));
+        let neg: Vec<f64> = v.iter().map(|x| -x).collect();
+        let got: Vec<i64> = math::argsort_quick(&neg).into_iter().map(|i| i as i64).collect();
+        check_ints(&got, &rec["neg"], &format!("argsort(-v) n={}", v.len()));
+    }
+}
