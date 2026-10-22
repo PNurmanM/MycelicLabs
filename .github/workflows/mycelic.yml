@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths: ["crates/**", "Cargo.toml", "Cargo.lock", "rustfmt.toml", "demo/**", "deploy/mycelic/**", "scripts/**",
-            "research/**", "requirements.txt", ".github/workflows/mycelic.yml"]
+            "research/**", ".github/workflows/mycelic.yml"]
   pull_request:
 
 env:
@@ -42,17 +42,18 @@ jobs:
           path: smoke-process.json
 
   research:
-    name: research/mycelic tests (Python until the research port)
+    name: research benchmark (mycelic-research) - Python parity, artifact reproduction, documents
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: pip
-      - run: pip install -r requirements.txt
-      - run: python -m unittest research.mycelic.test_mycelic
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      # numpy/CPython parity, the simulator against the recorded Python runs, the ported research tests and the
+      # byte-identity of every generated document (all in release: the parity tests build 50,000-user worlds)
+      - run: cargo test --release --locked -p mycelic-research
+      - name: rerun the light experiments and require the committed rows back
+        run: cargo test --release --locked -p mycelic-research --test artifacts_reproduce -- --ignored
 
   compose:
     name: docker compose deployment smoke test
