@@ -1,0 +1,37 @@
+[package]
+name = "mycelic-research"
+description = "The Mycelic enterprise-hierarchy benchmark: simulator, experiments E1-E12, analysis and document generators"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "mycelic-research"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+base64.workspace = true
+blake2 = "0.10"
+chrono.workspace = true
+indexmap = "2"
+pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
+rayon = "1"
+rustc-hash = "2"
+regex.workspace = true
+resvg = { version = "0.48", default-features = false, features = ["text", "system-fonts"] }
+ryu.workspace = true
+serde_json.workspace = true
+skrifa = "0.44"
+tungstenite = "0.30"
+
+[dev-dependencies]
+serde_json.workspace = true
+sha2.workspace = true
+tempfile.workspace = true
+hex.workspace = true

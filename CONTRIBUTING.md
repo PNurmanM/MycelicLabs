@@ -8,7 +8,7 @@ cd MycelicLabs
 cargo build --release                                  # Rust 1.88+ (rustup.rs)
 ```
 
-The research code under `research/` is Python: `python3 -m venv .venv && pip install -r requirements.txt`.
+Everything is Rust, the research benchmark included (`crates/mycelic-research`); there is no Python to install.
 
 ## Tests
 
@@ -17,7 +17,8 @@ cargo fmt --all --check && cargo clippy --workspace --all-targets -- -D warnings
 cargo test --workspace                                   # unit, golden, API, MCP; JetStream + process tests need nats-server
 ./target/release/mycelic-smoke --driver process          # the production smoke test against local processes
 ./target/release/mycelic-smoke --driver compose          # the deployment test (builds the image)
-python -m unittest research.mycelic.test_mycelic         # the research code
+cargo test --release -p mycelic-research                 # the research benchmark (parity, invariants, documents)
+cargo test --release -p mycelic-research --test artifacts_reproduce -- --ignored   # reruns reproduce the committed rows
 ```
 
 The integration tests run a real `nats-server` when `MYCELIC_NATS_SERVER_BIN` (or `nats-server` on `PATH`) is
@@ -42,8 +43,13 @@ available and skip themselves otherwise. Run the compose smoke test before chang
 ## Research
 
 `research/mycelic/README.md` has the commands that reproduce every number in
-[`docs/MYCELIC_ENTERPRISE.md`](docs/MYCELIC_ENTERPRISE.md). Raw per-run rows belong in
-`research/mycelic/artifacts/`; feature dumps are gitignored and regenerate.
+[`docs/MYCELIC_ENTERPRISE.md`](docs/MYCELIC_ENTERPRISE.md). The code is `crates/mycelic-research`; raw per-run rows
+belong in `research/mycelic/artifacts/`; feature dumps are gitignored and regenerate.
+
+The benchmark is held to the Python implementation it was ported from (last Python commit `f7e954b`) bit for bit:
+`crates/mycelic-research/tests/golden/` holds values recorded from that Python (numpy's random stream, CPython's set
+order, worlds and every metric of 117 runs). A change that moves a recorded value changes the published numbers:
+regenerate the documents, say why in the commit, and update the fixture deliberately in the same commit.
 
 ## Style
 

@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["crates/mycelic", "crates/mycelic-sdk", "crates/mycelic-harness"]
+members = ["crates/mycelic", "crates/mycelic-sdk", "crates/mycelic-harness", "crates/mycelic-research"]
 
 [workspace.package]
 version = "0.1.0"

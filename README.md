@@ -55,7 +55,7 @@ claude mcp add --transport http mycelic http://localhost:8080/mcp --header "Auth
 | [SECURITY.md](SECURITY.md) | What is enforced, how it is tested, and what is not |
 | [docs/MYCELIC_ARCHITECTURE.md](docs/MYCELIC_ARCHITECTURE.md) | What actually runs, module by module, and the test behind each claim |
 | [demo/README.md](demo/README.md) | The end-to-end, strategic-synthesis and live-console demos |
-| [docs/MYCELIC_ENTERPRISE.md](docs/MYCELIC_ENTERPRISE.md) | The enterprise-hierarchy benchmark study; code and raw runs in [research/mycelic/](research/mycelic/) |
+| [docs/MYCELIC_ENTERPRISE.md](docs/MYCELIC_ENTERPRISE.md) | The enterprise-hierarchy benchmark study; code in [crates/mycelic-research/](crates/mycelic-research/), raw runs in [research/mycelic/](research/mycelic/) |
 | [docs/MYCELIC_LOSS_ACCOUNTING.md](docs/MYCELIC_LOSS_ACCOUNTING.md), [docs/mycelic_vnext/](docs/mycelic_vnext/) | Where hidden patterns are lost, and the next-version research |
 
 ## Repository layout
@@ -65,10 +65,12 @@ crates/mycelic/          the service (binary `mycelic`): API, store, aggregation
                          tests/ holds the unit, API, MCP, JetStream and golden-fixture tests
 crates/mycelic-sdk/      the agent side: HTTP client, agent-local memory, the `mycelic-agent` reference process
 crates/mycelic-harness/  process and compose drivers, the production smoke test (`mycelic-smoke`) and the demos
+crates/mycelic-research/ the enterprise-hierarchy benchmark (binary `mycelic-research`): simulator, every
+                         architecture, experiments E1-E12, statistics, document and figure generators
 deploy/mycelic/          Dockerfile, docker-compose.yml, nats.conf, Prometheus, rules.json, k8s/
 demo/                    the live console page and its recorded trace, demo outputs
 scripts/                 the Python-to-Rust compatibility check and the HTTP benchmark
-research/mycelic/        the enterprise-hierarchy benchmark (Python): simulator, experiments, artifacts, logs
+research/mycelic/        the enterprise-hierarchy benchmark's data: artifacts, live-measurement keys, logs, rerun scripts
 docs/                    architecture, benchmark and research reports
 ```
 
