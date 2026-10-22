@@ -22,6 +22,7 @@ fn modules() -> Vec<(&'static str, &'static str, Entry)> {
             "the learned ranker: dump, select, store, archs, final, fit",
             mycelic_research::calibrator::main,
         ),
+        ("final_rerun", "final_rerun.sh's calibration-file steps", mycelic_research::final_rerun::main),
         (
             "freeze_vnext",
             "freeze vNext knobs into calibration.json with provenance",

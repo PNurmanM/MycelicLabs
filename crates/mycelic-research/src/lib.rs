@@ -17,6 +17,7 @@ pub mod cli;
 pub mod corpus;
 pub mod evalm;
 pub mod experiments;
+pub mod final_rerun;
 pub mod freeze_vnext;
 pub mod loss_accounting;
 pub mod models;
