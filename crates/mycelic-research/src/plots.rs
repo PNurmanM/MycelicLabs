@@ -143,32 +143,6 @@ fn legend(fontsize: f64) -> Option<Legend> {
     Some(Legend { fontsize, ncol: 1, loc: Loc::Best })
 }
 
-// mirrors vnext_data::V1
-fn v1_dir(art: &Path) -> PathBuf {
-    art.join("v1")
-}
-
-// mirrors vnext_data::e1_rows: the first row per (arch, scale, seed) of E1 and E1b under `base`
-fn e1_rows(base: &Path) -> Vec<Row> {
-    let mut rows = load_path(&base.join("e1_baselines.jsonl"));
-    rows.extend(load_path(&base.join("e1b_extra.jsonl")));
-    dedupe_default(rows)
-}
-
-// mirrors vnext_data::by_seed: seed -> row for one architecture at one scale (a later row replaces an earlier
-// one in place, as a dict comprehension does)
-fn by_seed<'r>(rows: &'r [Row], arch: &str, scale: &Value) -> Vec<(Value, &'r Row)> {
-    let mut out: Vec<(Value, &Row)> = Vec::new();
-    for r in rows.iter().filter(|r| s(r, "arch") == arch && same(r, "scale", scale)) {
-        let seed = r.get("seed").cloned().unwrap_or(Value::Null);
-        match out.iter_mut().find(|(k, _)| crate::py::value::py_eq(k, &seed)) {
-            Some(slot) => slot.1 = r,
-            None => out.push((seed, r)),
-        }
-    }
-    out
-}
-
 pub fn fig_scale(cx: &Ctx) -> Result<Option<PathBuf>> {
     let mut rows = cx.load("e1_baselines.jsonl");
     rows.extend(cx.load("e1b_extra.jsonl"));
@@ -625,7 +599,7 @@ pub fn fig_fanin(cx: &Ctx) -> Result<Option<PathBuf>> {
 /// OLD (`artifacts/v1`) vs NEW (`artifacts`) for the hierarchy and A2, at every scale both hold: found, evidence
 /// coverage, rare recall, and compute.
 pub fn fig_old_new(cx: &Ctx) -> Result<Option<PathBuf>> {
-    let (old, new) = (e1_rows(&v1_dir(&cx.art)), e1_rows(&cx.art));
+    let (old, new) = (crate::vnext_data::e1_rows(&cx.art.join("v1")), crate::vnext_data::e1_rows(&cx.art));
     if old.is_empty() || new.is_empty() {
         return Ok(None);
     }
@@ -653,7 +627,10 @@ pub fn fig_old_new(cx: &Ctx) -> Result<Option<PathBuf>> {
                 let cis: Vec<(f64, f64, f64)> = scales
                     .iter()
                     .map(|sc| {
-                        let v: Vec<f64> = by_seed(rows, arch, sc).iter().map(|(_, r)| f(r, key)).collect();
+                        let v: Vec<f64> = crate::vnext_data::by_seed(rows, arch, sc.as_i64().expect("scale"))
+                            .values()
+                            .map(|r| f(r, key))
+                            .collect();
                         if v.is_empty() { (f64::NAN, 0.0, 0.0) } else { ci_bar(&v) }
                     })
                     .collect();
