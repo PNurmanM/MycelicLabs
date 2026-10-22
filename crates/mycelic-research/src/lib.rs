@@ -17,6 +17,7 @@ pub mod experiments;
 pub mod live_rank;
 pub mod live_tasks;
 pub mod loss_accounting;
+pub mod make_pdf;
 pub mod models;
 pub mod np;
 pub mod ops;

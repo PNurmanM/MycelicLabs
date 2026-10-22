@@ -2,7 +2,7 @@
 //! arguments the module's `python3 -m research.mycelic.<module>` took.
 
 use anyhow::{Result, bail};
-use mycelic_research::{live_rank, live_tasks, plots, score_live};
+use mycelic_research::{live_rank, live_tasks, make_pdf, plots, score_live};
 
 type Entry = fn(&[String]) -> Result<()>;
 
@@ -20,6 +20,11 @@ fn modules() -> Vec<(&'static str, &'static str, Entry)> {
             "plots",
             "the report figures from the rows; optional output directory (default artifacts/figures)",
             plots::main,
+        ),
+        (
+            "make_pdf",
+            "render a generated Markdown report to a paginated A4 PDF: [src out [title [subtitle]]]",
+            make_pdf::main,
         ),
     ]
 }
