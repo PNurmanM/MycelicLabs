@@ -10,6 +10,23 @@ fn modules() -> Vec<(&'static str, &'static str, Entry)> {
     vec![
         ("experiments", "E1-E12, each appending rows to its own JSONL", mycelic_research::experiments::main),
         ("loss_accounting", "per-pattern loss funnel into loss_funnel.jsonl", mycelic_research::loss_accounting::main),
+        (
+            "quick_paired",
+            "paired A/B of a variant against a base on identical worlds",
+            mycelic_research::quick_paired::main,
+        ),
+        ("arm_paired", "multi-arm paired runs, each arm with its own ranker", mycelic_research::arm_paired::main),
+        ("calibrate", "fit the v1 knobs on the calibration seeds", mycelic_research::calibrate::main),
+        (
+            "calibrator",
+            "the learned ranker: dump, select, store, archs, final, fit",
+            mycelic_research::calibrator::main,
+        ),
+        (
+            "freeze_vnext",
+            "freeze vNext knobs into calibration.json with provenance",
+            mycelic_research::freeze_vnext::main,
+        ),
     ]
 }
 

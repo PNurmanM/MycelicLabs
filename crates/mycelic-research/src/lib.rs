@@ -10,15 +10,20 @@
 #![allow(clippy::type_complexity)]
 
 pub mod analysis;
+pub mod arm_paired;
+pub mod calibrate;
 pub mod calibrator;
+pub mod cli;
 pub mod corpus;
 pub mod evalm;
 pub mod experiments;
+pub mod freeze_vnext;
 pub mod loss_accounting;
 pub mod models;
 pub mod np;
 pub mod ops;
 pub mod org;
 pub mod py;
+pub mod quick_paired;
 pub mod runner;
 pub mod systems;
