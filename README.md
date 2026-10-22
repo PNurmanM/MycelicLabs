@@ -77,3 +77,7 @@ docs/                    architecture, benchmark and research reports
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+MIT; see [LICENSE](LICENSE). Parts of the code descend from [NeuralGraph](https://github.com/anovruzov/NeuralGraph), also MIT.
