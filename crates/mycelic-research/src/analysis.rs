@@ -279,3 +279,12 @@ pub fn summary(fname: &str) -> String {
     cols.extend(metrics.iter().map(|m| (*m, *m, 4)));
     md_table(&a, &cols, Some("average_precision"), true, &[])
 }
+
+/// `python -m research.mycelic.analysis f1.jsonl ...`: the headline summary of each artifact file.
+pub fn main(args: &[String]) -> anyhow::Result<()> {
+    for f in args {
+        println!("\n### {f}\n");
+        println!("{}", summary(f));
+    }
+    Ok(())
+}

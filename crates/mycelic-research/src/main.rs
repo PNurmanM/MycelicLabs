@@ -7,7 +7,12 @@ type Entry = fn(&[String]) -> Result<()>;
 
 /// (subcommand, what it does, entry point)
 fn modules() -> Vec<(&'static str, &'static str, Entry)> {
-    vec![]
+    use mycelic_research::{analysis, loss_report, vnext_data};
+    vec![
+        ("analysis", "headline summary of each artifact file given", analysis::main),
+        ("loss_report", "print the loss-funnel tables", loss_report::main),
+        ("vnext_data", "print every vNext table", vnext_data::main),
+    ]
 }
 
 fn main() -> Result<()> {
