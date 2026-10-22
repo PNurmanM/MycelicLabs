@@ -4,8 +4,8 @@
 //! are the `_Generated ...` lines, which carry the generation date and name the generator (the Python module then,
 //! the Rust one now).  Also the report-generator tests of `test_mycelic.py` (`TestReportGenerators`).
 
-use mycelic_research::loss_doc;
 use mycelic_research::runner::{art, repo_root};
+use mycelic_research::{loss_doc, vnext_docs};
 
 const DATE: &str = "2026-10-21";
 
@@ -55,4 +55,31 @@ fn loss_doc_ranker_section_survives_a_fresh_clone() {
     assert!(!sec.contains("not yet complete"), "{sec}");
     assert!(sec.contains("_finalH"));
     assert!(sec.contains("_finalC"));
+}
+
+#[test]
+fn vnext_docs_regenerate() {
+    let stamp = format!("{DATE} 12:00 UTC");
+    let files = vnext_docs::build_at(&stamp);
+    let names: Vec<&str> = files.iter().map(|f| f.0).collect();
+    assert_eq!(
+        names,
+        [
+            "fig_topology.svg",
+            "fig_loop.svg",
+            "NEXT_RESEARCH_REPORT.md",
+            "VNEXT_ARCHITECTURE.md",
+            "EXPERIMENT_MATRIX.md",
+            "LOSS_ACCOUNTING.md",
+            "REVIEWER_ATTACK.md",
+            "ALL.md"
+        ]
+    );
+    for (name, text) in &files {
+        assert_matches_committed(&format!("docs/mycelic_vnext/{name}"), text);
+    }
+    let report = &files[2].1;
+    assert!(report.contains(&format!(
+        "_Generated {stamp} from `research/mycelic/artifacts/` (new) and `artifacts/v1/` (old) by `vnext_docs.rs`."
+    )));
 }
