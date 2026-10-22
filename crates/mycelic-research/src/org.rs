@@ -294,3 +294,13 @@ pub fn rescale_fanin(base: [Fanin; 6], level: usize, median: f64) -> [Fanin; 6] 
     out[level].0 = median;
     out
 }
+
+/// `python3 -m research.mycelic.org`: the org statistics at three sizes.
+pub fn main(_args: &[String]) -> anyhow::Result<()> {
+    for tgt in [1000usize, 10_000, 50_000] {
+        let o = build_org_default(tgt, 0);
+        let text = crate::py::json::dumps_with(&o.stats(), crate::py::json::Style::ASCII);
+        println!("{tgt} {}", text.chars().take(600).collect::<String>());
+    }
+    Ok(())
+}

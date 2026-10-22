@@ -1229,3 +1229,25 @@ pub fn make_gold(corpus: &Corpus, min_facets: usize) -> Gold {
         top_supported: top,
     }
 }
+
+/// `python3 -m research.mycelic.corpus`: corpus and gold statistics at two sizes.
+pub fn main(_args: &[String]) -> anyhow::Result<()> {
+    for n in [1000usize, 10_000] {
+        let t0 = std::time::Instant::now();
+        let cp = build_corpus(crate::org::build_org_default(n, 0), 0, None);
+        let g = make_gold(&cp, 3);
+        println!(
+            "{n} {:.1}s {}",
+            t0.elapsed().as_secs_f64(),
+            crate::py::json::dumps_with(&cp.stats(), crate::py::json::Style::ASCII)
+        );
+        println!(
+            "   gold: {} rare {} fams {} decoys {}",
+            g.discoverable.len(),
+            g.rare.len(),
+            g.families.len(),
+            g.decoys.len()
+        );
+    }
+    Ok(())
+}

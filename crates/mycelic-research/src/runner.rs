@@ -300,3 +300,88 @@ pub fn evaluate(world: &World, res: &RunResult) -> Metrics {
 pub fn back_loaded() -> Vec<Tier> {
     allocation_default("back-loaded")
 }
+
+/// `run_matrix`: every architecture on every (scale, seed) world, rows appended to `artifacts/<out>`.
+pub fn run_matrix(
+    cal: &Cal,
+    scales: &[usize],
+    seeds: &[u64],
+    arch_names: &[&str],
+    alloc_name: &str,
+    out: &str,
+) -> anyhow::Result<Vec<Map<String, Value>>> {
+    let alloc = crate::models::allocation_default(alloc_name);
+    let mut rows = Vec::new();
+    for &scale in scales {
+        for &seed in seeds {
+            let t0 = std::time::Instant::now();
+            let w = build_world_default(scale, seed);
+            for a in arch_names {
+                let t1 = std::time::Instant::now();
+                let res = run_arch(cal, a, &w, &alloc, seed, None).res;
+                let met = evaluate(&w, &res);
+                let mut r = Map::new();
+                r.insert("arch".into(), json!(a));
+                r.insert("scale".into(), json!(scale));
+                r.insert("n_users".into(), json!(w.corpus.org.user_ids.len()));
+                r.insert("n_records".into(), json!(w.corpus.recs.len()));
+                r.insert("seed".into(), json!(seed));
+                r.insert("alloc".into(), json!(alloc_name));
+                r.insert("runtime_s".into(), crate::py::value::fl(pyjson::round(t1.elapsed().as_secs_f64(), 2)));
+                for (k, v) in &met {
+                    r.insert((*k).into(), crate::py::value::fl(*v));
+                }
+                let g = |k: &str| crate::py::fmt::f(met[k], k_spec(k));
+                println!(
+                    "  {} AP={} Rp={} R@100={} found={} rare={} cu={} ({:.1}s)",
+                    crate::py::fmt::s(a, "20s"),
+                    g("average_precision"),
+                    g("r_precision"),
+                    g("recall_at_100"),
+                    g("found_anywhere_in_register"),
+                    g("rare_signal_recall"),
+                    g("compute_units"),
+                    t1.elapsed().as_secs_f64()
+                );
+                rows.push(r);
+            }
+            println!("scale={scale} seed={seed} done in {:.1}s", t0.elapsed().as_secs_f64());
+        }
+    }
+    crate::experiments::append_rows(out, &rows)?;
+    Ok(rows)
+}
+
+fn k_spec(k: &str) -> &'static str {
+    match k {
+        "average_precision" => ".4f",
+        "found_anywhere_in_register" => ".2f",
+        "compute_units" => ".2e",
+        _ => ".3f",
+    }
+}
+
+/// `python3 -m research.mycelic.runner [scales [seeds]]`: a smoke run of every architecture into smoke.jsonl.
+pub fn main(args: &[String]) -> anyhow::Result<()> {
+    let scales: Vec<usize> = crate::cli::list(args.first().map_or("400", String::as_str))?;
+    let seeds: Vec<u64> = crate::cli::list(args.get(1).map_or("0", String::as_str))?;
+    let names: Vec<&str> = archs().iter().map(|a| a.0).collect();
+    let rows = run_matrix(&Cal::load(), &scales, &seeds, &names, "back-loaded", "smoke.jsonl")?;
+    let keys =
+        ["discovery_recall", "discovery_precision", "rare_signal_recall", "decoy_acceptance_all", "compute_units"];
+    let mut groups: Vec<&str> = rows.iter().map(|r| r["arch"].as_str().unwrap()).collect();
+    groups.sort();
+    groups.dedup();
+    for g in groups {
+        let sub: Vec<&Map<String, Value>> = rows.iter().filter(|r| r["arch"] == json!(g)).collect();
+        let parts: Vec<String> = keys
+            .iter()
+            .map(|k| {
+                let v: Vec<f64> = sub.iter().map(|r| r[*k].as_f64().unwrap()).collect();
+                format!("'{k}': {}", crate::py::fmt::repr(pyjson::round(crate::np::math::mean(&v), 3)))
+            })
+            .collect();
+        println!("{g} {{{}}}", parts.join(", "));
+    }
+    Ok(())
+}

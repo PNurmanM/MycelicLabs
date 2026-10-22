@@ -8,6 +8,10 @@ type Entry = fn(&[String]) -> Result<()>;
 /// (subcommand, what it does, entry point)
 fn modules() -> Vec<(&'static str, &'static str, Entry)> {
     vec![
+        ("org", "org-chart statistics at 1k, 10k and 50k users", mycelic_research::org::main),
+        ("corpus", "corpus and gold statistics at 1k and 10k users", mycelic_research::corpus::main),
+        ("models", "the named model anchors on the capability axis", mycelic_research::models::main),
+        ("runner", "smoke run of every architecture into smoke.jsonl", mycelic_research::runner::main),
         ("experiments", "E1-E12, each appending rows to its own JSONL", mycelic_research::experiments::main),
         ("loss_accounting", "per-pattern loss funnel into loss_funnel.jsonl", mycelic_research::loss_accounting::main),
         (

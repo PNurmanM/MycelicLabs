@@ -220,3 +220,22 @@ pub fn allocation_default(name: &str) -> Vec<Tier> {
 pub fn describe(alloc: &[Tier]) -> String {
     alloc.iter().map(|t| t.name.as_str()).collect::<Vec<_>>().join(" -> ")
 }
+
+/// `python3 -m research.mycelic.models`: the named anchors on the capability axis.
+pub fn main(_args: &[String]) -> anyhow::Result<()> {
+    use crate::py::fmt::f;
+    for (name, ..) in ANCHOR_SPECS {
+        let t = anchor(name, HardShape::Convex);
+        println!(
+            "{} q={} recall={} causal={} depth={} halluc={} ctx={}",
+            crate::py::fmt::s(name, "14s"),
+            f(t.q, ".2f"),
+            f(t.extract_recall, ".2f"),
+            f(t.causal_check, ".2f"),
+            t.synth_depth,
+            f(t.hallucination, ".3f"),
+            t.ctx
+        );
+    }
+    Ok(())
+}
