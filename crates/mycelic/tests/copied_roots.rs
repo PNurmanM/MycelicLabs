@@ -38,19 +38,31 @@ async fn test_a_copy_from_another_agent_is_not_an_independent_source() {
     // two genuine sources hold all three slots: log-1 (transport and buffer) and sales-1 (demand)
     h.observe("log-1", TRANSPORT, obs("transport_disruption", "supply:sd-9/transport")).await;
     h.observe("log-1", BUFFER, obs("supplier_buffer_low", "supply:sd-9/supplier")).await;
-    h.observe("sales-1", "Helios committed to 40 RX-4 arms; every RX-4 uses an SD-9 drive.",
-              obs("demand_commitment", "supply:sd-9/demand")).await;
+    h.observe(
+        "sales-1",
+        "Helios committed to 40 RX-4 arms; every RX-4 uses an SD-9 drive.",
+        obs("demand_commitment", "supply:sd-9/demand"),
+    )
+    .await;
     h.settle().await;
     assert!(h.layer("enterprise").is_empty(), "two agents cannot meet min_agents = 3");
     // proc-1 re-posts log-1's buffer note, differing only in case and spacing, with a higher confidence so that it
     // wins the slot: still one source, so the coalition is still log-1 and sales-1
-    h.observe("proc-1", &format!("  {}  ", BUFFER.to_uppercase()),
-              obs_c("supplier_buffer_low", "supply:sd-9/supplier", 0.95)).await;
+    h.observe(
+        "proc-1",
+        &format!("  {}  ", BUFFER.to_uppercase()),
+        obs_c("supplier_buffer_low", "supply:sd-9/supplier", 0.95),
+    )
+    .await;
     h.settle().await;
     assert!(h.layer("enterprise").is_empty(), "a copy must not stand in for a third independent agent");
     // control: proc-1's own, different observation is independent evidence and completes the conclusion
-    h.observe("proc-1", "Our own count: 9 SD-9 drives on the shelf, reorder lead time 6 weeks.",
-              obs_c("supplier_buffer_low", "supply:sd-9/supplier", 0.97)).await;
+    h.observe(
+        "proc-1",
+        "Our own count: 9 SD-9 drives on the shelf, reorder lead time 6 weeks.",
+        obs_c("supplier_buffer_low", "supply:sd-9/supplier", 0.97),
+    )
+    .await;
     h.settle().await;
     let concl = h.layer("enterprise");
     assert_eq!(concl.len(), 1, "an independent observation still composes");
@@ -66,8 +78,12 @@ async fn test_a_backdated_or_offset_copy_cannot_displace_the_original() {
         let h = setup().await;
         h.observe("log-1", TRANSPORT, obs("transport_disruption", "supply:sd-9/transport")).await;
         h.observe("log-1", BUFFER, obs("supplier_buffer_low", "supply:sd-9/supplier")).await;
-        h.observe("sales-1", "Helios committed to 40 RX-4 arms; every RX-4 uses an SD-9 drive.",
-                  obs("demand_commitment", "supply:sd-9/demand")).await;
+        h.observe(
+            "sales-1",
+            "Helios committed to 40 RX-4 arms; every RX-4 uses an SD-9 drive.",
+            obs("demand_commitment", "supply:sd-9/demand"),
+        )
+        .await;
         h.settle().await;
         let mut fields = obs_c("supplier_buffer_low", "supply:sd-9/supplier", 0.95);
         fields["observed_at"] = json!(observed_at);
