@@ -554,7 +554,32 @@ impl Aggregator {
             }
             kept.push(m.clone());
         }
-        let candidates = kept;
+        // a copy is not an independent source: active raw notes with the same slot and the same text (case and
+        // whitespace normalised) are one source, the earliest observation standing for it. Paraphrases are not
+        // detected. A verbatim re-post of a retracted note by another agent is NOT blocked: the golden scenario
+        // follows_evidence specifies such a recount as evidence (an open decision, not settled here).
+        let norm = |t: &str| t.split_whitespace().collect::<Vec<_>>().join(" ").to_lowercase();
+        // earliest by observation time, then by arrival (the list is in store insertion order, which replay keeps)
+        let mut first: BTreeMap<(String, String), (String, usize, String)> = BTreeMap::new();
+        for (arrival, m) in kept.iter().enumerate().filter(|(_, m)| m.operator == "agent_observation") {
+            if let Some(slot) = &m.slot {
+                let rank = (m.created_at.clone(), arrival, m.memory_id.clone());
+                let at = first.entry((slot.clone(), norm(&m.text))).or_insert_with(|| rank.clone());
+                if rank < *at {
+                    *at = rank;
+                }
+            }
+        }
+        let candidates: Vec<Memory> = kept
+            .into_iter()
+            .filter(|m| {
+                if m.operator != "agent_observation" {
+                    return true;
+                }
+                let Some(slot) = &m.slot else { return true };
+                first.get(&(slot.clone(), norm(&m.text))).is_some_and(|(_, _, id)| *id == m.memory_id)
+            })
+            .collect();
         let key = format!("{}:{}", rule.rule_id, entity.filter(|e| !e.is_empty()).unwrap_or("*"));
         let current = tx.current_derived(org_id, "slot_composition", target_unit, &key)?;
         let claims: Vec<ClaimEnvelope> = candidates.iter().map(|m| Self::claim(m, rule)).collect::<Result<_>>()?;
