@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-24",
+  "repository": "PNurmanM/MycelicLabs",
+  "base": "64027cb",
+  "branch": "claude/mycelic-gate-0-recovery-tjl82x",
+  "commits": {
+    "2b423cc": "tests: process-level 3-owner fixture (as reviewed)",
+    "3daed66": "aggregation: a copied observation is not an independent source",
+    "8e17b46": "aggregation: copy attribution no longer trusts client time",
+    "a10e2cb": "tests: rustfmt"
+  },
+  "historical_checkpoints_not_found": ["research/architecture-recovery-20261024", "8dc5f5a", "78511ae",
+    "architecture_recovery_20261024/*", "emergence70/*", "AGENTS.md", "CLAUDE_MEMORY.md"],
+  "seeds": {"used": "none (deterministic fixtures; no benchmark seed spent)", "sealed_94000_94009": "untouched"},
+  "decisions": [
+    "copied observations (same slot, normalised text) are one source, credited conservatively",
+    "verbatim recount of a retracted note left counting: the golden scenario follows_evidence specifies it",
+    "reviewed fixture test not edited for its findings; findings recorded instead"
+  ],
+  "remaining_failures": [
+    "free-text query can answer another entity's conclusion (entity filter optional)",
+    "slot selection not independence-aware",
+    "paraphrased copies counted as independent",
+    "unknown-parent / stale memory.derived admitted from the stream (suspected, untested: needs direct NATS publish)",
+    "wait_idle ignores JetStream ack-pending (suspected timing)",
+    "health startup race under load (pre-existing)",
+    "layer 3 blind raw-text extraction blocked: no local model endpoint"
+  ],
+  "next_action": "owners decide the retracted-recount semantics; add an entity-bound fixture test with a counterfactual completion; run layer 3 on the machine that serves the local model"
+}
