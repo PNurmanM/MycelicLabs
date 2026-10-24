@@ -58,3 +58,22 @@ async fn test_a_copy_from_another_agent_is_not_an_independent_source() {
     assert_eq!(agents, json!(["log-1", "proc-1", "sales-1"]));
     h.close().await;
 }
+
+#[tokio::test(flavor = "multi_thread")]
+async fn test_a_backdated_or_offset_copy_cannot_displace_the_original() {
+    // reviewer probe: the client chooses observed_at, so "earliest" must not trust it
+    for observed_at in ["2020-01-01T00:00:00Z", "2026-10-24T00:00:01-23:59"] {
+        let h = setup().await;
+        h.observe("log-1", TRANSPORT, obs("transport_disruption", "supply:sd-9/transport")).await;
+        h.observe("log-1", BUFFER, obs("supplier_buffer_low", "supply:sd-9/supplier")).await;
+        h.observe("sales-1", "Helios committed to 40 RX-4 arms; every RX-4 uses an SD-9 drive.",
+                  obs("demand_commitment", "supply:sd-9/demand")).await;
+        h.settle().await;
+        let mut fields = obs_c("supplier_buffer_low", "supply:sd-9/supplier", 0.95);
+        fields["observed_at"] = json!(observed_at);
+        h.observe("proc-1", BUFFER, fields).await;
+        h.settle().await;
+        assert!(h.layer("enterprise").is_empty(), "a copy sent with observed_at {observed_at} displaced the original");
+        h.close().await;
+    }
+}

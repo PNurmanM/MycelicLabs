@@ -555,30 +555,38 @@ impl Aggregator {
             kept.push(m.clone());
         }
         // a copy is not an independent source: active raw notes with the same slot and the same text (case and
-        // whitespace normalised) are one source, the earliest observation standing for it. Paraphrases are not
-        // detected. A verbatim re-post of a retracted note by another agent is NOT blocked: the golden scenario
-        // follows_evidence specifies such a recount as evidence (an open decision, not settled here).
+        // whitespace normalised) are one source. Which member stands for it must not depend on anything a client
+        // controls (observed_at can be backdated or carry any offset), so the choice is conservative: the member
+        // whose producer already contributes other evidence here, so that copying can never add an agent; ties go
+        // to store arrival order. Paraphrases are not detected. A verbatim re-post of a retracted note by another
+        // agent is NOT blocked: the golden scenario follows_evidence specifies such a recount as evidence (an open
+        // decision, not settled here).
         let norm = |t: &str| t.split_whitespace().collect::<Vec<_>>().join(" ").to_lowercase();
-        // earliest by observation time, then by arrival (the list is in store insertion order, which replay keeps)
-        let mut first: BTreeMap<(String, String), (String, usize, String)> = BTreeMap::new();
-        for (arrival, m) in kept.iter().enumerate().filter(|(_, m)| m.operator == "agent_observation") {
-            if let Some(slot) = &m.slot {
-                let rank = (m.created_at.clone(), arrival, m.memory_id.clone());
-                let at = first.entry((slot.clone(), norm(&m.text))).or_insert_with(|| rank.clone());
-                if rank < *at {
-                    *at = rank;
-                }
+        let group_of = |m: &Memory| -> Option<(String, String)> {
+            (m.operator == "agent_observation").then(|| m.slot.clone().map(|s| (s, norm(&m.text)))).flatten()
+        };
+        let mut groups: BTreeMap<(String, String), Vec<usize>> = BTreeMap::new();
+        for (arrival, m) in kept.iter().enumerate() {
+            if let Some(g) = group_of(m) {
+                groups.entry(g).or_default().push(arrival);
             }
+        }
+        let mut chosen: BTreeSet<usize> = BTreeSet::new();
+        for (g, members) in &groups {
+            let elsewhere: BTreeSet<String> =
+                kept.iter().filter(|m| group_of(m).as_ref() != Some(g)).flat_map(contributing_agents).collect();
+            let pick = members
+                .iter()
+                .copied()
+                .min_by_key(|&i| (!elsewhere.contains(&kept[i].producer_id), i))
+                .expect("a group has a member");
+            chosen.insert(pick);
         }
         let candidates: Vec<Memory> = kept
             .into_iter()
-            .filter(|m| {
-                if m.operator != "agent_observation" {
-                    return true;
-                }
-                let Some(slot) = &m.slot else { return true };
-                first.get(&(slot.clone(), norm(&m.text))).is_some_and(|(_, _, id)| *id == m.memory_id)
-            })
+            .enumerate()
+            .filter(|(i, m)| group_of(m).is_none() || chosen.contains(i))
+            .map(|(_, m)| m)
             .collect();
         let key = format!("{}:{}", rule.rule_id, entity.filter(|e| !e.is_empty()).unwrap_or("*"));
         let current = tx.current_derived(org_id, "slot_composition", target_unit, &key)?;
