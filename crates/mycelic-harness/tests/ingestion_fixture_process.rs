@@ -1,0 +1,178 @@
+//! Process-level end-to-end fixture (research/mycelic/ingestion_tesseract_20261024): three authorized owners in
+//! separate teams each hold one fragment of a supply risk for entity sd-9; distractors are an unrelated entity, a
+//! similarly named entity (sd-90), a resent copy of one root, a denied owner in another enterprise and noise.
+//!
+//! Real nats-server, real `mycelic` process, HTTP via the SDK.  Unlike the other harness process tests a missing
+//! broker FAILS here: an early return must never be counted as an executed broker test.
+//!
+//! Slot/topic/entity annotations are explicitly declared inputs (the service has no extractor); expected outcomes
+//! live only in the assertions.
+
+mod support;
+
+use mycelic_harness::scenario::ENTERPRISE;
+use mycelic_harness::smoke::{active_snapshot, wait_idle};
+use mycelic_harness::{Driver, ProcessDriver};
+use mycelic_sdk::{MycelicClient, Note, QueryOptions, Registration};
+use serde_json::{Value, json};
+use std::collections::BTreeSet;
+use std::time::Duration;
+
+const RIVAL: &str = "rival";
+const CANARY: &str = "CANARY-RIVAL-7731";
+const QUERY: &str = "Is there a delivery risk for the SD-9 servo drive?";
+
+fn note(text: &str, slot: Option<&str>, entity: Option<&str>) -> Note {
+    Note {
+        text: text.into(),
+        topic: entity.map(|e| format!("supply:{e}/{}", slot.unwrap_or("misc"))),
+        slot: slot.map(String::from),
+        entity: entity.map(String::from),
+        confidence: 0.8,
+        ..Note::default()
+    }
+}
+
+fn register(admin: &MycelicClient, enterprise: &str, id: &str, dept: &str, team: &str) -> MycelicClient {
+    let res = admin
+        .register_agent(&Registration {
+            agent_id: id.into(),
+            enterprise: enterprise.into(),
+            department: Some(dept.into()),
+            team: Some(team.into()),
+            ..Registration::default()
+        })
+        .unwrap();
+    MycelicClient::new(&admin_base(admin), res["api_key"].as_str().unwrap())
+}
+
+fn admin_base(c: &MycelicClient) -> String {
+    c.base_url.clone()
+}
+
+fn enterprise_answer(c: &MycelicClient, scope: &str) -> Value {
+    let opts = QueryOptions { scope: Some(scope.into()), min_layer: "enterprise".into(), ..QueryOptions::default() };
+    c.query(QUERY, &opts).unwrap()
+}
+
+fn roots(lineage: &Value) -> BTreeSet<String> {
+    lineage["roots"].as_array().into_iter().flatten().filter_map(|r| r.as_str().map(String::from)).collect()
+}
+
+fn ledger(entries: &mut Vec<Value>, step: &str, detail: Value) {
+    eprintln!("  ok  {step}  {}", detail.to_string().chars().take(300).collect::<String>());
+    entries.push(json!({"step": step, "detail": detail}));
+}
+
+#[test]
+fn three_owner_fixture_end_to_end() {
+    assert!(support::nats_available(), "nats-server is required: set MYCELIC_NATS_SERVER_BIN (no silent skip)");
+    assert!(support::binaries_built(), "building mycelic binaries failed");
+    let mut steps = Vec::new();
+    let mut d = ProcessDriver::new().unwrap();
+    d.up().unwrap();
+    let admin = MycelicClient::new(&d.base_url(), &d.admin_token());
+    wait_idle(&admin, Duration::from_secs(60)).unwrap();
+
+    // ---- owners
+    let logi = register(&admin, ENTERPRISE, "logistics-1", "ops", "logistics");
+    let proc_ = register(&admin, ENTERPRISE, "procurement-1", "ops", "procurement");
+    let sales = register(&admin, ENTERPRISE, "sales-1", "commercial", "field-sales");
+    let rival = register(&admin, RIVAL, "rival-1", "ops", "sales");
+
+    // ---- fragments + distractors (declared annotations)
+    let t = logi
+        .remember(&note("Rotterdam strike delays SD-9 servo drive shipments by 3 weeks.", Some("transport_disruption"), Some("sd-9")), "team", Some("t-1"), None, None)
+        .unwrap();
+    // resend of the same root (same idempotency key): must be one memory
+    let t_again = logi
+        .remember(&note("Rotterdam strike delays SD-9 servo drive shipments by 3 weeks.", Some("transport_disruption"), Some("sd-9")), "team", Some("t-1"), None, None)
+        .unwrap();
+    let b = proc_
+        .remember(&note("Supplier buffer for SD-9 servo drives is down to 4 days.", Some("supplier_buffer_low"), Some("sd-9")), "team", Some("b-1"), None, None)
+        .unwrap();
+    // unrelated entity and similarly named entity
+    logi.remember(&note("KX-2 gearbox carrier delayed.", Some("transport_disruption"), Some("kx-2")), "team", Some("u-1"), None, None).unwrap();
+    proc_.remember(&note("SD-90 sensor buffer low.", Some("supplier_buffer_low"), Some("sd-90")), "team", Some("s-1"), None, None).unwrap();
+    sales.remember(&note("Committed 500 SD-90 sensors to Contoso.", Some("demand_commitment"), Some("sd-90")), "team", Some("s-2"), None, None).unwrap();
+    // noise without a slot
+    sales.remember(&note("Team offsite moved to Thursday.", None, None), "team", Some("n-1"), None, None).unwrap();
+    // denied owner supplies the missing slot for sd-9 in another enterprise, with a canary
+    rival
+        .remember(&note(&format!("{CANARY} committed 900 SD-9 drives to Fabrikam."), Some("demand_commitment"), Some("sd-9")), "team", Some("r-1"), None, None)
+        .unwrap();
+    wait_idle(&admin, Duration::from_secs(60)).unwrap();
+    assert_eq!(t["memory_id"], t_again["memory_id"], "a resent root must not create a second memory");
+
+    // ---- abstention: two of three slots in northwind, the third only in a denied enterprise
+    let res = enterprise_answer(&sales, ENTERPRISE);
+    assert!(res["answer"].is_null(), "fabricated completion from partial/denied evidence: {}", res["answer"]);
+    ledger(&mut steps, "abstains with missing slot (denied owner holds it)", json!({"answer": res["answer"]}));
+
+    // ---- third owner completes it
+    let c = sales
+        .remember(&note("Committed 1200 SD-9 servo drives to Northwind Robotics for Q4.", Some("demand_commitment"), Some("sd-9")), "team", Some("c-1"), None, None)
+        .unwrap();
+    wait_idle(&admin, Duration::from_secs(60)).unwrap();
+    let res = enterprise_answer(&sales, ENTERPRISE);
+    let ans = &res["answer"];
+    assert_eq!(ans["rule_id"], "component_supply_risk", "no composed conclusion: {res}");
+    let concl = ans["memory_id"].as_str().unwrap().to_string();
+    let admin_lin = admin.lineage(&concl).unwrap();
+    let expected: BTreeSet<String> =
+        [&t, &b, &c].iter().map(|m| m["memory_id"].as_str().unwrap().to_string()).collect();
+    assert_eq!(roots(&admin_lin), expected, "conclusion roots must be exactly the three fragments");
+    let wire = res.to_string() + &admin_lin.to_string();
+    assert!(!wire.contains(CANARY), "denied owner's canary leaked into northwind payloads");
+    assert!(!wire.to_lowercase().contains("sd-90"), "similarly named entity merged into sd-9 conclusion");
+    ledger(&mut steps, "composed with exact roots", json!({"conclusion": concl, "roots": expected, "support": ans["support"]}));
+
+    // ---- authorization: rival cannot read northwind evidence or conclusion
+    for id in expected.iter().chain([&concl]) {
+        let e = rival.get_memory(id).err().map(|e| e.status);
+        assert_eq!(e, Some(404), "rival read northwind memory {id}");
+        let e = rival.lineage(id).err().map(|e| e.status);
+        assert_eq!(e, Some(404), "rival read northwind lineage {id}");
+    }
+    let rq = enterprise_answer(&rival, RIVAL);
+    assert!(rq["answer"].is_null() && !rq.to_string().contains(&concl), "rival saw northwind conclusion: {rq}");
+    ledger(&mut steps, "cross-enterprise denial", json!({"checked_ids": expected.len() + 1}));
+
+    // ---- restart broker + service, same answer
+    let snap = active_snapshot(&admin).unwrap();
+    d.kill("mycelic").unwrap();
+    d.kill("nats").unwrap();
+    d.start("nats").unwrap();
+    d.start("mycelic").unwrap();
+    wait_idle(&admin, Duration::from_secs(90)).unwrap();
+    assert_eq!(enterprise_answer(&sales, ENTERPRISE)["answer"]["memory_id"], json!(concl), "answer moved after restart");
+    assert_eq!(active_snapshot(&admin).unwrap(), snap, "state moved after restart");
+    ledger(&mut steps, "broker+service restart", json!({"active": snap.len()}));
+
+    // ---- withdrawal: retract one root, the conclusion must go; a casual mention must not restore it
+    logi.retract(t["memory_id"].as_str().unwrap(), "source corrected").unwrap();
+    wait_idle(&admin, Duration::from_secs(60)).unwrap();
+    let res = enterprise_answer(&sales, ENTERPRISE);
+    assert!(res["answer"].is_null(), "stale conclusion survived retraction of a root: {}", res["answer"]);
+    let status = admin.get_memory(&concl).unwrap()["status"].clone();
+    assert_ne!(status, "active", "withdrawn conclusion still active");
+    sales.remember(&note("As mentioned, Rotterdam was in the news again.", None, Some("sd-9")), "team", Some("m-1"), None, None).unwrap();
+    wait_idle(&admin, Duration::from_secs(60)).unwrap();
+    assert!(enterprise_answer(&sales, ENTERPRISE)["answer"].is_null(), "casual mention restored a withdrawn conclusion");
+    ledger(&mut steps, "retraction withdraws descendant", json!({"conclusion_status": status}));
+
+    // ---- rebuild from the event log into fresh storage
+    let snap = active_snapshot(&admin).unwrap();
+    d.kill("mycelic").unwrap();
+    d.wipe_database().unwrap();
+    d.start("mycelic").unwrap();
+    wait_idle(&admin, Duration::from_secs(120)).unwrap();
+    assert_eq!(active_snapshot(&admin).unwrap(), snap, "rebuild diverged");
+    assert!(enterprise_answer(&sales, ENTERPRISE)["answer"].is_null(), "replay resurrected withdrawn conclusion");
+    ledger(&mut steps, "rebuild from JetStream", json!({"active": snap.len()}));
+
+    if let Some(path) = std::env::var_os("MYCELIC_FIXTURE_LEDGER") {
+        std::fs::write(path, serde_json::to_string_pretty(&json!({"result": "PASS", "steps": steps})).unwrap()).unwrap();
+    }
+    d.down();
+}
